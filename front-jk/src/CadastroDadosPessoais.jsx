@@ -141,7 +141,6 @@ const ExitButton = styled.button`
 `;
 
 function CadastroDadosPessoais({ nextStep }) {
-  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);

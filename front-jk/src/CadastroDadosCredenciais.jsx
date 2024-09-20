@@ -137,7 +137,6 @@ const ExitButton = styled.button`
 `;
 
 function CadastroDadosCredenciais({ nextStep, prevStep }) {
-  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);

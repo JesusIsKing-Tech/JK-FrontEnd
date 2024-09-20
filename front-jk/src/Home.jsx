@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import imagem from './img/logo.png'
-import { useNavigation } from '@react-navigation/native';
 
 const Header = styled.header`
   display: flex;
@@ -183,7 +182,6 @@ const IconContainer = styled.div`
 `;
 
 const Home = () => {
-  const navigation = useNavigation();
 
   const sections = {
     about: {
@@ -237,7 +235,7 @@ const Home = () => {
           <a onClick={() => handleSectionChange('values')}>Valores</a>
           <a onClick={() => handleSectionChange('about')}>Sobre nós</a>
           <ButtonsContainer>
-            <button onClick={useNavigation} className="login">Login</button>
+            <button className="login">Login</button>
             <button className="signup">Cadastro</button>
           </ButtonsContainer>
         </nav>
