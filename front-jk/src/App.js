@@ -3,7 +3,6 @@ import CadastroDadosPessoais from './CadastroDadosPessoais';
 import CadastroDadosCredenciais from './CadastroDadosCredenciais';
 import DoacaoAlimentos from './CadastroPrecisaDoacao';
 import Home from './Home';
-import { useNavigation } from '@react-navigation/native';
 
 
 function App() {
