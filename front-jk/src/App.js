@@ -3,6 +3,10 @@ import CadastroDadosPessoais from './CadastroDadosPessoais';
 import CadastroDadosCredenciais from './CadastroDadosCredenciais';
 import DoacaoAlimentos from './CadastroPrecisaDoacao';
 import Home from './Home';
+import Login from './Login';
+import RecuperarSenha from './RecuperarSenha';
+import RecuperarSenha2 from './RecuperarSenha2';
+import HomeUsuario from './Home2';
 
 
 function App() {
@@ -28,7 +32,11 @@ function App() {
 
   return (
     <div>
-      {renderStep()}
+      {/* {renderStep()} */}
+{/* <Login></Login> */}
+{/* <RecuperarSenha><   /RecuperarSenha> */}
+{/* <RecuperarSenha2></RecuperarSenha2> */}
+<HomeUsuario></HomeUsuario>
     </div>
   );
 }

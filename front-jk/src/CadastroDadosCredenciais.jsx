@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
+import styled from 'styled-components'; 
 
 // Estilização usando Styled Components
 const Container = styled.div`
@@ -154,7 +154,7 @@ function CadastroDadosCredenciais({ nextStep, prevStep }) {
           </StepIndicator>
         </ProgressBar>
         <Title>Cadastro Credenciais</Title>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={(onSubmit)}>
           <BoxLabels>
             <div>Email</div>
             <Input type="email" {...register('email')} />
