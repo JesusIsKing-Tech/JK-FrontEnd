@@ -17,10 +17,10 @@ function App() {
 
   const renderStep = () => {
     switch (step) {
-      //  case 1:
-        // return<Home nextStep={nextStep} />;
-      case 1:
-        return < Home nextStep={nextStep} />;
+       case 1:
+        return<Home nextStep={nextStep} />;
+      // case 1:
+      //   return < Home nextStep={nextStep} />;
       case 3:
         return <CadastroDadosPessoais nextStep={nextStep} prevStep={prevStep} />;
       case 4:
@@ -32,11 +32,11 @@ function App() {
 
   return (
     <div>
-      {/* {renderStep()} */}
+       {renderStep()} 
 {/* <Login></Login> */}
-{/* <RecuperarSenha><   /RecuperarSenha> */}
+{/* { <RecuperarSenha> </RecuperarSenha> } */}
 {/* <RecuperarSenha2></RecuperarSenha2> */}
-<HomeUsuario></HomeUsuario>
+{/* {<HomeUsuario></HomeUsuario>} */}
     </div>
   );
 }

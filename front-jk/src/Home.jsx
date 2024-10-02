@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import imagem from './img/logo.png'
+import imagem from './img/logo.png';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 
 const Header = styled.header`
   display: flex;
