@@ -1,0 +1,39 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #DCE0E6;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.img {
+    height: 50px;
+    cursor: pointer;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+
+
+.nav {
+    display: flex;
+    gap: 20px;
+
+    a {
+        align-items: center;
+        display: flex;
+        text-decoration: underline;
+        /* text-decoration:line; */
+        color: #333;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            color: #2c5cc5;
+        }
+    }
+}

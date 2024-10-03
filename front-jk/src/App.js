@@ -3,6 +3,10 @@ import CadastroDadosPessoais from './CadastroDadosPessoais';
 import CadastroDadosCredenciais from './CadastroDadosCredenciais';
 import DoacaoAlimentos from './CadastroPrecisaDoacao';
 import Home from './Home';
+import Login from './Login';
+import RecuperarSenha from './RecuperarSenha';
+import RecuperarSenha2 from './RecuperarSenha2';
+import HomeUsuario from './Home2';
 
 
 function App() {
@@ -14,21 +18,25 @@ function App() {
   const renderStep = () => {
     switch (step) {
       //  case 1:
-        // return<Home nextStep={nextStep} />;
+      //   return<CadastroDadosCredenciais nextStep={nextStep} />;
+      // case 2:
+      //   return < CadastroDadosPessoais nextStep={nextStep} />;
       case 1:
-        return < Home nextStep={nextStep} />;
-      case 3:
-        return <CadastroDadosPessoais nextStep={nextStep} prevStep={prevStep} />;
-      case 4:
-        return <DoacaoAlimentos prevStep={prevStep} />;
-      default:
-        return <CadastroDadosCredenciais nextStep={nextStep} />;
+        return <CadastroDadosCredenciais nextStep={nextStep} prevStep={prevStep} />;
+      // case 4:
+      //   return <DoacaoAlimentos prevStep={prevStep} />;
+      // default:
+        // return <CadastroDadosCredenciais nextStep={nextStep} />;
     }
   };
 
   return (
     <div>
-      {renderStep()}
+       {renderStep()} 
+{/* <Login></Login> */}
+{/* { <RecuperarSenha> </RecuperarSenha> } */}
+{/* <RecuperarSenha2></RecuperarSenha2> */}
+{/* {<HomeUsuario></HomeUsuario>} */}
     </div>
   );
 }
