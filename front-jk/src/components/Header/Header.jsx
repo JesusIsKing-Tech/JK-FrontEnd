@@ -8,7 +8,7 @@ const Header = ({imagem}) => {
   <a onClick={() => handleSectionChange('values')}>Valores</a>
   <a onClick={() => handleSectionChange('about')}>Sobre nós</a>
   <ButtonsContainer>
-    <button className="login">Login</button>
+    <button className={styles["login"]}>Login</button>
     <button className="signup">Cadastro</button>
   </ButtonsContainer>
 </nav>

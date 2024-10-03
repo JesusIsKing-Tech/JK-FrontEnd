@@ -17,16 +17,16 @@ function App() {
 
   const renderStep = () => {
     switch (step) {
-       case 1:
-        return<Home nextStep={nextStep} />;
-      // case 1:
-      //   return < Home nextStep={nextStep} />;
-      case 3:
-        return <CadastroDadosPessoais nextStep={nextStep} prevStep={prevStep} />;
-      case 4:
-        return <DoacaoAlimentos prevStep={prevStep} />;
-      default:
-        return <CadastroDadosCredenciais nextStep={nextStep} />;
+      //  case 1:
+      //   return<CadastroDadosCredenciais nextStep={nextStep} />;
+      // case 2:
+      //   return < CadastroDadosPessoais nextStep={nextStep} />;
+      case 1:
+        return <CadastroDadosCredenciais nextStep={nextStep} prevStep={prevStep} />;
+      // case 4:
+      //   return <DoacaoAlimentos prevStep={prevStep} />;
+      // default:
+        // return <CadastroDadosCredenciais nextStep={nextStep} />;
     }
   };
 

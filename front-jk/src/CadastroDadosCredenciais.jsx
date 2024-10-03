@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 
 // Estilização usando Styled Components
 const Container = styled.div`
@@ -142,7 +142,7 @@ function CadastroDadosCredenciais({ nextStep, prevStep }) {
     console.log(data);
     nextStep(); // Avançar para a próxima etapa
   };
-  
+
   return (
     <Container>
       <FormContainer>
@@ -157,19 +157,19 @@ function CadastroDadosCredenciais({ nextStep, prevStep }) {
         <Form onSubmit={(onSubmit)}>
           <BoxLabels>
             <div>Email</div>
-            <Input type="email" {...register('email')} />
+            <Input type="email" />
           </BoxLabels>
           <BoxLabels>
             <div>Confirme seu email</div>
-            <Input type="email" {...register('confirmeEmail')} />
+            <Input type="email" />
           </BoxLabels>
           <BoxLabels>
             <div>Senha</div>
-            <Input type="password" {...register('senha')} />
+            <Input type="password" />
           </BoxLabels>
           <BoxLabels>
             <div>Confirme sua senha</div>
-            <Input type="password" {...register('confirmeSenha')} />
+            <Input type="password" />
           </BoxLabels>
           <Button type="submit">Próxima Etapa</Button>
         </Form>

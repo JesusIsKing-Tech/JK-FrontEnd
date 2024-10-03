@@ -159,15 +159,15 @@ function CadastroDadosPessoais({ nextStep }) {
           </StepIndicator>
         </ProgressBar>
         <Title>Cadastro Dados Pessoais</Title>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form>
           <InputGroup fullWidth>
             <Label>Nome Completo</Label>
-            <Input type="text" {...register('nomeCompleto')} />
+            <Input type="text"  />
           </InputGroup>
           
           <InputGroup>
             <Label>Gênero</Label>
-            <Select {...register('genero')}>
+            <Select>
               <option value="">Selecione o gênero</option>
               <option value="masculino">Masculino</option>
               <option value="feminino">Feminino</option>
@@ -177,37 +177,37 @@ function CadastroDadosPessoais({ nextStep }) {
 
           <InputGroup>
             <Label>Data de Nascimento</Label>
-            <Input type="text" placeholder="Dia/Mês/Ano" {...register('dia')} />
+            <Input type="text" placeholder="Dia/Mês/Ano"  />
           </InputGroup>
     
           <InputGroup>
             <Label>CEP</Label>
-            <Input type="text" {...register('cep')} />
+            <Input type="text"  />
           </InputGroup>
           
           <InputGroup fullWidth>
             <Label>Rua</Label>
-            <Input type="text" {...register('rua')} />
+            <Input type="text"  />
           </InputGroup>
           
           <InputGroup>
             <Label>Número</Label>
-            <Input type="text" {...register('numero')} />
+            <Input type="text"  />
           </InputGroup>
           
           <InputGroup>
             <Label>Bairro</Label>
-            <Input type="text" {...register('bairro')} />
+            <Input type="text"  />
           </InputGroup>
           
           <InputGroup>
             <Label>Cidade</Label>
-            <Input type="text" {...register('cidade')} />
+            <Input type="text"  />
           </InputGroup>
 
           <InputGroup>
             <Label>UF</Label>
-            <Input type="text" {...register('uf')} />
+            <Input type="text"  />
           </InputGroup>
 
           {/* <RadioGroup>
