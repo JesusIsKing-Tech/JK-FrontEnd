@@ -1,0 +1,15 @@
+.boxLabels {
+    display: flex;
+    flex-direction: column; /* Alinha os itens em uma coluna */
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    justify-content: center; /* Centraliza verticalmente */
+  }
+
+  .input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%; /* Largura total */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+  }

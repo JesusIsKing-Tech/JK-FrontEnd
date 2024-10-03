@@ -220,7 +220,7 @@ function CadastroDadosPessoais({ nextStep }) {
             </label>
           </RadioGroup> */}
 
-          <Button type="submit">Próxima</Button>
+          <Button type="submit" onClick={onSubmit}>Próxima</Button>
         </Form>
       </FormContainer>
       <ImageContainer>
