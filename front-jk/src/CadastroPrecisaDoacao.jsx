@@ -1,220 +1,100 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import Container from './components/Container/Container';
+import FormContainer from './components/FormContainer/FormContainer';
+import Step from './components/TelaCadastro/step/Step';
+import StepContainer from './components/StepContainer/StepContainer';
+import BotaoSair from './components/BotaoSair/BotaoSair';
+import ImageContainer from './components/ImageContainer/ImageContainer';
+import Form from './components/Form/Form';
+import Botao from './components/TelaCadastro/botao/Botao';
+import Titulo from './components/Titulo/Titulo';
 import styled from 'styled-components';
+import InfoIcone from './components/InfoIcone/InfoIcone';
+import Swal from 'sweetalert2'; // Importa o SweetAlert2
 
-const Container = styled.div`
+const RadioBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  height: 100vh;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  background-color: #f8f9fa;
-  padding: 20px;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const Title = styled.h2`
-  margin-bottom: 20px;
-  color: #1f2c5c;
-  text-align: center;
-`;
-
-const Form = styled.form`
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
-  width: 80%;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const Label = styled.label`
-  font-size: 1rem;
-  color: #333;
-  display: flex;
-  align-items: center;
-`;
-
-const RadioGroup = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
+  width: 100%; 
+  margin: 20px 0; 
 `;
 
 const RadioLabel = styled.label`
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #333;
-`;
-
-const Input = styled.input`
-  margin-right: 10px;
-`;
-
-const Button = styled.button`
-  padding: 10px;
-  background-color: #2c5cc5;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  &:hover {
-    background-color: #244aa6;
-  }
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-// Estilos do ícone e tooltip
-const InfoIcon = styled.span`
-  display: inline-block;
-  margin-left: 10px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #2c5cc5;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 20px;
-
-  &:hover .TooltipText {
-    visibility: visible;
-    opacity: 1;
-  }
-`;
-
-const TooltipText = styled.div`
-  visibility: hidden;
-  width: 220px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 10px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%; /* Posição acima do ícone */
-  left: 50%;
-  margin-left: -110px; /* Para centralizar */
-  opacity: 0;
-  transition: opacity 0.3s;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 100%; /* Posição na parte inferior da tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent;
-  }
-`;
-
-const ImageContainer = styled.div`
-  width: 50%;
-  background-image: url('https://i.pinimg.com/736x/b1/03/11/b1031101568267b9552495c67947fa15.jpg');
-  background-size: cover;
-  background-position: center;
   display: flex;
-  justify-content: flex-end;
-  padding: 20px;
-  @media (max-width: 768px) {
-    width: 100%;
-    height: 200px;
-  }
-`;
-
-const ExitButton = styled.button`
-  background-color: #244aa6;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-`;
-const ProgressBar = styled.div`
-  width: 100%;
-  margin-bottom: 40px;
-`;
-
-const StepIndicator = styled.div`
-  display: flex;
-  justify-content: center;
   align-items: center;
+  cursor: pointer;
+  margin: 40px 40px;
 `;
 
-const Step = styled.div`
-  height: 10px;
-  width: 100px;
-  background-color: ${(props) => (props.active ? '#2c5cc5' : '#e0e0e0')};
-  border-radius: 5px;
-  margin-right: 10px;
+const InputRadio = styled.input`
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+  accent-color: #007BFF;
+  cursor: pointer;
+`;
+
+const BotaoEstilizado = styled(Botao)`
 `;
 
 function DoacaoAlimentos({ prevStep }) {
-    const { register, handleSubmit } = useForm();
-  
-    const onSubmit = (data) => {
-      console.log(data);
-    };
+
+  const handleClick = () => {
+    Swal.fire({
+      title: 'Cadastro realizado!',
+      text: 'Sua resposta foi registrada com sucesso.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
+  };
 
   return (
     <Container>
       <FormContainer>
-      <ProgressBar>
-          <StepIndicator>
-            <Step active></Step>
-            <Step active></Step>
-            <Step active></Step>
-          </StepIndicator>
-        </ProgressBar>
-        <Title>Você precisa de doações de cestas básicas ?    
-            <InfoIcon>
-            i
-            <TooltipText className="TooltipText">
-              Entendemos que momentos difíceis podem acontecer na vida de qualquer pessoa. Se você ou sua família estão precisando de ajuda com alimentos, estamos aqui para oferecer suporte. Sua resposta será tratada com total confidencialidade.
-            </TooltipText>
-          </InfoIcon></Title>
+        <StepContainer>
+          <Step active />
+          <Step active />
+          <Step active />
+        </StepContainer>
+        <Titulo>
+          Você precisa de doações de cestas básicas ?
+          <InfoIcone texto="Entendemos que momentos difíceis podem acontecer na vida de qualquer pessoa. Se você ou sua família estão precisando de ajuda com alimentos, estamos aqui para oferecer suporte. Sua resposta será tratada com total confidencialidade.">
+          </InfoIcone>
+        </Titulo>
+        <p style={{ textAlign: 'center', fontSize: '1.2rem' }}>
+          Responda com responsabilidade para que possamos oferecer a ajuda necessária a quem precisa.
+        </p>
         
-        <Form onSubmit={handleSubmit(onSubmit)}>
-            <p>
-            Responda com responsabilidade para que possamos oferecer a ajuda necessária a quem precisa.
-            </p>
-          <RadioGroup>
-            <RadioLabel>
-              <Input type="radio" value="sim" {...register('precisaDoacao')} /> Sim
-            </RadioLabel>
-            <RadioLabel>
-              <Input type="radio" value="nao" {...register('precisaDoacao')} /> Não
-            </RadioLabel>
-          </RadioGroup>
-          <Button type="submit">Cadastrar</Button>
-        </Form>
+        <RadioBox>
+          <RadioLabel>
+            <InputRadio 
+              type="radio" 
+              id="contactChoice1" 
+              name="contact" 
+              value="sim"
+              />
+            Sim
+          </RadioLabel>
+          <RadioLabel>
+            <InputRadio 
+              type="radio" 
+              id="contactChoice2" 
+              name="contact" 
+              value="nao"
+              />
+            Não
+          </RadioLabel>
+        </RadioBox>
+        <Form>
+          <BotaoEstilizado funcao={handleClick}>Cadastrar</BotaoEstilizado>
+            </Form>
+        
       </FormContainer>
       <ImageContainer>
-        <ExitButton>Sair</ExitButton>
+        <BotaoSair />
       </ImageContainer>
     </Container>
   );

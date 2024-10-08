@@ -19,12 +19,12 @@ function App() {
     switch (step) {
       //  case 1:
       //   return<CadastroDadosCredenciais nextStep={nextStep} />;
-      // case 2:
-      //   return < CadastroDadosPessoais nextStep={nextStep} />;
+      case 2:
+        return < CadastroDadosPessoais nextStep={nextStep} />;
       case 1:
         return <CadastroDadosCredenciais nextStep={nextStep} prevStep={prevStep} />;
-      // case 4:
-      //   return <DoacaoAlimentos prevStep={prevStep} />;
+      case 3:
+        return <DoacaoAlimentos/>;
       // default:
         // return <CadastroDadosCredenciais nextStep={nextStep} />;
     }
