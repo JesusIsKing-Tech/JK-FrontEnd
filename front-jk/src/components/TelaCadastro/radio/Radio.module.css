@@ -1,0 +1,36 @@
+.radioLabel {
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .customRadio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #2c5cc5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .customRadio.checked {
+    background-color: #2c5cc5;
+  }
+  
+  .innerCircle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  
+  .hiddenRadio {
+    display: none;
+  }
+  

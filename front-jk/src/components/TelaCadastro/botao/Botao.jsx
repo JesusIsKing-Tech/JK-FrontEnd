@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Botao.module.css'; 
 
-const Botao = ({ children }) => {
+const Botao = ({ children,funcao }) => {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} onClick={funcao}>
       {children}
     </button>
   );

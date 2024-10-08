@@ -24,7 +24,7 @@ function App() {
       case 1:
         return <CadastroDadosCredenciais nextStep={nextStep} prevStep={prevStep} />;
       case 3:
-        return <DoacaoAlimentos prevStep={prevStep} />;
+        return <DoacaoAlimentos/>;
       // default:
         // return <CadastroDadosCredenciais nextStep={nextStep} />;
     }
