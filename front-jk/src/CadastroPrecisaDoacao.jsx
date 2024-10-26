@@ -94,7 +94,7 @@ function DoacaoAlimentos({ prevStep }) {
         
       </FormContainer>
       <ImageContainer>
-        <BotaoSair />
+        <BotaoSair to={"/"} />
       </ImageContainer>
     </Container>
   );

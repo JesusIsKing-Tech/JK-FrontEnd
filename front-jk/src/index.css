@@ -7,5 +7,10 @@
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: rgb(255, 255, 255);
+}
+
+.notFound{
+  align-items: center;
+  font-size: larger;
 }
