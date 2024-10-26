@@ -45,11 +45,11 @@ function CadastroDadosPessoais({ nextStep }) {
           <Input label="Bairro" type="text" placeholder="" />
           <Input label="Cidade" type="text" placeholder="" />
           <Input label="UF" type="text" placeholder="" />
-          <Botao type="submit">Próxima</Botao>
+          <Botao type="submit" to={'/cadastro3'}>Próxima</Botao>
         </Form>
       </FormContainer>
       <ImageContainer>
-        <BotaoSair />
+        <BotaoSair to={"/"} />
       </ImageContainer>
     </Container>
   );

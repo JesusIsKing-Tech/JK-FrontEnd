@@ -1,0 +1,55 @@
+/* src/components/Filtro.module.css */
+
+.filtroContainer {
+    display: flex;
+    gap: 15px; /* Espaçamento entre os elementos */
+    margin-bottom: 20px; /* Espaço abaixo do filtro */
+    align-items: center; /* Alinha verticalmente os elementos */
+}
+
+.dropdown {
+    position: relative; /* Para o dropdown */
+    flex: 1; /* Permite que o input de pesquisa ocupe o espaço restante */
+}
+
+input[type="text"],
+select {
+    padding: 10px; /* Aumenta o padding para um campo mais "gordo" */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Faz o input ocupar toda a largura */
+    font-size: 16px; /* Tamanho da fonte maior para melhor legibilidade */
+    transition: border-color 0.3s; /* Suaviza a mudança de cor da borda */
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #007BFF; /* Cor da borda ao focar */
+    outline: none; /* Remove o contorno padrão do navegador */
+}
+
+.dropdownList {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000; /* Garante que o dropdown apareça acima dos outros elementos */
+    width: 100%; /* Faz a lista ocupar toda a largura do input */
+    max-height: 150px; /* Limita a altura da lista */
+    overflow-y: auto; /* Adiciona rolagem se a lista for muito longa */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar destaque ao dropdown */
+}
+
+.dropdownList li {
+    padding: 10px; /* Aumenta o padding nas opções */
+    cursor: pointer;
+    transition: background 0.3s; /* Suaviza a transição de fundo */
+}
+
+.dropdownList li:hover {
+    background: #f0f0f0; /* Destaque ao passar o mouse */
+}
+
+.dropdownList li:active {
+    background: #d1e7dd; /* Cor ao clicar na opção */
+}

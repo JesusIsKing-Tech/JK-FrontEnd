@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components'; 
 import Container from './components/Container/Container';
 import FormContainer from './components/FormContainer/FormContainer';
 import Step from './components/TelaCadastro/step/Step';
@@ -15,13 +14,7 @@ import Titulo from './components/Titulo/Titulo'
 
 
 
-function CadastroDadosCredenciais({ nextStep, prevStep }) {
-
-  const onSubmit = (data) => {
-    console.log(data);
-    nextStep(); // Avançar para a próxima etapa
-  };
-  
+function CadastroDadosCredenciais() {
   return (
     <Container>
       <FormContainer>
@@ -31,16 +24,16 @@ function CadastroDadosCredenciais({ nextStep, prevStep }) {
         <Step/>
         </StepContainer>
         <Titulo>Cadastro Credenciais</Titulo>
-        <Form onSubmit={(onSubmit)}>
+        <Form>
         <Input label="Email" type="email" placeholder="" />
         <Input label="Confirmar Email" type="email" placeholder="" />  
         <Input label="Senha" type="password" placeholder="" />
         <Input label="Confirmar Senha" type="password" placeholder="" />
-        <Botao type="submit">Próxima Etapa </Botao>
+        <Botao type="submit" to={"/cadastro2"}>Próxima Etapa </Botao>
         </Form>
       </FormContainer>
       <ImageContainer>
-      <BotaoSair></BotaoSair>
+      <BotaoSair to={'/'}></BotaoSair>
       </ImageContainer>
     </Container>
   );

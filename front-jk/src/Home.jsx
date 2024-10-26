@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import imagem from './img/logo.png';
+import git from './img/github.png';
+import whats from './img/whatsapp.png';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { Link } from 'react-router-dom';
 
 
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 90px;
   background-color: #DCE0E6;
 
   img {
@@ -19,7 +22,6 @@ const Header = styled.header`
     cursor: pointer;
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
 }
-
 
 
   nav {
@@ -84,7 +86,7 @@ const MainContainer = styled.main`
   justify-content: space-between;
   padding: 20px;
   background: linear-gradient(to right, #4E8AE4, #2B4C7E);
-  height: calc(100vh - 100px);
+  height: calc(100vh - 125px);
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -98,10 +100,11 @@ const AboutUsCard = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 300px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin:20px;
 
   img {
     border-radius: 10px;
@@ -163,6 +166,7 @@ const Footer = styled.footer`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  // height: 100%;
 
   p {
     margin: 0;
@@ -178,11 +182,18 @@ const IconContainer = styled.div`
   display: flex;
   gap: 20px;
 
+  img{
+  height: 50px;
+  cursor: pointer;
+  margin-top:3px
+  }
+
   svg {
     cursor: pointer;
     &:hover {
       color: #2c5cc5;
     }
+
   }
 `;
 
@@ -240,7 +251,8 @@ const Home = () => {
           <a onClick={() => handleSectionChange('values')}>Valores</a>
           <a onClick={() => handleSectionChange('about')}>Sobre nós</a>
           <ButtonsContainer>
-            <button className="login">Login</button>
+            <Link>
+            </Link><button className="login">Login</button>
             <button className="signup">Cadastro</button>
           </ButtonsContainer>
         </nav>
@@ -262,13 +274,13 @@ const Home = () => {
 
       <Footer>
         <IconContainer>
-          <a href="#"><i className="fa fa-instagram">Github</i></a>
+        <img href="#" src={git}></img>
         </IconContainer>
         <p>
           JIK © 2024. Todos os direitos reservados. Desenvolvido por JESUS IS KING.
         </p>
         <IconContainer>
-          <a href="#"><i className="fa fa-instagram">insta</i></a>
+          <img href="#" src={whats}></img>
         </IconContainer>
       </Footer>
     </>

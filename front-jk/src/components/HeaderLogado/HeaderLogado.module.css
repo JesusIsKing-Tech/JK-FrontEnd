@@ -1,0 +1,56 @@
+.header {
+  background-color: #2b4c7e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav a {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left:5px;
+}
+.nav a img{
+ height: 40px;
+ width: auto;
+}
+
+.img{
+  height: 40px;
+  width: auto;
+ }
+
+.nav a.active {
+  background-color: #041229ae; /* Fundo diferente para destacar */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  height: 50px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-left: 10px;
+}
