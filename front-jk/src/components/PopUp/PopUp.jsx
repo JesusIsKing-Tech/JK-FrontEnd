@@ -11,6 +11,7 @@ const PopUp = ({ closePopUp }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const popupRef = useRef(null); // Referência para o contêiner do popup
 
   const categorias = [
     "Arroz",
@@ -117,8 +118,8 @@ const PopUp = ({ closePopUp }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        closePopUp(); // Fecha o popup ao clicar fora
       }
     };
 
@@ -127,11 +128,11 @@ const PopUp = ({ closePopUp }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [closePopUp]);
 
   return (
     <div className={styles.popupContainer}>
-      <div className={styles.popup}>
+      <div className={styles.popup} ref={popupRef}>
         <h2 className={styles.popupTitle}>Cadastro de alimento</h2>
         <button className={styles.closeButton} onClick={closePopUp}>
           X

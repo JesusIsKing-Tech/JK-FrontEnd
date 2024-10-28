@@ -52,14 +52,12 @@ const BoxAdicionar = styled.div`
   display: flex-start;
   align-self: center;
   flex-wrap: wrap;
-  // position:fixed
-
 `;
 
 const NoResultsMessage = styled.h3`
-display:flex;
-    align-items: center;
-  color: #888; /* Cor para a mensagem de no results */
+  display: flex;
+  align-items: center;
+  color: #888;
 `;
 
 function Estoque() {
@@ -67,40 +65,59 @@ function Estoque() {
   const [isPopUpCardVisible, setIsPopUpCardVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [filter, setFilter] = useState(''); // Estado para o filtro
-  const [isAscending, setIsAscending] = useState(true); // Estado para controle de ordenação
+  const [sortOrder, setSortOrder] = useState(0); // Estado para controle de ordenação
 
   const cardData = [
-    { 
-      nome: 'Arroz', 
-      quantidade: 4, 
+    {
+      nome: 'Arroz',
+      quantidade: 4,
       peso: '1kg',
       tipos: [
-        { nome: 'Parboilizado', peso: '1Kg' },
-        { nome: 'Branco', peso: '5Kg' },
-        { nome: 'Integral', peso: '5Kg' },
-        { nome: 'Negro', peso: '1Kg' },
-      ]
+        { nome: 'Grão', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+      ],
     },
-    { 
-      nome: 'Feijão', 
-      quantidade: 4, 
+    {
+      nome: 'Feijão',
+      quantidade: 4,
       peso: '1kg',
       tipos: [
-        { nome: 'Parboilizado', peso: '1Kg' },
-        { nome: 'Branco', peso: '5Kg' },
-        { nome: 'Integral', peso: '5Kg' },
-        { nome: 'Negro', peso: '1Kg' },
-      ]
+        { nome: 'Grão', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+      ],
     },
-    { 
-      nome: 'Óleo', 
-      quantidade: 1, 
+    {
+      nome: 'Água',
+      quantidade: 1,
       peso: '1kg',
-      tipos: [
-        { nome: 'Parboilizado', peso: '1Kg' },
-      ]
-    }
+      tipos: [{ nome: 'Bebida', peso: '1kg' }],
+    },
+    {
+      nome: 'Carne',
+      quantidade: 3,
+      peso: '1kg',
+      tipos: [{ nome: 'Proteína', peso: '1kg' }],
+    },
+    {
+      nome: 'Pão',
+      quantidade: 10,
+      peso: '1kg',
+      tipos: [{ nome: 'Alimento Básico', peso: '1kg' }],
+    },
+    {
+      nome: 'Atum',
+      quantidade: 6,
+      peso: '1kg',
+      tipos: [{ nome: 'Conserva', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
   ];
+  
 
   const openPopUp = (cardInfo) => {
     setSelectedCard(cardInfo);
@@ -127,9 +144,8 @@ function Estoque() {
     setFilter(searchTerm);
   };
 
-  // Função para aplicar a ordenação
   const handleSort = (newOrder) => {
-    setIsAscending(newOrder);
+    setSortOrder(newOrder);
   };
 
   // Filtrando os cards com base no nome
@@ -137,9 +153,15 @@ function Estoque() {
     card.nome.toLowerCase().includes(filter.toLowerCase())
   );
 
-  // Ordenando os cards com base na quantidade
-  const sortedCards = filteredCards.sort((a, b) => {
-    return isAscending ? a.quantidade - b.quantidade : b.quantidade - a.quantidade;
+  // Ordenando os cards filtrados com base no estado de sortOrder
+  const sortedCards = [...filteredCards].sort((a, b) => {
+    if (sortOrder === 0) {
+      return a.nome.localeCompare(b.nome); // Ordem alfabética
+    } else if (sortOrder === 1) {
+      return a.quantidade - b.quantidade; // Ordem crescente
+    } else {
+      return b.quantidade - a.quantidade; // Ordem decrescente
+    }
   });
 
   return (

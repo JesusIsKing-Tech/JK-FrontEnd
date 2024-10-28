@@ -9,7 +9,7 @@
   width: calc(33.33% - 20px); /* Garante 3 por linha */
   background-color: #2B4C7E;
   transition: transform 0.2s ease, filter 0.3s ease; /* Transição suave no hover */
-
+  cursor: pointer;
   /* padding-bottom: 20px; */
 }
 .card-musica:hover {
