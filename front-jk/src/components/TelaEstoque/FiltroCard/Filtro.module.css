@@ -1,55 +1,109 @@
-/* src/components/Filtro.module.css */
+/* Filtro.module.css */
 
-.filtroContainer {
+.container {
     display: flex;
-    gap: 15px; /* Espaçamento entre os elementos */
-    margin-bottom: 20px; /* Espaço abaixo do filtro */
-    align-items: center; /* Alinha verticalmente os elementos */
-}
-
-.dropdown {
-    position: relative; /* Para o dropdown */
-    flex: 1; /* Permite que o input de pesquisa ocupe o espaço restante */
-}
-
-input[type="text"],
-select {
-    padding: 10px; /* Aumenta o padding para um campo mais "gordo" */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%; /* Faz o input ocupar toda a largura */
-    font-size: 16px; /* Tamanho da fonte maior para melhor legibilidade */
-    transition: border-color 0.3s; /* Suaviza a mudança de cor da borda */
-}
-
-input[type="text"]:focus,
-select:focus {
-    border-color: #007BFF; /* Cor da borda ao focar */
-    outline: none; /* Remove o contorno padrão do navegador */
-}
-
-.dropdownList {
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    z-index: 1000; /* Garante que o dropdown apareça acima dos outros elementos */
-    width: 100%; /* Faz a lista ocupar toda a largura do input */
-    max-height: 150px; /* Limita a altura da lista */
-    overflow-y: auto; /* Adiciona rolagem se a lista for muito longa */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar destaque ao dropdown */
-}
-
-.dropdownList li {
-    padding: 10px; /* Aumenta o padding nas opções */
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #2a4a63;
+    padding: 5px ;
+    margin-top:5px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    /* border: solid 2px black; */
+  }
+  
+  .h2 {
+    color: white;
+    font-size: medium;
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .iconButton {
+    background-color: #ffffffec;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s; /* Suaviza a transição de fundo */
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    width: 2vw;
+    height: 3vh;
+  }
+  
+  .iconButton:hover {
+    flex: 1;
+    transform: scale(1.03);
+    background-color: #fffffff7;
+    /* margin-left: -20px; */
 
-.dropdownList li:hover {
-    background: #f0f0f0; /* Destaque ao passar o mouse */
-}
+  }
+  
+  .setaIcon {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.2s ease;
+    
+  }
+  
+  .divBuscas {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    width: 40%;
+    /* height: auto; */
+    max-width: 500px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-.dropdownList li:active {
-    background: #d1e7dd; /* Cor ao clicar na opção */
-}
+    button{
+        width: 4vw;
+        /* height: 20px; */
+        height: 5vh;
+        cursor: pointer;
+        }
+
+    img{
+        width: 4vw;
+        height: 5vh;
+        object-fit:contain ;
+    }
+  }
+  
+  .txtBusca {
+    /* flex: 1; */
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 8px;
+    margin: 4px;
+    border-radius: 8px 0 0 8px;
+    background-color: #fff;
+    height: 5vh;
+  }
+  
+  .btnBusca {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.2s ease;
+  }
+  
+  .btnBusca:hover {
+    transform: scale(1.1);
+  }
+  
+  .boxOrdem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  

@@ -112,7 +112,7 @@ const PopUp = ({ closePopUp }) => {
 
     setTimeout(() => {
       closePopUp();
-    }, 2000);
+    }, 200);
   };
 
   useEffect(() => {

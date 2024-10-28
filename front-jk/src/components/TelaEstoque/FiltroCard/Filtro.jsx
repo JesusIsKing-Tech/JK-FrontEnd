@@ -1,94 +1,50 @@
-// src/components/Filtro.jsx
+import React, { useState } from 'react';
+import styles from './Filtro.module.css';
+import setaIcon from '../../../img/seta-triangular-apontando-para-baixo.png'; // Ícone da seta padrão
+import setaIconAtivo from '../../../img/pra-cima.png'; // Ícone da seta após o clique
+import lupa from '../../../img/procurar.png'; // Ícone de lupa
 
-import React, { useState, useRef, useEffect } from 'react';
-import styles from './Filtro.module.css'; // Crie um arquivo CSS para estilização
-
-const Filtro = ({ categorias, tipos, onFilterChange }) => {
+function Filtro({ onFilter, onSort }) {
+  const [setaAtiva, setSetaAtiva] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [tipo, setTipo] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
-  const filteredCategories = categorias.filter(cat => 
-    cat.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleSearchChange = (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-    setIsDropdownOpen(true);
-    onFilterChange({
-      searchTerm: value,
-      tipo
-    });
+  const handleClick = () => {
+    const newOrder = !setaAtiva; // Define a nova ordem
+    setSetaAtiva(newOrder);
+    onSort(newOrder); // Chama a função de ordenação
   };
 
-  const handleTipoChange = (event) => {
-    const value = event.target.value;
-    setTipo(value);
-    onFilterChange({
-      searchTerm,
-      tipo: value
-    });
+  const handleSearch = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    onFilter(term); // Chama a função de filtro
   };
-
-  const handleCategoriaChange = (cat) => {
-    setSearchTerm(cat);
-    setIsDropdownOpen(false);
-    onFilterChange({
-      searchTerm: cat,
-      tipo
-    });
-  };
-
-  // Hook para lidar com cliques fora do dropdown
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   return (
-    <div className={styles.filtroContainer}>
-      <div className={styles.dropdown} ref={dropdownRef}>
-        <input
-          type="text"
+    <div className={styles.container}>
+      <div id="divBusca" className={styles.divBuscas}>
+        <input 
+          type="text" 
+          id="txtBusca" 
+          placeholder="Buscar..." 
+          className={styles.txtBusca} 
           value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Pesquisar categoria..."
-          onClick={() => setIsDropdownOpen(true)}
+          onChange={handleSearch} // Atualiza o estado ao digitar
         />
-        {isDropdownOpen && (
-          <ul className={styles.dropdownList}>
-            {filteredCategories.length > 0 ? (
-              filteredCategories.map((cat, index) => (
-                <li key={index} onClick={() => handleCategoriaChange(cat)}>
-                  {cat}
-                </li>
-              ))
-            ) : (
-              <li>Nenhuma categoria encontrada</li>
-            )}
-          </ul>
-        )}
+        <button>
+          <img src={lupa} alt="pesquisar" />
+        </button>
+      </div>     
+      <div className={styles.buttonContainer}>
+        <div className={styles.boxOrdem}>
+          <h2 className={styles.h2}>Quantidade</h2>
+          <button className={styles.iconButton} onClick={handleClick}>
+            <img src={setaAtiva ? setaIconAtivo : setaIcon} alt="Ordem" className={styles.setaIcon} />
+          </button>
+        </div>
       </div>
-
-      <select value={tipo} onChange={handleTipoChange}>
-        <option value="">Selecione um tipo</option>
-        {tipos.map((t, index) => (
-          <option key={index} value={t}>{t}</option>
-        ))}
-      </select>
     </div>
   );
-};
+}
 
 export default Filtro;

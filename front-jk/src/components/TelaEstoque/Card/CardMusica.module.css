@@ -8,7 +8,14 @@
   border: 2px solid rgba(0, 0, 0, 0.408);
   width: calc(33.33% - 20px); /* Garante 3 por linha */
   background-color: #2B4C7E;
+  transition: transform 0.2s ease, filter 0.3s ease; /* Transição suave no hover */
+
   /* padding-bottom: 20px; */
+}
+.card-musica:hover {
+  transform: scale(1.02); /* aumenta o tamanho da lupa ao passar o mouse */
+  background-color: #1f3b65;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .boxTitulo{
   display: flex;
