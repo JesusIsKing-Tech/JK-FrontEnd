@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Input.module.css'; 
 
-const Input = ({ label, type, placeholder, children, name, onChange, value, readOnly }) => {
+const Input = ({ label, type, placeholder, children, name, onChange, value, readOnly, style }) => {
   return (
     <div className={styles.boxLabels}>
       <div>{label}</div>
@@ -13,6 +13,7 @@ const Input = ({ label, type, placeholder, children, name, onChange, value, read
       value={value}
       onChange={onChange}
       readOnly={readOnly}
+      style={style}
         />
       {children}
     </div>

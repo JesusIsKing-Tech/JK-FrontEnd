@@ -112,12 +112,12 @@ function CadastroDadosPessoais({ nextStep }) {
           <Input label="Data de Nascimento" type="date" name="data_nascimento" value={formData.data_nascimento} onChange={handleChange} placeholder="Dia/Mês/Ano" />
           <Input label="Telefone" type="" name="telefone" value={formData.telefone} onChange={handleChange} placeholder="11912345678" />
           <Input label="CEP" type="text" name="cep" value={formData.endereco.cep} onChange={handleChange} placeholder="" />
-          <Input label="Rua" readOnly type="text"name="logradouro" value={formData.endereco.logradouro} onChange={handleChange}  />
+          <Input label="Rua" readOnly style={{ background: 'lightgray' }} type="text"name="logradouro" value={formData.endereco.logradouro} onChange={handleChange}  />
           <Input label="Número" type="text" name="numero" value={formData.endereco.numero} onChange={handleChange} placeholder="" />
           <Input label="Complemento" type="text" name="complemento" value={formData.endereco.complemento} onChange={handleChange} placeholder="" />
-          <Input label="Bairro" readOnly type="text" name="bairro" value={formData.endereco.bairro} onChange={handleChange} placeholder="" />
-          <Input label="Cidade" readOnly type="text" name="localidade" value={formData.endereco.localidade} onChange={handleChange} placeholder="" />
-          <Input label="UF" readOnly type="text" name="uf" value={formData.endereco.uf} onChange={handleChange} placeholder="" />
+          <Input label="Bairro" readOnly type="text" name="bairro" value={formData.endereco.bairro} onChange={handleChange} style={{ backgroundColor: 'lightgray' }} />
+          <Input label="Cidade" readOnly type="text" name="localidade" value={formData.endereco.localidade} onChange={handleChange} style={{ backgroundColor: 'lightgray' }} />
+          <Input label="UF" readOnly type="text" name="uf" value={formData.endereco.uf} onChange={handleChange} style={{ backgroundColor: 'lightgray' }} />
           <Botao type="submit" to={'/cadastro3'}>Próxima</Botao>
         </Form>
       </FormContainer>

@@ -36,7 +36,7 @@ function CadastroDadosCredenciais({ nextStep }) {
     e.preventDefault();
 
     // Validação de email com confirmar email
-    if(formData.email !== confirmEmail){
+    if(formData.email.toLowerCase() !== confirmEmail.toLowerCase()){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
