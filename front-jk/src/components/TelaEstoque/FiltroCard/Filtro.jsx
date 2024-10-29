@@ -1,94 +1,69 @@
-// src/components/Filtro.jsx
+import React, { useState } from 'react';
+import styles from './Filtro.module.css';
+import barraIcon from '../../../img/menos-linha-reta-horizontal.png';
+import setaIconBaixo from '../../../img/seta-triangular-apontando-para-baixo.png';
+import setaIconCima from '../../../img/pra-cima.png';
+import lupa from '../../../img/procurar.png';
 
-import React, { useState, useRef, useEffect } from 'react';
-import styles from './Filtro.module.css'; // Crie um arquivo CSS para estilização
-
-const Filtro = ({ categorias, tipos, onFilterChange }) => {
+function Filtro({ onFilter, onSort }) {
+  const [sortOrder, setSortOrder] = useState(0); // 0 - Alfabética, 1 - Crescente, 2 - Decrescente
   const [searchTerm, setSearchTerm] = useState('');
-  const [tipo, setTipo] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
-  const filteredCategories = categorias.filter(cat => 
-    cat.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleSearchChange = (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-    setIsDropdownOpen(true);
-    onFilterChange({
-      searchTerm: value,
-      tipo
-    });
+  const handleClick = () => {
+    const newSortOrder = (sortOrder + 1) % 3;
+    setSortOrder(newSortOrder);
+    onSort(newSortOrder); // Atualiza a ordenação com o novo estado
   };
 
-  const handleTipoChange = (event) => {
-    const value = event.target.value;
-    setTipo(value);
-    onFilterChange({
-      searchTerm,
-      tipo: value
-    });
+  const handleInputChange = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    if (term === '') {
+      onFilter(''); // Atualiza automaticamente para exibir todos os cards
+    }
   };
 
-  const handleCategoriaChange = (cat) => {
-    setSearchTerm(cat);
-    setIsDropdownOpen(false);
-    onFilterChange({
-      searchTerm: cat,
-      tipo
-    });
+  const handleButtonSearch = () => {
+    onFilter(searchTerm); // Executa o filtro com o termo atual
   };
 
-  // Hook para lidar com cliques fora do dropdown
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleButtonSearch(); // Chama a pesquisa ao pressionar Enter
+    }
+  };
 
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const getSortIcon = () => {
+    if (sortOrder === 0) return barraIcon;
+    return sortOrder === 1 ? setaIconBaixo : setaIconCima;
+  };
 
   return (
-    <div className={styles.filtroContainer}>
-      <div className={styles.dropdown} ref={dropdownRef}>
+    <div className={styles.container}>
+      <div id="divBusca" className={styles.divBuscas}>
+        <button onClick={handleButtonSearch}>
+          <img src={lupa} alt="pesquisar" />
+        </button>
         <input
           type="text"
+          id="txtBusca"
+          placeholder="Buscar..."
+          className={styles.txtBusca}
           value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Pesquisar categoria..."
-          onClick={() => setIsDropdownOpen(true)}
+          onChange={handleInputChange} // Atualiza o termo e exibe todos os cards se vazio
+          onKeyDown={handleKeyDown} // Ativa a busca ao pressionar Enter
         />
-        {isDropdownOpen && (
-          <ul className={styles.dropdownList}>
-            {filteredCategories.length > 0 ? (
-              filteredCategories.map((cat, index) => (
-                <li key={index} onClick={() => handleCategoriaChange(cat)}>
-                  {cat}
-                </li>
-              ))
-            ) : (
-              <li>Nenhuma categoria encontrada</li>
-            )}
-          </ul>
-        )}
       </div>
-
-      <select value={tipo} onChange={handleTipoChange}>
-        <option value="">Selecione um tipo</option>
-        {tipos.map((t, index) => (
-          <option key={index} value={t}>{t}</option>
-        ))}
-      </select>
+      <div className={styles.buttonContainer}>
+        <div className={styles.boxOrdem}>
+          <h2 className={styles.h2}>Quantidade</h2>
+          <button className={styles.iconButton} onClick={handleClick}>
+            <img src={getSortIcon()} alt="Ordem" className={styles.setaIcon} />
+          </button>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Filtro;

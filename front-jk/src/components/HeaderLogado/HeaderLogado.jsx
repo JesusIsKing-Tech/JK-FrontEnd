@@ -23,7 +23,9 @@ const HeaderLogado = () => {
         <a href="/doe" className={location.pathname === '/doe' ? styles.active : ''} style={{display: 'flex', alignItems: 'center', gap: '5px'}}><FaHandHoldingHeart size={30}/>Doe</a>
       </nav>
       <div className={styles.profile}>
-        <img title="Meu perfil" src={fotoPerfil} alt="Profile" />
+       <a href="/perfil">
+        <img title="Meu perfil" src={fotoPerfil} alt="Profile"/>
+        </a> 
       </div>
     </header>
   );

@@ -26,9 +26,10 @@
   display: flex;
 }
 .imagem {
-  width: 50%;
-  height: 100%;
+  width: 93%;
+  height: 90%;
   object-fit: cover;
+  border-radius: 10px;
 }
 .textos {
   width: 85%;

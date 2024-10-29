@@ -10,9 +10,13 @@
   background-color: #ffffff;
   transition: background-color 0.3s ease; 
   cursor: pointer;
+  display: block;
+  justify-content: flex-start;
 }
 .card-musica:hover{
   background-color: #575e5964;
+    transform: scale(1.02); /* aumenta o tamanho da lupa ao passar o mouse */
+
 }
 .imagem-container {
   width: 100%;
