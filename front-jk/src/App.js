@@ -9,6 +9,7 @@ import Cadastro1 from './CadastroDadosCredenciais';
 import Cadastro2 from './CadastroDadosPessoais';
 import Cadastro3 from './CadastroPrecisaDoacao';
 import Estoque from './Estoque';
+import Perfil from './Perfil.jsx';
 import { Toast } from './components/Toast.jsx'; // Importa o componente Toast
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/cadastro2' element={<Cadastro2 />} />
         <Route path='/cadastro3' element={<Cadastro3 />} />
         <Route path='/estoque' element={<Estoque />} />
+        <Route path='/perfil' element={<Perfil />} />
         <Route path='*' element={<h1 className="notFound">Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
