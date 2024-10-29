@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CardDash.module.css";
-import capaImg from "../../../img/doacao-de-alimentos.png";
+import capaImg from "../../../img/Rectangle 2.png";
 const CardDash = ({
   genero,
   artista,
@@ -11,8 +11,8 @@ const CardDash = ({
     <div className={styles["card-musica"]}>
       <div className={styles["imagem-container"]}>
         <img
-          src={imagemSrc ? imagemSrc : capaImg}
-          alt="Imagem"
+          src={capaImg}
+          alt="Estoque"
           className={styles["imagem"]}
         />
       </div>

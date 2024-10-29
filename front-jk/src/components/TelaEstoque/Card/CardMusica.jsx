@@ -2,13 +2,14 @@ import React from "react";
 import styles from "./CardMusica.module.css";
 import capaImg from "../../../img/doacao-de-alimentos.png";
 const CardMusica = ({
-  genero,
-  artista,
-  nomeMusica,
+  peso,
+  quantidade,
+  nome,
   imagemSrc,
+  onClick
 }) => {
   return (
-    <div className={styles["card-musica"]}>
+    <div className={styles["card-musica"]} onClick={onClick}>
       <div className={styles["imagem-container"]}>
         <img
           src={imagemSrc ? imagemSrc : capaImg}
@@ -18,14 +19,14 @@ const CardMusica = ({
       </div>
       <div className={styles["textos"]}>
         <div className={styles["boxTitulo"]}>
-        <h1>{nomeMusica || "N/A"}</h1>
+        <h1>{nome || "N/A"}</h1>
         <p className={styles["circulo"]}></p>
         </div>
         <p>
-          <span>Quantidade:</span> {artista || "N/A"}{" "}
+          <span>Quantidade:</span> {quantidade || "N/A"}{" "}
         </p>
         <p>
-          <span>Peso total</span>: {genero || "N/A"}{" "}
+          <span>Peso total</span>: {peso || "N/A"}{" "}
         </p>
        
       </div>
