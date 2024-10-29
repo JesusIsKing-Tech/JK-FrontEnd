@@ -1,0 +1,183 @@
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #F0F0F0;
+  }
+  
+  /* Aativo */
+  .aativo {
+    color: black;
+  }
+  
+  /* Header */
+  .header {
+    background-color: #2B4C7E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+  }
+  
+  .header nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header nav a {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .header nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .header img {
+    height: 50px;
+  }
+  
+  .header .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header .profile img {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  /* Prayer Section */
+  .prayer-section {
+    background-color: #D9D9D9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 550px;
+    height: 50%;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  
+  .prayer-section h2 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+  }
+  
+  .prayer-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .prayer-section input,
+  .prayer-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .prayer-section textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  .prayer-section button {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    background-color: #2B4C7E;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  
+  .prayer-section button:hover {
+    background-color: #1f3a60;
+  }
+  
+  /* Carousel Container */
+  .carousel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  /* Section */
+  .section {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .section h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Carousel */
+  .carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .carousel img{
+    border-radius: 10px;
+    width: 100%;
+    height: 20px; /* Ajuste a altura da imagem para caber */
+    object-fit: cover;
+  }
+  
+  /* Arrow Button */
+  .arrow-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #000;
+  }
+  
+  .arrow-button:hover {
+    color: #2B4C7E;
+  }
+  
+  /* Image Container */
+  .image-container {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
