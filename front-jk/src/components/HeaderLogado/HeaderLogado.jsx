@@ -3,10 +3,9 @@ import { useLocation } from 'react-router-dom'; // Supondo que você está usand
 import styles from './HeaderLogado.module.css';
 import logo from '../../img/logo2.png';
 import fotoPerfil from '../../img/perfil.jpg';
-import iEstoque from '../../img/estoque-pronto.png'
-import iNoticia from '../../img/noticias.png'
-import iDoe from '../../img/doacao-de-alimentos.png'
-
+import { BiBox } from 'react-icons/bi';
+import { MdNewspaper } from 'react-icons/md';
+import { FaHandHoldingHeart } from 'react-icons/fa';
 const HeaderLogado = () => {
   const location = useLocation(); // Obtém a rota atual
 
@@ -14,17 +13,19 @@ const HeaderLogado = () => {
     <header className={styles.header}>
       <img alt="Logo" className={styles.logo} src={logo} />
       <nav className={styles.nav}>
-      <img alt='estoque' src={iEstoque} className={styles.img}></img>
-        <a href="/estoque"className={location.pathname === '/estoque' ? styles.active : ''}>Estoque</a>
+      
+        <a href="/estoque"className={location.pathname === '/estoque' ? styles.active : '' } style={{display: 'flex', alignItems: 'center', gap: '5px'}}><BiBox size={30}/> Estoque</a>
 
-        <img alt='noticias' src={iNoticia} className={styles.img}></img>
-        <a href="/noticias" className={location.pathname === '/noticias' ? styles.active : ''}>Notícias</a>
+        
+        <a href="/noticias" className={location.pathname === '/noticias' ? styles.active : ''}  style={{display: 'flex', alignItems: 'center', gap: '5px'}}><MdNewspaper size={30}/>Notícias</a>
 
-        <img alt='doe' src={iDoe} className={styles.img}></img>
-        <a href="/doe" className={location.pathname === '/doe' ? styles.active : ''}> Doe</a>
+        
+        <a href="/doe" className={location.pathname === '/doe' ? styles.active : ''} style={{display: 'flex', alignItems: 'center', gap: '5px'}}><FaHandHoldingHeart size={30}/>Doe</a>
       </nav>
       <div className={styles.profile}>
-        <img title="Meu perfil" src={fotoPerfil} alt="Profile" />
+       <a href="/perfil">
+        <img title="Meu perfil" src={fotoPerfil} alt="Profile"/>
+        </a> 
       </div>
     </header>
   );

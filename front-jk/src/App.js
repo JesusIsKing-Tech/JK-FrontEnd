@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css'; // Importando o CSS
-import Home from './Home';
+import Home from './pages/LandingPage/Home.jsx';
 import Login from './Login';
-import Home2 from './Home2';
+import Home2 from './pages/Home/Home2.jsx';
 import RecuperarSenha from './RecuperarSenha';
 import RecuperarSenha2 from './RecuperarSenha2';
 import Cadastro from './Cadastro';
@@ -10,6 +10,7 @@ import Cadastro1 from './CadastroDadosCredenciais';
 import Cadastro2 from './CadastroDadosPessoais';
 import Cadastro3 from './CadastroPrecisaDoacao';
 import Estoque from './Estoque';
+import Perfil from './Perfil.jsx';
 import { Toast } from './components/Toast.jsx'; // Importa o componente Toast
 import { CadastroProvider } from './CadastroContext.jsx';
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/cadastro' element={<Cadastro />} />
 
         <Route path='/estoque' element={<Estoque />} />
+        <Route path='/perfil' element={<Perfil />} />
         <Route path='*' element={<h1 className="notFound">Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
