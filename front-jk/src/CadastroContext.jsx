@@ -16,6 +16,7 @@ export const CadastroProvider = ({children}) => {
             cep: '',
             logradouro: '',
             numero: '',
+            complemento: '',
             bairro: '',
             localidade: '',
             uf: '',
