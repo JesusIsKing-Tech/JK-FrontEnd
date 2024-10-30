@@ -1,14 +1,13 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import styles from '../Home/Home2.module.css';
-import logo from '../../img/logo2.png';
-import fotoPerfil from '../../img/perfil.jpg';
+// import logo from '../../img/logo2.png';
+// import fotoPerfil from '../../img/perfil.jpg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import HeaderLogado from '../../components/HeaderLogado/HeaderLogado';
-import { FaChevronLeft } from 'react-icons/fa';
-import { FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Container = styled.div`
   display: flex;
@@ -17,46 +16,7 @@ const Container = styled.div`
   background-color: #F0F0F0;
 `;
 
-const Header = styled.header`
-  background-color: #2B4C7E;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  color: white;
 
-  nav {
-    display: flex;
-    align-items: center;
-
-    a {
-      margin-right: 20px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  img {
-    height: 50px;
-  }
-
-  .profile {
-    display: flex;
-    align-items: center;
-
-    img {
-      border-radius: 50%;
-      height: 40px;
-      width: 40px;
-      margin-left: 10px;
-    }
-  }
-`;
 
 const MainContent = styled.div`
   display: flex;
@@ -122,8 +82,8 @@ const PrayerSection = styled.div`
 const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-itens: center;
-  height:100px;
+  align-items: center;
+  height: 100px;
   gap: 20px;
   width: 100%;
 `;
@@ -148,18 +108,18 @@ const Section = styled.div`
 const Carousel = styled.div`
   display: flex;
   height: 30vh;
-  align-tiens: center;
+  align-items: center;
   justify-content: space-between; 
-  width:60vw; 
+  width: 60vw; 
 
-  img{
-   border-radius: 10px;
-    width:100%;
+  img {
+    border-radius: 10px;
+    width: 100%;
     height: 30vh;
   }
 
-  button{
-  background: none;
+  button {
+    background: none;
     border: none;
     font-size: 3rem;
     cursor: pointer;
@@ -167,34 +127,43 @@ const Carousel = styled.div`
   }
 `;
 
+// const ModalBackground = styled.div`
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   background: rgba(0, 0, 0, 0.5);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   z-index: 1000;
+// `;
 
-const ArrowButton = styled.button`
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #000;
+// const ModalContent = styled.div`
+//   background: white;
+//   padding: 20px;
+//   border-radius: 10px;
+//   width: 80%;
+//   max-width: 500px;
+// `;
 
-  &:hover {
-    color: #2B4C7E;
-  }
-`;
-
-const ImageContainer = styled.div`
-  width: 100%;
-  overflow: hidden;
-  border-radius: 10px;
-
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-`;
 
 const Home2 = () => {
   const swiperRef = useRef(null);
+  const swiperRef2 = useRef(null);
   const sections = [
+    {
+      images: [
+        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
+        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' },
+        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
+        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' }
+      ]
+    }
+  ];
+
+  const sections2 = [
     {
       images: [
         { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
@@ -208,14 +177,23 @@ const Home2 = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [textValue, setTextValue] = useState("");
   const textAreaRef = useRef(null);
+  // const [isModalOpen, setModalOpen] = useState(false);
 
-  const nextImage = () => {
-    setCurrentImage((currentImage + 1) % sections[0].images.length);
-  };
+  // const openModal = () => {
+  //   setModalOpen(true);
+  // };
 
-  const prevImage = () => {
-    setCurrentImage((currentImage - 1 + sections[0].images.length) % sections[0].images.length);
-  };
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
+
+  // const nextImage = () => {
+  //   setCurrentImage((currentImage + 1) % sections[0].images.length);
+  // };
+
+  // const prevImage = () => {
+  //   setCurrentImage((currentImage - 1 + sections[0].images.length) % sections[0].images.length);
+  // };
 
   const handleInputChange = (e) => {
     const textArea = textAreaRef.current;
@@ -242,64 +220,76 @@ const Home2 = () => {
             value={textValue}
             onChange={handleInputChange}
           />
-          <button>Enviar</button>
+          <button>Enviar</button >
         </PrayerSection>
 
         <CarouselContainer>
           <Section>
             <h2>Agenda da Semana</h2>
             <Carousel>
-            <button onClick={() => swiperRef.current.slidePrev()}>
-            <FaChevronLeft size={30} color="black" />
-          </button>
-            <Swiper
-              modules={[Pagination, A11y, Navigation, Scrollbar]}
-              slidesPerView={2}
-              spaceBetween={90}
-              onSwiper={(swiper) => {
-                swiperRef.current = swiper;
-              }}
-              onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
-            >
-              {sections[0].images.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <button onClick={() => swiperRef.current.slideNext()}>
-            <FaChevronRight size={30} color="black" />
-          </button>
+              <button onClick={() => swiperRef.current.slidePrev()}>
+                <FaChevronLeft size={30} color="black" />
+              </button>
+              <Swiper
+                modules={[Pagination, A11y, Navigation, Scrollbar]}
+                slidesPerView={2}
+                spaceBetween={90}
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
+                onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
+              >
+                {sections[0].images.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <button onClick={() => swiperRef.current.slideNext()}>
+                <FaChevronRight size={30} color="black" />
+              </button>
             </Carousel>
           </Section>
 
           <Section>
             <h2>Indicações de Louvores</h2>
             <Carousel>
-            <button onClick={() => swiperRef.current.slidePrev()}>
-            <FaChevronLeft size={30} color="black" />
-          </button>
-            <Swiper
-              modules={[Pagination, A11y, Navigation, Scrollbar]}
-              slidesPerView={2}
-              spaceBetween={90}
-              onSwiper={(swiper) => {
-                swiperRef.current = swiper;
-              }}
-              onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
-            >
-              {sections[0].images.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <button onClick={() => swiperRef.current.slideNext()}>
-            <FaChevronRight size={30} color="black" />
-          </button>
+              <button onClick={() => swiperRef2.current.slidePrev()}>
+                <FaChevronLeft size={30} color="black" />
+              </button>
+              <Swiper
+                modules={[Pagination, A11y, Navigation, Scrollbar]}
+                slidesPerView={2}
+                spaceBetween={90}
+                onSwiper={(swiper) => {
+                  swiperRef2.current = swiper;
+                }}
+                onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
+              >
+                {sections2[0].images.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <button onClick={() => swiperRef2.current.slideNext()}>
+                <FaChevronRight size={30} color="black" />
+              </button>
             </Carousel>
           </Section>
         </CarouselContainer>
+
+        {/* <button onClick={openModal}>Abrir Modal</button> */}
+
+        {/* {isModalOpen && (
+          <ModalBackground onClick={closeModal}>
+            <ModalContent onClick={(e) => e.stopPropagation()}>
+              <h2>Meu Modal</h2>
+              <p>Conteúdo do modal aqui.</p>
+              <button onClick={closeModal}>Fechar</button>
+            </ModalContent>
+          </ModalBackground>
+        )} */}
       </MainContent>
     </Container>
   );
