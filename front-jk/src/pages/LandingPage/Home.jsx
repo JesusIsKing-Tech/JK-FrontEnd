@@ -1,5 +1,8 @@
 import React, { useRef, useState } from 'react';
 import imagem from '../../img/logo.png';
+import carrossel1 from '../../img/home1.png';
+import carrossel2 from '../../img/home2.png';
+import carrossel3 from '../../img/home3.png';
 import styles from "./Home.module.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -14,17 +17,17 @@ const Home = () => {
     {
       images: [
         {
-          url: 'https://s2-ge.glbimg.com/eo-8NS6W8URb1-hdIQ-caGTV2Yk=/0x0:4672x3280/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2021/m/a/mZ7ic4TZ6TrVaihvErAA/97.jpg',
+          url: carrossel1,
           title: 'Perguntas Frequentes',
           text: 'Simplificando a gestão de igrejas com uma plataforma integrada.'
         },
         {
-          url: 'https://sep-bucket-prod.s3.amazonaws.com/wp-content/uploads/2021/12/libertadores-2021-hotsite-2.jpg',
+          url: carrossel2,
           title: 'Valores',
           text: 'Centralizando o controle de doações e facilitando a comunicação.'
         },
         {
-          url: 'https://sep-bucket-prod.s3.amazonaws.com/wp-content/uploads/2022/11/52490498335_dd057e057e_o.jpg',
+          url: carrossel3,
           title: 'Sobre Nós',
           text: 'Somos uma equipe focada em melhorar a gestão de igrejas por meio de uma solução inovadora e simples. Nosso sistema centraliza o controle de doações, facilita a comunicação interna e automatiza o agendamento de reuniões, permitindo que os líderes religiosos concentrem-se em sua missão espiritual enquanto cuidamos da parte administrativa.'
         }
@@ -62,7 +65,7 @@ const Home = () => {
 
         <div className={styles.carousel}>
           <button onClick={() => swiperRef.current.slidePrev()}>
-            <FaChevronLeft size={30} color="black" />
+            <FaChevronLeft size={30} color="white" />
           </button>
           <Swiper
             modules={[Pagination, A11y, Navigation, Scrollbar]}
@@ -79,20 +82,20 @@ const Home = () => {
             ))}
           </Swiper>
           <button onClick={() => swiperRef.current.slideNext()}>
-            <FaChevronRight size={30} color="black" />
+            <FaChevronRight size={30} color="white" />
           </button>
         </div>
       </main>
 
       <footer className={styles.footer}>
         <div className={styles.iconContainer}>
-          <a href="#">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
             <FaGithub size={20} color="blue" />
           </a>
         </div>
         <p>JIK © 2024. Todos os direitos reservados. Desenvolvido por JESUS IS KING.</p>
         <div className={styles.iconContainer}>
-          <a href="#">
+          <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
             <FaWhatsapp size={20} color="blue" />
           </a>
         </div>

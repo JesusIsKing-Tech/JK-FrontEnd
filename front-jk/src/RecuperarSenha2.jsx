@@ -1,44 +1,25 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
-import logo from './img/logo.png'; // Adicione o caminho correto da sua logo
+import BotaoSair from './components/BotaoSair/BotaoSair';
+import Container from './components/Container/Container';
+import FormContainer from './components/FormContainer/FormContainer';
+// import Input from './components/Input/Input';
+import ImageContainer from './components/ImageContainer/ImageContainer';
+import Botao from './components/TelaCadastro/botao/Botao';
+import Titulo from './components/Titulo/Titulo';
+import lateral from './img/rec2.png'
 
-const Container = styled.div`
-  display: flex;
-  height: 100vh;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
 
-const FormContainer = styled.div`
-  width: 50%;
+
+const Form = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #fff;
-  position: relative;
+  width: 80%;
+  pading:10px;
   @media (max-width: 768px) {
     width: 100%;
   }
-`;
-
-const Logo = styled.img`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 120px;
-  height: auto;
-  cursor: pointer;
-  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
-`;
-
-const Title = styled.h2`
-  color: #1f2c5c;
-  font-size: 2rem;
-  margin-bottom: 10px;
 `;
 
 const SubTitle = styled.p`
@@ -55,14 +36,6 @@ const ImportantText = styled.p`
   margin-bottom: 20px;
 `;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
 
 const InputGroup = styled.div`
   display: flex;
@@ -78,6 +51,7 @@ const CodeInput = styled.input`
   border-radius: 5px;
   border: 1px solid #ddd;
   background-color: #567ebb3e;
+  margin-left:10px;
   &:focus {
     border-color: #2c5cc5;
     outline: none;
@@ -88,47 +62,10 @@ const CodeInput = styled.input`
   }
 `;
 
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: #2c5cc5;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  &:hover {
-    background-color: #244aa6;
-  }
-`;
 
-const ImageContainer = styled.div`
-  width: 50%;
-  background-image: url("/mnt/data/image.png"); /* Adicione a URL correta da imagem */
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  @media (max-width: 768px) {
-    width: 100%;
-    height: 300px;
-  }
-`;
 
-const ExitButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #2c5cc5;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  &:hover {
-    background-color: #244aa6;
-  }
-`;
+
+
 
 const RecuperarSenha2 = () => {
   // Usando refs para acessar diretamente os inputs
@@ -158,8 +95,7 @@ const RecuperarSenha2 = () => {
   return (
     <Container>
       <FormContainer>
-        <Logo src={logo} alt="Logo" />
-        <Title>Recuperar senha</Title>
+        <Titulo>Recuperar senha</Titulo>
         <SubTitle>informe o código enviado para o seu email</SubTitle>
         <ImportantText><b>IMPORTANTE: Deve ser o mesmo email da conta</b></ImportantText>
         <Form onSubmit={handleSubmit}>
@@ -174,11 +110,11 @@ const RecuperarSenha2 = () => {
               />
             ))}
           </InputGroup>
-          <Button type="submit">Confirmar código</Button>
+          <Botao type="submit">Confirmar código</Botao>
         </Form>
       </FormContainer>
-      <ImageContainer>
-        <ExitButton>Sair</ExitButton>
+      <ImageContainer image={lateral}>
+        <BotaoSair></BotaoSair>
       </ImageContainer>
     </Container>
   );
