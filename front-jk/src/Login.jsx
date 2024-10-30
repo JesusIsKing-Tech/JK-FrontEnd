@@ -10,6 +10,7 @@ import ImageContainer from './components/ImageContainer/ImageContainer';
 import Botao from './components/TelaCadastro/botao/Botao';
 import Titulo from './components/Titulo/Titulo';
 import Swal from 'sweetalert2';
+import lateral from './img/login.png';
 
 const Form = styled.form`
   display: flex;
@@ -31,7 +32,7 @@ const Label = styled.label`
 `;
 
 
-const ForgotPasswordLink = styled.a`
+const ForgotPasswordLink = styled(Link)`
   color: #2c5cc5;
   font-size: 0.9rem;
   text-align: right;
@@ -87,12 +88,12 @@ const Login = () => {
           <InputGroup>
             <Label>Senha:</Label>
             <Input type="password"  onChange={(e) => setPassword(e.target.value)}  placeholder="" />
-            <ForgotPasswordLink href="#">Esqueceu a senha?</ForgotPasswordLink>
+            <ForgotPasswordLink to="/recuperacao">Esqueceu a senha?</ForgotPasswordLink>
           </InputGroup>
           <Botao type="submit">Entrar</Botao>
         </Form>
       </FormContainer>
-      <ImageContainer>
+      <ImageContainer image={lateral}>
       <BotaoSair/>
        
       </ImageContainer>

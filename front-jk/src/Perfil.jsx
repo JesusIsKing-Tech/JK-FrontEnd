@@ -4,12 +4,15 @@ import { AuthContext } from "./AuthContext";
 import styles from './Perfil.module.css';
 import imgPerfil from './img/perfil.jpg';
 import { FaEdit, FaEnvelope, FaBirthdayCake, FaUser, FaSignOutAlt } from 'react-icons/fa'; // Importando o ícone de sair
+import api from "./api";
 
 function Perfil() {
-
+  
   const { logout } = useContext(AuthContext);
-
-  const dado = {
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
+  const [dados, setDados] = useState(null);
+  const [dado, setDado] = useState({
     usuario: {
       nome: "Bartolomeu de Pompeia",
       email: "Bart@pbvm.com",
@@ -32,16 +35,72 @@ function Perfil() {
       { label: "Cestas básicas no estoque", valor: 5 },
       { label: "Indicações de louvores", valor: 5 }
     ]
+  });
+
+  
+  const calcularIdade = (dataNascimento) => {
+    const hoje = new Date();
+    const nascimento = new Date(dataNascimento);
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mes = hoje.getMonth() - nascimento.getMonth();
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+      idade--;
+    }
+    return idade;
   };
 
-  const [dados, setDados] = useState(null);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get(`/usuarios/${userId}`, {
+          headers: { 
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log(response.data);
+        const userData = response.data;
+        setDados({
+          usuario: {
+            nome: userData.nome,
+            email: userData.email,
+            data_nascimento: userData.data_nascimento,
+            idade: calcularIdade(userData.data_nascimento),
+            genero: userData.genero,
+            telefone: userData.telefone,
+            receber_doacoes: userData.receber_doacoes,
+          },
+          endereco: {
+            cep: userData.endereco.cep,
+            logradouro: userData.endereco.logradouro,
+            numero: userData.endereco.numero,
+            complemento: userData.endereco.complemento,
+            bairro: userData.endereco.bairro,
+            localidade: userData.endereco.localidade,
+            uf: userData.endereco.uf,
+          },
+          kpis: [
+            { label: "Chamados abertos alteração de endereço", valor: 2 },
+            { label: "Pedidos de oração", valor: 15 },
+            { label: "Postagens da semana", valor: 5 },
+            { label: "Cestas básicas no estoque", valor: 5 },
+            { label: "Indicações de louvores", valor: 5 }
+          ]
+        });
+      
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário', error);
+      }
+    };
+    fetchUserData();
+  }, [userId, token]);
+
   const [editandoEndereco, setEditandoEndereco] = useState(false);
   const [editandoDadosPessoais, setEditandoDadosPessoais] = useState(false);
   const [imagemPerfil, setImagemPerfil] = useState(dado.usuario.imagemPerfil);
 
-  useEffect(() => {
-    setDados(dado);
-  }, []);
+  // useEffect(() => {
+  //   setDados(dado);
+  // }, []);
 
   if (!dados) return <p>Carregando...</p>;
 

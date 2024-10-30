@@ -1,13 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
 import api from "./api";
+import Swal from "sweetalert2";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(localStorage.getItem("token"));
+    const [userId, setUserId] = useState(localStorage.getItem("userId"));
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        const userId = localStorage.getItem("userId");
         if (token) {
             setAuth({ token });
         }
@@ -21,8 +24,9 @@ export const AuthProvider = ({ children }) => {
              });
 
             const data = response.data;
-            
+            console.log(data);
             localStorage.setItem("token", data.token);
+            localStorage.setItem("userId", data.userId);
             setAuth({ token: data.token });
         }catch(error){
             console.error('Erro ao fazer login', error);
@@ -31,6 +35,13 @@ export const AuthProvider = ({ children }) => {
     };
         
     const logout = () => {
+        Swal.fire({
+            title: 'Saindo...',
+            text: 'Até logo!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+        });
         localStorage.removeItem("token");
         setAuth(null);
     };
