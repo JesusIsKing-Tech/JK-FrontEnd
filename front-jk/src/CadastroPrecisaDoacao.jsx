@@ -11,6 +11,9 @@ import Titulo from './components/Titulo/Titulo';
 import styled from 'styled-components';
 import InfoIcone from './components/InfoIcone/InfoIcone';
 import Swal from 'sweetalert2'; // Importa o SweetAlert2
+import { CadastroContext } from './CadastroContext';
+import { useContext } from 'react';
+import api from './api';
 import lateral from './img/cadastro3.jpeg'
 
 
@@ -44,13 +47,37 @@ const BotaoEstilizado = styled(Botao)`
 
 function DoacaoAlimentos({ prevStep }) {
 
-  const handleClick = () => {
-    Swal.fire({
-      title: 'Cadastro realizado!',
-      text: 'Sua resposta foi registrada com sucesso.',
-      icon: 'success',
-      confirmButtonText: 'OK',
-    });
+  const { formData, setFormData } = useContext(CadastroContext);
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setFormData((prevStep) => ({
+      ...prevStep,
+      receber_doacoes: value
+    })
+    )
+  }
+
+  const handleClick = async (e) => {
+    console.log(formData);
+    e.preventDefault();
+    
+      const response = 
+      await api.post('/usuarios/cadastrar', formData).then((response) => {
+        console.log(response);
+        Swal.fire({
+          icon: 'success',
+          title: 'Cadastro realizado com sucesso!',
+          confirmButtonText: 'OK',
+        });
+      }).catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao realizar o cadastro',
+          confirmButtonText: 'OK',
+        });
+      }, []);
   };
 
   return (
@@ -76,7 +103,8 @@ function DoacaoAlimentos({ prevStep }) {
               type="radio" 
               id="contactChoice1" 
               name="contact" 
-              value="sim"
+              value="true"
+              onChange={handleChange}
               />
             Sim
           </RadioLabel>
@@ -85,7 +113,8 @@ function DoacaoAlimentos({ prevStep }) {
               type="radio" 
               id="contactChoice2" 
               name="contact" 
-              value="nao"
+              value="false"
+              onAbort={handleChange}
               />
             Não
           </RadioLabel>

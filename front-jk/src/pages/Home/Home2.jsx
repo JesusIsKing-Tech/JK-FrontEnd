@@ -197,8 +197,10 @@ const Home2 = () => {
   const sections = [
     {
       images: [
-        { url: 'https://jpimg.com.br/uploads/2023/01/design-sem-nome-2023-01-18t104305.427-750x432.png' },
-        { url: 'https://www.tnh1.com.br//fileadmin/_processed_/c/7/csm_deolane_presa_-_foto_montagem_tnh1_3ee9d26e74.jpg' }
+        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
+        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' },
+        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
+        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' }
       ]
     }
   ];

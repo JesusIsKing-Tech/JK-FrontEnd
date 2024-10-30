@@ -6,33 +6,46 @@ import Home2 from './pages/Home/Home2.jsx';
 import RecuperarSenha from './RecuperarSenha';
 import RecuperarSenha2 from './RecuperarSenha2';
 import RecuperarSenha3 from './RecuperarSenha3';
-import Cadastro1 from './CadastroDadosCredenciais';
-import Cadastro2 from './CadastroDadosPessoais';
-import Cadastro3 from './CadastroPrecisaDoacao';
+import Cadastro from './Cadastro';
 import Estoque from './Estoque';
 import Perfil from './Perfil.jsx';
 import { Toast } from './components/Toast.jsx'; // Importa o componente Toast
+import { CadastroProvider } from './CadastroContext.jsx';
+import { RecuperacaoProvider } from './RecuperacaoContext.jsx';
+import { AuthProvider } from './AuthContext.js';
+import ProtectedRoute from './ProtectedRoute.js';
+import Recuperacao from './Recuperacao.jsx';
 
 
 function App() {
   return (
+    <AuthProvider>
+
+    <CadastroProvider>
+    <RecuperacaoProvider>
+
     <BrowserRouter>
           <Toast />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/home' element={<Home2 />} />
+        <Route path='/home' element={<ProtectedRoute element={<Home2/>}/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/rec' element={<RecuperarSenha />} />
         <Route path='/rec2' element={<RecuperarSenha2 />} />
         <Route path='/rec3' element={<RecuperarSenha3 />} />
-        <Route path='/cadastro' element={<Cadastro1 />} />
-        <Route path='/cadastro2' element={<Cadastro2 />} />
-        <Route path='/cadastro3' element={<Cadastro3 />} />
-        <Route path='/estoque' element={<Estoque />} />
-        <Route path='/perfil' element={<Perfil />} />
+
+        <Route path='/recuperacao' element={<Recuperacao />} />'
+        
+        <Route path='/cadastro' element={<Cadastro />} />
+
+        <Route path='/estoque' element={<ProtectedRoute element={<Estoque />}/>} />
+        <Route path='/perfil' element={<ProtectedRoute element={<Perfil />}/>} />
         <Route path='*' element={<h1 className="notFound">Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
+    </RecuperacaoProvider>
+    </CadastroProvider>
+    </AuthProvider>
   );
 }
 

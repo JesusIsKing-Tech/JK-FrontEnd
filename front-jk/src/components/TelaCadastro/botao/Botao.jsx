@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const Botao = ({ children,funcao,to }) => {
 
   return (
-    <Link className={styles.Link} to={to}>
-    <button className={styles.button} onClick={funcao}>
+    // <Link className={styles.Link} to={to}>
+    <button type='submit'  className={styles.button} onClick={funcao}>
       {children}
     </button>
-    </Link>
+    // </Link>
   );
 };
 

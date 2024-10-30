@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import imagem from '../../img/logo.png';
-import carrossel1 from '../../img/home1.png';
-import carrossel2 from '../../img/home2.png';
-import carrossel3 from '../../img/home3.png';
+import carrossel1 from '../../img/home1.jpeg';
+import carrossel2 from '../../img/home2.jpeg';
+import carrossel3 from '../../img/home3.jpeg';
 import styles from "./Home.module.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -50,8 +51,8 @@ const Home = () => {
           <a href="#values" onClick={() => goToSlide(1)}>Valores</a>
           <a href="#about" onClick={() => goToSlide(2)}>Sobre nós</a>
           <div className={styles.buttonsContainer}>
-            <button className={styles.login}>Login</button>
-            <button className={styles.signup}>Cadastro</button>
+          <Link to="/Login"><button className={styles.login}>Login</button></Link>
+          <Link to="/cadastro" ><button className={styles.signup}>Cadastro</button></Link>
           </div>
         </nav>
       </header>

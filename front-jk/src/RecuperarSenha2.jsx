@@ -1,4 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
+import { RecuperacaoContext } from './RecuperacaoContext';
+import api from './api';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import BotaoSair from './components/BotaoSair/BotaoSair';
@@ -62,34 +64,58 @@ const CodeInput = styled.input`
   }
 `;
 
+const RecuperarSenha2 = ({ nextStep }) => {
+  const {formData, setFormData} = useContext(RecuperacaoContext);
+  const [codigo, setCodigo] = useState(formData.codigo);
 
-
-
-
-
-const RecuperarSenha2 = () => {
   // Usando refs para acessar diretamente os inputs
   const inputRefs = useRef([]);
 
   const handleChange = (e, index) => {
     const value = e.target.value;
+    const newCodigo = [...codigo];
+    newCodigo[index] = value;    
+    setCodigo(newCodigo.join(''));
     
     // Quando um valor é inserido, move para o próximo input se houver
     if (value.length === 1 && index < inputRefs.current.length - 1) {
       inputRefs.current[index + 1].focus();
     }
   };
+  
+  useEffect(() => {
+    setFormData((prevData) => ({ ...prevData, codigo }));
+  }, [codigo, setFormData]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await api.post (`/usuarios/recuperar-senha/validar-codigo`,{
+        email: formData.email,
+        codigo_recuperar_senha: formData.codigo
+      });
 
-    // Exibe o SweetAlert quando o formulário é submetido
-    Swal.fire({
-      title: 'Sucesso!',
-      text: 'Senha alterada com sucesso!',
-      icon: 'success',
-      confirmButtonText: 'OK'
-    });
+
+      if(response.status === 200){
+        setFormData({...formData, codigo});
+        console.log(formData);
+        Swal.fire({
+          icon: 'success',
+          title: 'Código validado com sucesso!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        nextStep();
+      }
+    }catch(error){
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao validar código',
+        text: 'Código inválido, tente novamente!',
+      });
+    }
+    setCodigo(Array(6).fill(''));
   };
 
   return (
@@ -107,6 +133,7 @@ const RecuperarSenha2 = () => {
                 maxLength="1"
                 ref={(el) => (inputRefs.current[i] = el)} // Armazena as referências dos inputs
                 onChange={(e) => handleChange(e, i)} // Verifica quando o valor é alterado
+                value={codigo[i] || ''} // Preenche o input com o valor do código
               />
             ))}
           </InputGroup>
