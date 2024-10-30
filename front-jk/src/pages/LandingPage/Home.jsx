@@ -20,12 +20,12 @@ const Home = () => {
         {
           url: carrossel1,
           title: 'Perguntas Frequentes',
-          text: 'Simplificando a gestão de igrejas com uma plataforma integrada.'
+          text: 'O sistema é acessível a todos os membros, facilitando a comunicação e gestão das doações de alimentos. Ele é seguro e segue a LGPD, garantindo privacidade. Além disso, oferece dashboards de acompanhamento e relatórios para líderes, promovendo engajamento e transparência na igreja.'
         },
         {
           url: carrossel2,
           title: 'Valores',
-          text: 'Centralizando o controle de doações e facilitando a comunicação.'
+          text: 'O projeto de gestão para igrejas tem um forte valor social ao otimizar a distribuição de doações, tornando-as mais eficientes e transparentes. Com comunicação aprimorada e controle centralizado, ele fortalece o papel da igreja no apoio à comunidade, aumentando o impacto das ações de solidariedade.'
         },
         {
           url: carrossel3,
