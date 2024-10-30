@@ -28,7 +28,7 @@ function App() {
           <Toast />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/home' element={<ProtectedRoute element={<Home2/>}/>} />
+        <Route path='/noticias' element={<ProtectedRoute element={<Home2/>}/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/rec' element={<RecuperarSenha />} />
         <Route path='/rec2' element={<RecuperarSenha2 />} />
