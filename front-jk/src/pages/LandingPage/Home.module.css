@@ -77,6 +77,10 @@
   .buttonsContainer button:hover {
     opacity: 0.9;
   }
+
+  .buttonsContainer .login:hover {
+    background-color: #0b2650;
+  }
   
   /* Main Container */
   .mainContainer {
@@ -208,5 +212,8 @@
       flex-direction: column;
       gap: 10px;
     }
+  }
+  h3{
+    margin-bottom: 10px;
   }
   
