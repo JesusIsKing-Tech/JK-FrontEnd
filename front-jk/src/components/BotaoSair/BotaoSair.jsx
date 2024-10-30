@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './BotaoSair.module.css'; 
 import { Link } from 'react-router-dom';
+import {FaSignOutAlt } from 'react-icons/fa'; 
 
-const BotaoSair = ({ aoSair, children, to }) => {
+const BotaoSair = ({ aoSair, children }) => {
   return (
     <div>
-      <Link to={to}>
+      <Link to={"/"}>
     <button className={styles.botao} onClick={aoSair}>
-      Sair
+    <FaSignOutAlt/>Sair
       {children}
     </button>
       </Link>

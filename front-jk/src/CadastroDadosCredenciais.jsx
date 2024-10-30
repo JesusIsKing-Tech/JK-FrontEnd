@@ -11,6 +11,8 @@ import Input from './components/Input/Input';
 import Titulo from './components/Titulo/Titulo'
 import { CadastroContext } from './CadastroContext';
 import Swal from 'sweetalert2';
+import lateral from './img/cadastro1.png'
+
 
 function CadastroDadosCredenciais({ nextStep }) {
 
@@ -90,7 +92,7 @@ function CadastroDadosCredenciais({ nextStep }) {
         <Botao type="submit">Próxima Etapa </Botao>
         </Form>
       </FormContainer>
-      <ImageContainer>
+      <ImageContainer image={lateral}>
       <BotaoSair to={'/'}></BotaoSair>
       </ImageContainer>
     </Container>

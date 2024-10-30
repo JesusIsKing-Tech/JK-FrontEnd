@@ -7,27 +7,13 @@ import Input from './components/Input/Input';
 import ImageContainer from './components/ImageContainer/ImageContainer';
 import Botao from './components/TelaCadastro/botao/Botao';
 import Titulo from './components/Titulo/Titulo';
-import lateral from './img/rec1.png'
-
-
-const SubTitle = styled.p`
-  font-size: 1rem;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-`;
-
-const ImportantText = styled.p`
-  font-size: 0.9rem;
-  color: black;
-  text-align: center;
-  margin-bottom: 20px;
-`;
+import lateral from './img/rec3.png';
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 80%;
+  max-width: 400px;
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -43,28 +29,55 @@ const Label = styled.label`
   margin-bottom: 5px;
 `;
 
+const Wrapper = styled(Container)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
+
+const CustomTitulo = styled(Titulo)`
+  font-size: 2rem;
+  color: #3b5998;
+  text-align: center;
+  margin-bottom: 30px;
+`;
+
+const BotaoCustomizado = styled(Botao)`
+  width: 100%;
+  background-color: #3b5998;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+`;
 
 
-const RecuperarSenha = () => {
+
+const RedefinirSenha = () => {
   return (
-    <Container>
+    <Wrapper>
       <FormContainer>
-        <Titulo>Recuperar senha</Titulo>
-        <SubTitle>Informe o email que deseja receber o código de recuperação de senha</SubTitle>
-        <ImportantText>IMPORTANTE: Deve ser o mesmo email da conta</ImportantText>
+        <CustomTitulo>Redefinição de senha</CustomTitulo>
         <Form>
           <InputGroup>
-            <Label>Email:</Label>
-            <Input type="email" placeholder="exemplo@email.com" />
+            <Label>Nova senha:</Label>
+            <Input type="password" placeholder="" />
           </InputGroup>
-          <Botao type="submit">Enviar código</Botao>
+          <InputGroup>
+            <Label>Confirmar nova senha:</Label>
+            <Input type="password" placeholder="" />
+          </InputGroup>
+          <BotaoCustomizado type="submit">Alterar senha</BotaoCustomizado>
         </Form>
       </FormContainer>
       <ImageContainer image={lateral}>
         <BotaoSair></BotaoSair>
       </ImageContainer>
-    </Container>
+    </Wrapper>
   );
 };
 
-export default RecuperarSenha;
+export default RedefinirSenha;

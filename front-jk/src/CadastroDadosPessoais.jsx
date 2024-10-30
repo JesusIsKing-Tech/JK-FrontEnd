@@ -14,6 +14,8 @@ import { CadastroContext } from './CadastroContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import api from './api';
+import lateral from './img/cadastro2.png'
+
 
 function CadastroDadosPessoais({ nextStep }) {
 
@@ -121,7 +123,7 @@ function CadastroDadosPessoais({ nextStep }) {
           <Botao type="submit" to={'/cadastro3'}>Próxima</Botao>
         </Form>
       </FormContainer>
-      <ImageContainer>
+      <ImageContainer image={lateral}>
         <BotaoSair to={"/"} />
       </ImageContainer>
     </Container>

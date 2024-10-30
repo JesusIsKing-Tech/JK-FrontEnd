@@ -5,6 +5,7 @@ import Login from './Login';
 import Home2 from './pages/Home/Home2.jsx';
 import RecuperarSenha from './RecuperarSenha';
 import RecuperarSenha2 from './RecuperarSenha2';
+import RecuperarSenha3 from './RecuperarSenha3';
 import Cadastro from './Cadastro';
 import Cadastro1 from './CadastroDadosCredenciais';
 import Cadastro2 from './CadastroDadosPessoais';
@@ -30,11 +31,12 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/rec' element={<RecuperarSenha />} />
         <Route path='/rec2' element={<RecuperarSenha2 />} />
-
+        <Route path='/rec3' element={<RecuperarSenha3 />} />
+        
         <Route path='/cadastro' element={<Cadastro />} />
 
-        <Route path='/estoque' element={<ProtectedRoute element={<Estoque />}/>} />
-        <Route path='/perfil' element={<ProtectedRoute element={<Perfil />}/>} />
+        <Route path='/estoque' element={<Estoque />} />
+        <Route path='/perfil' element={<Perfil />} />
         <Route path='*' element={<h1 className="notFound">Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
