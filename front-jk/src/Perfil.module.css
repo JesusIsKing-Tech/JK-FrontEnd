@@ -208,7 +208,7 @@ input:focus {
   margin-top: 15px;
 }
 .inputContainer {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   margin-bottom: 15px; /* Espaçamento entre os campos */
 }
@@ -304,4 +304,63 @@ input:focus {
 
 .inputFile {
   display: none; /* Esconde o input de arquivo */
+}
+/* Toggle.module.css */
+.toggleContainerOff {
+  display: flex;
+  align-items: center;
+  /* cursor: pointer; */
+  /* margin-top: 20px; */
+}
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* margin-top: 20px; */
+}
+
+.toggleButton {
+  width: 50px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 50px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.toggleButton.on {
+  background-color: #007bff; /* Verde quando ativo */
+}
+
+.toggleButton.off {
+  background-color: #ccc; /* Vermelho quando inativo */
+}
+
+.toggleCircle {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s;
+}
+
+.toggleButton.on .toggleCircle {
+  transform: translateX(26px); /* Move a bolinha para a direita quando ativo */
+}
+
+.toggleButton.off .toggleCircle {
+  transform: translateX(0); /* Bolinha na posição original quando inativo */
+}
+h4{
+  margin-top: 40px;
+  
+}
+.box{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
 }

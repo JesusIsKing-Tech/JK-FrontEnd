@@ -3,11 +3,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from "./AuthContext";
 import styles from './Perfil.module.css';
 import imgPerfil from './img/perfil.jpg';
-import { FaEdit, FaEnvelope, FaBirthdayCake, FaUser, FaSignOutAlt } from 'react-icons/fa'; // Importando o ícone de sair
+import { FaEdit, FaEnvelope, FaBirthdayCake, FaUser, FaSignOutAlt, FaPhone } from 'react-icons/fa';
 import api from "./api";
 
 function Perfil() {
-  
+
   const { logout } = useContext(AuthContext);
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
@@ -17,7 +17,11 @@ function Perfil() {
       nome: "Bartolomeu de Pompeia",
       email: "Bart@pbvm.com",
       idade: 27,
-      imagemPerfil: imgPerfil
+      imagemPerfil: imgPerfil,
+      telefone: '11999999999',
+      genero: 'Masculino',
+      receberDoacao: false,
+      familia: 'Pompeia',
     },
     endereco: {
       cep: "00000-000",
@@ -37,7 +41,8 @@ function Perfil() {
     ]
   });
 
-  
+  const [isOn, setIsOn] = useState(false);
+
   const calcularIdade = (dataNascimento) => {
     const hoje = new Date();
     const nascimento = new Date(dataNascimento);
@@ -49,58 +54,61 @@ function Perfil() {
     return idade;
   };
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await api.get(`/usuarios/${userId}`, {
-          headers: { 
-            Authorization: `Bearer ${token}`
-          }
-        });
-        console.log(response.data);
-        const userData = response.data;
-        setDados({
-          usuario: {
-            nome: userData.nome,
-            email: userData.email,
-            data_nascimento: userData.data_nascimento,
-            idade: calcularIdade(userData.data_nascimento),
-            genero: userData.genero,
-            telefone: userData.telefone,
-            receber_doacoes: userData.receber_doacoes,
-          },
-          endereco: {
-            cep: userData.endereco.cep,
-            logradouro: userData.endereco.logradouro,
-            numero: userData.endereco.numero,
-            complemento: userData.endereco.complemento,
-            bairro: userData.endereco.bairro,
-            localidade: userData.endereco.localidade,
-            uf: userData.endereco.uf,
-          },
-          kpis: [
-            { label: "Chamados abertos alteração de endereço", valor: 2 },
-            { label: "Pedidos de oração", valor: 15 },
-            { label: "Postagens da semana", valor: 5 },
-            { label: "Cestas básicas no estoque", valor: 5 },
-            { label: "Indicações de louvores", valor: 5 }
-          ]
-        });
-      
-      } catch (error) {
-        console.error('Erro ao buscar dados do usuário', error);
-      }
-    };
-    fetchUserData();
-  }, [userId, token]);
+  const handleToggle = () => {
+    setIsOn(prev => !prev);
+  };
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const response = await api.get(`/usuarios/${userId}`, {
+  //         headers: { 
+  //           Authorization: `Bearer ${token}`
+  //         }
+  //       });
+  //       console.log(response.data);
+  //       const userData = response.data;
+  //       setDados({
+  //         usuario: {
+  //           nome: userData.nome,
+  //           email: userData.email,
+  //           data_nascimento: userData.data_nascimento,
+  //           idade: calcularIdade(userData.data_nascimento),
+  //           genero: userData.genero,
+  //           telefone: userData.telefone,
+  //           receber_doacoes: userData.receber_doacoes,
+  //         },
+  //         endereco: {
+  //           cep: userData.endereco.cep,
+  //           logradouro: userData.endereco.logradouro,
+  //           numero: userData.endereco.numero,
+  //           complemento: userData.endereco.complemento,
+  //           bairro: userData.endereco.bairro,
+  //           localidade: userData.endereco.localidade,
+  //           uf: userData.endereco.uf,
+  //         },
+  //         kpis: [
+  //           { label: "Chamados abertos alteração de endereço", valor: 2 },
+  //           { label: "Pedidos de oração", valor: 15 },
+  //           { label: "Postagens da semana", valor: 5 },
+  //           { label: "Cestas básicas no estoque", valor: 5 },
+  //           { label: "Indicações de louvores", valor: 5 }
+  //         ]
+  //       });
+
+  //     } catch (error) {
+  //       console.error('Erro ao buscar dados do usuário', error);
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, [userId, token]);
 
   const [editandoEndereco, setEditandoEndereco] = useState(false);
   const [editandoDadosPessoais, setEditandoDadosPessoais] = useState(false);
   const [imagemPerfil, setImagemPerfil] = useState(dado.usuario.imagemPerfil);
 
-  // useEffect(() => {
-  //   setDados(dado);
-  // }, []);
+  useEffect(() => {
+    setDados(dado);
+  }, []);
 
   if (!dados) return <p>Carregando...</p>;
 
@@ -125,6 +133,10 @@ function Perfil() {
     setEditandoEndereco(false);
     setDados(dado); // Restaura os dados originais ao cancelar
   };
+  const cancelarEdicaoDadosPessoais = () => {
+    setEditandoDadosPessoais(false);
+    setDados(dado); // Restaura os dados originais ao cancelar
+  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -141,13 +153,14 @@ function Perfil() {
     setImagemPerfil(dado.usuario.imagemPerfil);
   };
 
+
   return (
     <>
       <HeaderLogado />
       <div className={styles.perfilContainer}>
         <div className={styles.perfilSidebar}>
           <img src={imagemPerfil} alt="Perfil" className={styles.perfilImagem} />
-          
+
           <div className={styles.dadosPessoais}>
             {editandoDadosPessoais && (
               <div className={styles.botoesImagemPerfil}>
@@ -169,43 +182,66 @@ function Perfil() {
             {editandoDadosPessoais ? (
               <>
                 <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}><FaUser /></div>
+                  <div className={styles.iconContainer}><FaUser />  Nome</div>
                   <label>
                     <input
                       type="text"
                       value={usuario.nome}
-                      onChange={(e) => setDados({ ...dados, usuario: { ...usuario, nome: e.target.value }})}
+                      onChange={(e) => setDados({ ...dados, usuario: { ...usuario, nome: e.target.value } })}
                       placeholder="Nome"
                     />
                   </label>
                 </div>
                 <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}><FaEnvelope /></div>
+                  <div className={styles.iconContainer}><FaEnvelope />  E-mail</div>
                   <label>
                     <input
                       type="text"
                       value={usuario.email}
-                      onChange={(e) => setDados({ ...dados, usuario: { ...usuario, email: e.target.value }})}
+                      onChange={(e) => setDados({ ...dados, usuario: { ...usuario, email: e.target.value } })}
                       placeholder="Email"
                     />
                   </label>
                 </div>
                 <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}><FaBirthdayCake /></div>
+                  <div className={styles.iconContainer}><FaPhone />  Telefone</div>
+                  <label>
+                    <input
+                      type="number"
+                      value={usuario.telefone}
+                      onChange={(e) => setDados({ ...dados, usuario: { ...usuario, telefone: e.target.value } })}
+                      placeholder="Telefone"
+                    />
+                  </label>
+                </div>
+                {/* <div className={styles.inputContainer}>
+                  <div className={styles.iconContainer}><FaBirthdayCake />  Idade</div>
                   <label>
                     <input
                       type="number"
                       value={usuario.idade}
-                      onChange={(e) => setDados({ ...dados, usuario: { ...usuario, idade: e.target.value }})}
+                      onChange={(e) => setDados({ ...dados, usuario: { ...usuario, idade: e.target.value } })}
                       placeholder="Idade"
                     />
                   </label>
+                </div> */}
+                  <h4>Precisa receber cesta básica ?</h4>
+                  <div className={styles.box}>
+                <div className={styles.inputContainer}>
+                  <label>
+                  <div className={styles.toggleContainer} onClick={handleToggle}>
+                  <div className={`${styles.toggleButton} ${isOn ? styles.on : styles.off}`}>
+                    <div className={styles.toggleCircle}></div>
+                  </div>
+                  </div>
+                  </label>
+                </div>
                 </div>
               </>
             ) : (
               <>
                 <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}><FaUser /></div>
+                  <div className={styles.iconContainer}><FaUser />  Nome</div>
                   <label>
                     <input
                       type="text"
@@ -216,7 +252,7 @@ function Perfil() {
                   </label>
                 </div>
                 <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}><FaEnvelope /></div>
+                  <div className={styles.iconContainer}><FaEnvelope />  E-mail</div>
                   <label>
                     <input
                       type="text"
@@ -227,7 +263,18 @@ function Perfil() {
                   </label>
                 </div>
                 <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}><FaBirthdayCake /></div>
+                  <div className={styles.iconContainer}><FaPhone />  Telefone</div>
+                  <label>
+                    <input
+                      type="number"
+                      value={usuario.telefone}
+                      className={styles.inputDesabilitado}
+                      readOnly
+                    />
+                  </label>
+                </div>
+                {/* <div className={styles.inputContainer}>
+                  <div className={styles.iconContainer}><FaBirthdayCake />  Idade</div>
                   <label>
                     <input
                       type="number"
@@ -236,7 +283,18 @@ function Perfil() {
                       readOnly
                     />
                   </label>
+                </div> */}
+                <h4>Precisa receber cesta básica ?</h4>
+                <div className={styles.box}>
+                <div className={styles.inputContainer}>
+                <div className={styles.toggleContainerOff}>
+                  <div className={`${styles.toggleButton} ${isOn ? styles.on : styles.off}`}>
+                    <div className={styles.toggleCircle}></div>
+                  </div>
                 </div>
+                </div>
+                </div>
+
               </>
             )}
           </div>
@@ -253,8 +311,16 @@ function Perfil() {
                 </>
               )}
             </button>
-            <button onClick={deslogar} className={styles.btnSair}>
-              <FaSignOutAlt /> Sair
+            <button onClick={editandoDadosPessoais ? cancelarEdicaoDadosPessoais : deslogar} className={styles.btnSair}>
+              {editandoDadosPessoais ? (
+                <>
+                  Cancelar
+                </>
+              ) : (
+                <>
+                  Sair
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -293,6 +359,29 @@ function Perfil() {
               )}
             </div>
           </div>
+          {/* <div className={styles.enderecoContainer}>
+            <h3><center>Sua Família: <b>{usuario.familia}</b> </center></h3>
+            <div className={styles.enderecoGrid}>
+             
+            </div>
+            <div className={styles.botoesContainer}>
+              {editandoEndereco ? (
+                <>
+                  <button onClick={alternarEdicaoEndereco} className={styles.btnSalvar}>
+                    Solicitar Alteração
+                  </button>
+                  <button onClick={cancelarEdicaoEndereco} className={styles.btnCancelar}>
+                    Cancelar
+                  </button>
+                </>
+              ) : (
+                <button onClick={alternarEdicaoEndereco} className={styles.btnEditarEndereco}>
+                  <FaEdit />
+                </button>
+              )}
+            </div>
+          </div> */}
+
           <div className={styles.kpiContainer}>
             {kpis.map((kpi, index) => (
               <div key={index} className={styles.kpiCard} onClick={() => console.log(`Redirecionar para ${kpi.label}`)}>
