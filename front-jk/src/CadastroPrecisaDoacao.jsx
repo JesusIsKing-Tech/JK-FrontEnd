@@ -11,6 +11,8 @@ import Titulo from './components/Titulo/Titulo';
 import styled from 'styled-components';
 import InfoIcone from './components/InfoIcone/InfoIcone';
 import Swal from 'sweetalert2'; // Importa o SweetAlert2
+import lateral from './img/cadastro3.jpeg'
+
 
 const RadioBox = styled.div`
   display: flex;
@@ -93,7 +95,7 @@ function DoacaoAlimentos({ prevStep }) {
             </Form>
         
       </FormContainer>
-      <ImageContainer>
+      <ImageContainer image={lateral}>
         <BotaoSair to={"/"} />
       </ImageContainer>
     </Container>

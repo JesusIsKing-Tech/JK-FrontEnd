@@ -5,6 +5,7 @@ import Login from './Login';
 import Home2 from './pages/Home/Home2.jsx';
 import RecuperarSenha from './RecuperarSenha';
 import RecuperarSenha2 from './RecuperarSenha2';
+import RecuperarSenha3 from './RecuperarSenha3';
 import Cadastro1 from './CadastroDadosCredenciais';
 import Cadastro2 from './CadastroDadosPessoais';
 import Cadastro3 from './CadastroPrecisaDoacao';
@@ -23,6 +24,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/rec' element={<RecuperarSenha />} />
         <Route path='/rec2' element={<RecuperarSenha2 />} />
+        <Route path='/rec3' element={<RecuperarSenha3 />} />
         <Route path='/cadastro' element={<Cadastro1 />} />
         <Route path='/cadastro2' element={<Cadastro2 />} />
         <Route path='/cadastro3' element={<Cadastro3 />} />

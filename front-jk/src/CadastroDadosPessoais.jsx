@@ -10,6 +10,8 @@ import Botao from './components/TelaCadastro/botao/Botao';
 import Input from './components/Input/Input';
 import SelectOpt from './components/TelaCadastro/selectOpt/SelectOpt'; 
 import Titulo from './components/Titulo/Titulo';
+import lateral from './img/cadastro2.png'
+
 
 function CadastroDadosPessoais({ nextStep }) {
   const [gender, setGender] = useState(''); // Estado para o gênero
@@ -48,7 +50,7 @@ function CadastroDadosPessoais({ nextStep }) {
           <Botao type="submit" to={'/cadastro3'}>Próxima</Botao>
         </Form>
       </FormContainer>
-      <ImageContainer>
+      <ImageContainer image={lateral}>
         <BotaoSair to={"/"} />
       </ImageContainer>
     </Container>

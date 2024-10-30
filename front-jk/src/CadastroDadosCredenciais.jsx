@@ -9,6 +9,7 @@ import Form from './components/Form/Form';
 import Botao from './components/TelaCadastro/botao/Botao';
 import Input from './components/Input/Input';
 import Titulo from './components/Titulo/Titulo'
+import lateral from './img/cadastro1.png'
 
 
 
@@ -32,7 +33,7 @@ function CadastroDadosCredenciais() {
         <Botao type="submit" to={"/cadastro2"}>Próxima Etapa </Botao>
         </Form>
       </FormContainer>
-      <ImageContainer>
+      <ImageContainer image={lateral}>
       <BotaoSair to={'/'}></BotaoSair>
       </ImageContainer>
     </Container>
