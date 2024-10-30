@@ -127,26 +127,26 @@ const Carousel = styled.div`
   }
 `;
 
-// const ModalBackground = styled.div`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background: rgba(0, 0, 0, 0.5);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   z-index: 1000;
-// `;
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
 
-// const ModalContent = styled.div`
-//   background: white;
-//   padding: 20px;
-//   border-radius: 10px;
-//   width: 80%;
-//   max-width: 500px;
-// `;
+const ModalContent = styled.div`
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+`;
 
 
 const Home2 = () => {
@@ -155,10 +155,10 @@ const Home2 = () => {
   const sections = [
     {
       images: [
-        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
-        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' },
-        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
-        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' }
+        { url: 'https://i.pinimg.com/originals/8a/6e/47/8a6e47d26720e69efeb31950e58931dc.jpg' },
+        // { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' },
+        { url: 'https://cdn.cnbbsul4.org.br/wp-content/uploads/2021/04/boa-acao-e-doacao-606b58aa545e4.png' },
+        { url: 'https://i.ytimg.com/vi/d4v6yysjGeI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBfU4tTZ2dM0XFLXlkLukniA9sIUA' }
       ]
     }
   ];
@@ -168,8 +168,8 @@ const Home2 = () => {
       images: [
         { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
         { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' },
-        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
-        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' }
+        { url: 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8418fb7838ebc29f8c74aaceed' },
+        // { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' }
       ]
     }
   ];
@@ -177,23 +177,23 @@ const Home2 = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [textValue, setTextValue] = useState("");
   const textAreaRef = useRef(null);
-  // const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
-  // const nextImage = () => {
-  //   setCurrentImage((currentImage + 1) % sections[0].images.length);
-  // };
+  const nextImage = () => {
+    setCurrentImage((currentImage + 1) % sections[0].images.length);
+  };
 
-  // const prevImage = () => {
-  //   setCurrentImage((currentImage - 1 + sections[0].images.length) % sections[0].images.length);
-  // };
+  const prevImage = () => {
+    setCurrentImage((currentImage - 1 + sections[0].images.length) % sections[0].images.length);
+  };
 
   const handleInputChange = (e) => {
     const textArea = textAreaRef.current;
@@ -268,7 +268,9 @@ const Home2 = () => {
               >
                 {sections2[0].images.map((item, index) => (
                   <SwiperSlide key={index}>
-                    <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} />
+                    <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} 
+                    // onClick={openModal}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -281,7 +283,7 @@ const Home2 = () => {
 
         {/* <button onClick={openModal}>Abrir Modal</button> */}
 
-        {/* {isModalOpen && (
+        {isModalOpen && (
           <ModalBackground onClick={closeModal}>
             <ModalContent onClick={(e) => e.stopPropagation()}>
               <h2>Meu Modal</h2>
@@ -289,7 +291,7 @@ const Home2 = () => {
               <button onClick={closeModal}>Fechar</button>
             </ModalContent>
           </ModalBackground>
-        )} */}
+        )}
       </MainContent>
     </Container>
   );
