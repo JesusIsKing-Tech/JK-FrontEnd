@@ -1,10 +1,10 @@
-import HeaderLogado from "./components/HeaderLogado/HeaderLogado";
+import HeaderLogado from "../../components/HeaderLogado/HeaderLogado";
 import React, { useEffect, useState, useContext } from 'react';
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../../AuthContext";
 import styles from './Perfil.module.css';
 import imgPerfil from './img/perfil.jpg';
 import { FaEdit, FaEnvelope, FaBirthdayCake, FaUser, FaSignOutAlt, FaPhone } from 'react-icons/fa';
-import api from "./api";
+import api from "../../api";
 
 function Perfil() {
 
