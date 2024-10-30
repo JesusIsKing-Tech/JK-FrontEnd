@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from './AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import imagem from './img/logo.png'
+import Swal from 'sweetalert2';
 
 
 const Container = styled.div`
@@ -123,26 +126,61 @@ const ExitButton = styled.button`
 `;
 
 const Login = () => {
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  
+  const handleSubmit = async (e) => {
+
+    console.log("ENTREI NO SUBMIT", email, password);
+
+    e.preventDefault();
+    try {
+      await login(email, password);
+      Swal.fire({
+        icon: 'success',
+        title: 'Login efetuado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+      navigate('/home');
+
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao fazer login',
+        text: 'Email ou senha incorreto verifique suas credenciais e tente novamente!',
+      });
+    }
+  };
+
+
+
   return (
     <Container>
       <FormContainer>
         <Logo src={imagem} alt="Logo" />
         <Title>LOGIN</Title>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Label>Email:</Label>
-            <Input type="email" placeholder="" />
+            <Input type="email" onChange={(e)=>setEmail(e.target.value)} placeholder="" />
           </InputGroup>
           <InputGroup>
             <Label>Senha:</Label>
-            <Input type="password" placeholder="" />
+            <Input type="password"  onChange={(e) => setPassword(e.target.value)}  placeholder="" />
             <ForgotPasswordLink href="#">Esqueceu a senha?</ForgotPasswordLink>
           </InputGroup>
           <Button type="submit">Entrar</Button>
         </Form>
       </FormContainer>
       <ImageContainer>
+        <Link to="/">
         <ExitButton>Sair</ExitButton>
+        </Link>
       </ImageContainer>
     </Container>
   );

@@ -1,10 +1,14 @@
 import HeaderLogado from "./components/HeaderLogado/HeaderLogado";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { AuthContext } from "./AuthContext";
 import styles from './Perfil.module.css';
 import imgPerfil from './img/perfil.jpg';
 import { FaEdit, FaEnvelope, FaBirthdayCake, FaUser, FaSignOutAlt } from 'react-icons/fa'; // Importando o ícone de sair
 
 function Perfil() {
+
+  const { logout } = useContext(AuthContext);
+
   const dado = {
     usuario: {
       nome: "Bartolomeu de Pompeia",
@@ -55,6 +59,7 @@ function Perfil() {
 
   const deslogar = () => {
     console.log("Usuário deslogado");
+    logout();
   };
 
   const cancelarEdicaoEndereco = () => {

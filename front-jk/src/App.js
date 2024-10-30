@@ -13,28 +13,33 @@ import Estoque from './Estoque';
 import Perfil from './Perfil.jsx';
 import { Toast } from './components/Toast.jsx'; // Importa o componente Toast
 import { CadastroProvider } from './CadastroContext.jsx';
+import { AuthProvider } from './AuthContext.js';
+import ProtectedRoute from './ProtectedRoute.js';
 
 
 function App() {
   return (
+    <AuthProvider>
+
     <CadastroProvider>
     <BrowserRouter>
           <Toast />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/home' element={<Home2 />} />
+        <Route path='/home' element={<ProtectedRoute element={<Home2/>}/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/rec' element={<RecuperarSenha />} />
         <Route path='/rec2' element={<RecuperarSenha2 />} />
 
         <Route path='/cadastro' element={<Cadastro />} />
 
-        <Route path='/estoque' element={<Estoque />} />
-        <Route path='/perfil' element={<Perfil />} />
+        <Route path='/estoque' element={<ProtectedRoute element={<Estoque />}/>} />
+        <Route path='/perfil' element={<ProtectedRoute element={<Perfil />}/>} />
         <Route path='*' element={<h1 className="notFound">Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
     </CadastroProvider>
+    </AuthProvider>
   );
 }
 

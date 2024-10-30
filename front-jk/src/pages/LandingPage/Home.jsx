@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import imagem from '../../img/logo.png';
 import styles from "./Home.module.css";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -47,8 +48,8 @@ const Home = () => {
           <a href="#values" onClick={() => goToSlide(1)}>Valores</a>
           <a href="#about" onClick={() => goToSlide(2)}>Sobre nós</a>
           <div className={styles.buttonsContainer}>
-            <button className={styles.login}>Login</button>
-            <button className={styles.signup}>Cadastro</button>
+          <Link to="/Login"><button className={styles.login}>Login</button></Link>
+          <Link to="/cadastro" ><button className={styles.signup}>Cadastro</button></Link>
           </div>
         </nav>
       </header>
