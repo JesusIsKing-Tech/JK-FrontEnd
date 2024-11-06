@@ -1,0 +1,117 @@
+.cardFamilia {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    width: 90%; /* Proporcional */
+    max-width: 600px; /* Limite de largura para telas grandes */
+    margin: 40px auto; /* Centraliza na tela */
+    overflow-y: auto; /* Scroll vertical quando o conteúdo excede a altura */
+}
+
+.boxTitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dados {
+    display: flex;
+    flex-direction: row; /* Alterado para linha */
+    justify-content: space-between; /* Distribui espaço entre os itens */
+    align-items: center; /* Alinha verticalmente no centro */
+    flex-wrap: wrap; /* Permite quebrar a linha se não houver espaço suficiente */
+}
+
+.campo {
+    flex: 1; /* Permite que os campos cresçam igualmente */
+    min-width: 120px; /* Largura mínima para cada campo */
+    margin: 10px; /* Espaçamento entre os campos */
+}
+
+.campo h3 {
+    margin-bottom: 10px;
+}
+
+.linha {
+    padding: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.linha:hover {
+    /* background-color: rgba(0, 0, 0, 0.1);  */
+    /* text-decoration: underline; */
+
+}
+
+.linhaSelecionada {
+    text-decoration: underline;
+}
+
+.campo p {
+    display: flex;
+    align-items: center;
+}
+
+.campo input[type="radio"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.campo input[type="radio"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.campo input[type="radio"]:checked::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%; /* Círculo */
+    margin: auto;
+}
+
+/* Estilos do formulário */
+form {
+    display: flex;
+    flex-direction: column; /* Empilha os inputs verticalmente */
+    width: 100%;
+    max-width: 400px; /* Largura máxima do formulário */
+    margin: 0 auto; /* Centraliza o formulário */
+}
+
+form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Campo ocupa toda a largura */
+}
+
+form input[type="text"]:focus {
+    border-color: #4CAF50; 
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Estilo do botão */
+.Botao {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Botao:hover {
+    background-color: #45a049; /* Cor ao passar o mouse */
+}

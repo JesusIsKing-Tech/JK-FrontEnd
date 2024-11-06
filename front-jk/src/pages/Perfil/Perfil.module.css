@@ -10,6 +10,8 @@
   justify-content: center;
 }
 
+p{color: black;}
+
 .perfilSidebar {
   flex: 1 1 300px;
   max-width: 25vw;

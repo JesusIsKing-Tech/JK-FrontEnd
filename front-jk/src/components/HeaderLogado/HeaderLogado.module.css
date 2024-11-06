@@ -14,10 +14,11 @@
 
 .nav a {
   margin-right: 20px;
-  color: white;
+  color: #ffffff7b;
   text-decoration: none;
   font-weight: bold;
   margin-left:5px;
+  transition: transform 0.3s ease;
 }
 .nav a img{
  height: 40px;
@@ -30,17 +31,19 @@
  }
 
 .nav a.active {
-  background-color: #041229ae; /* Fundo diferente para destacar */
+  /* background-color: #041229ae; /* Fundo diferente para destacar */
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 5px; 
+  color: white;
 }
 
 .nav a:hover {
-  text-decoration: underline;
-}
+  transform: scale(1.03); /* aumenta o elemento em 10% */
+    color: #ffffff;}
 
 .logo {
   height: 50px;
+  cursor: pointer;
 }
 
 .profile {
@@ -54,4 +57,12 @@
   height: 40px;
   width: 40px;
   margin-left: 10px;
+  /* filter: brightness(0.7); Reduz o brilho para 70% */
 }
+.profile img:hover {
+  transform: scale(1.03); 
+  /* filter: brightness(1.2); Reduz o brilho para 70% */
+
+  
+}
+

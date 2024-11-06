@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css'; // Importando o CSS
 import Home from './pages/LandingPage/Home.jsx';
+import Doe from './pages/Doe/Doe.jsx'
 import Login from './Login';
 import Home2 from './pages/Home/Home2.jsx';
 import RecuperarSenha from './RecuperarSenha';
@@ -28,7 +29,7 @@ function App() {
           <Toast />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/noticias' element={<ProtectedRoute element={<Home2/>}/>} />
+        <Route path='/noticias' element={<Home2/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/rec' element={<RecuperarSenha />} />
         <Route path='/rec2' element={<RecuperarSenha2 />} />
@@ -38,8 +39,9 @@ function App() {
         
         <Route path='/cadastro' element={<Cadastro />} />
 
-        <Route path='/estoque' element={<ProtectedRoute element={<Estoque />}/>} />
-        <Route path='/perfil' element={<ProtectedRoute element={<Perfil />}/>} />
+        <Route path='/estoque' element={<Estoque />} />
+        <Route path='/doe' element={<Doe />} />
+        <Route path='/perfil' element={<Perfil />} />
         <Route path='*' element={<h1 className="notFound">Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>
