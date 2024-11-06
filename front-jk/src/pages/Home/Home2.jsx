@@ -116,6 +116,7 @@ const Carousel = styled.div`
     border-radius: 10px;
     width: 100%;
     height: 30vh;
+    object-fit: cover;
   }
 
   button {

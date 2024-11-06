@@ -19,7 +19,7 @@
     align-items: center;
     padding: 0px 60px;
     height: 10vh;
-    background-color: #DCE0E6;
+    background-color: #2b4c7e;
   }
   
   .header img {
@@ -35,17 +35,19 @@
   }
   
   .nav a {
-    color: #333;
+    color: #ffffff7b;
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
     align-items: center;
     display: flex;
-    
+    transition: transform 0.3s ease;
   }
   
   .nav a:hover {
-    color: #2c5cc5;
+    transform: scale(1.05); /* aumenta o elemento em 10% */
+    color: #ffffff;
+    
   }
   
   /* Buttons */
@@ -64,7 +66,7 @@
   }
   
   .buttonsContainer .login {
-    background-color: #2B4C7E;
+    background-color: #152c4f;
     color: white;
   }
   
@@ -79,7 +81,7 @@
   }
 
   .buttonsContainer .login:hover {
-    background-color: #0b2650;
+    background-color: #0b1c34;
   }
   
   /* Main Container */
@@ -87,7 +89,20 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background: linear-gradient(to right, #4E8AE4, #2B4C7E);
+    /* background: linear-gradient(to right, #edf4ff, #093e8e); */
+    /* background: linear-gradient(to right, #edf4ff, #4a6f96, #032a65); */
+    /* background: linear-gradient(to right, #edf4ff, #4a7cb0, #093e8e); */
+    background: linear-gradient(
+      to right,
+      #e2ebf7,  /* azul bem claro */
+      #b0c5e0,  /* tom mais suave */
+      #7f9fc8,  /* intermediário */
+      #4f78b0,  /* aproximando da cor base */
+      #2b4c7e   /* cor base */
+    );
+    
+    
+    background-color: #ffffff;
     height: 80vh;
   }
   
@@ -100,9 +115,10 @@
   
   /* SobreNosCard Styles */
   .sobreNosCard {
-    background-color: #DCE0E6;
+    background-color: #2b4c7e;
+    
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     padding: 20px;
     margin-top: 30px;
     margin-left: 60px;
@@ -120,7 +136,7 @@
   
   .sobreNosCard h3 {
     margin-top: 15px;
-    color: #2c5cc5;
+    color: white;
   }
   
   @media (max-width: 768px) {
@@ -136,6 +152,7 @@
     width: 60%;
     display: flex;
     align-items: center;
+    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
   }
   
   .carousel img {
@@ -143,7 +160,8 @@
     width: 100%;
     height: 400px; /* Ajuste a altura da imagem para caber */
     object-fit: cover;
-    border: solid 2px rgba(255, 255, 255, 0.788);
+    border: solid 2px #ffffff;
+    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
   }
   
   .carousel button {
@@ -151,12 +169,28 @@
     border: none;
     font-size: 3rem;
     cursor: pointer;
-    color: #000;
+    /* color: #2B4C7E; */
+    transition: transform 0.3s ease;
   }
   
   .carousel button:hover {
-    color: white;
+    /* transform: scale(1.1); aumenta o elemento em 10% */
+    /* color: #153b74; */
+
   }
+
+  .leftArrow {
+    color: #ffffff; 
+  }
+  
+  .rightArrow {
+    color: #ffffff; /* Cor para a seta direita */
+  }
+  
+  .leftArrow:hover, .rightArrow:hover {
+    transform: scale(1.2); /* Efeito de hover em ambas as setas */
+  }
+  
   
   @media (max-width: 768px) {
     .carousel {
@@ -166,7 +200,7 @@
   
   /* Footer */
   .footer {
-    background-color: #f0f3f7;
+    background-color: #2b4c7e;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -200,11 +234,11 @@
     cursor: pointer;
     transition: color 0.3s ease;
     height: 40px;
-    color: #2B4C7E;
+    color: #ffffff;
   }
   
   .iconContainer svg:hover {
-    color: #2c5cc5;
+    color: #ffffff;
   }
   
   @media (max-width: 768px) {
@@ -213,7 +247,22 @@
       gap: 10px;
     }
   }
-  h3{
+  .h3{
     margin-bottom: 10px;
+  }
+  .p{color: white;}
+
+  
+  .iconeFooter:hover{
+    transform: scale(1.05);
+  }
+
+  .sliderItem{
+  
+  }
+  
+  .nav a.active {
+    color: rgb(255, 255, 255); /* Exemplo de cor para destaque */
+    font-weight: bold; /* Deixe o texto mais grosso */
   }
   

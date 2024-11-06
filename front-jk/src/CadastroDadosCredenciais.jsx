@@ -12,6 +12,7 @@ import Titulo from './components/Titulo/Titulo'
 import { CadastroContext } from './CadastroContext';
 import Swal from 'sweetalert2';
 import lateral from './img/cadastro1.png'
+import HeaderLogado from './components/HeaderLogado/HeaderLogado';
 
 
 function CadastroDadosCredenciais({ nextStep }) {
@@ -76,6 +77,7 @@ function CadastroDadosCredenciais({ nextStep }) {
 
 
   return (
+    <>
     <Container>
       <FormContainer>
         <StepContainer>
@@ -96,6 +98,7 @@ function CadastroDadosCredenciais({ nextStep }) {
       <BotaoSair to={'/'}></BotaoSair>
       </ImageContainer>
     </Container>
+    </>
   );
 }
 
