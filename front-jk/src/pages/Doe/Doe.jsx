@@ -39,15 +39,19 @@ const Doe = () => {
             <ImageContainer image={lateral}>
             </ImageContainer>
             <FormContainer>
-                <Titulo>Selecione quem veio retirar a doação</Titulo>
-                {verificado ? (
+                {verificado ? (<>
+                
+                <Titulo>Selecione o Responsável</Titulo>
                     <div className={styles.cardFamilia}>
                         <div className={styles.boxTitulo}>
                             <h2>{familia.nomeFamilia}</h2>
                         </div>
                         <div className={styles.dados}>
                             <div className={styles.campo}>
+                                <div className={styles.boxTitulo}>
                                 <h3>Nome</h3>
+                                </div>
+                                <div className={styles.boxLinha}>
                                 {familia.membros.map((membro, index) => (
                                     <p
                                         key={index}
@@ -58,9 +62,14 @@ const Doe = () => {
                                     </p>
                                 ))}
                             </div>
+                            </div>
 
                             <div className={styles.campo}>
+                            <div className={styles.boxTitulo}>
                                 <h3>Dt Nasc.</h3>
+                                </div>
+                                <div className={styles.boxLinha}>
+
                                 {familia.membros.map((membro, index) => (
                                     <p
                                         key={index}
@@ -70,40 +79,49 @@ const Doe = () => {
                                         {membro.dataNascimento}
                                     </p>
                                 ))}
+                                </div>
                             </div>
 
                             <div className={styles.campo}>
+                            <div className={styles.boxTitulo}>
                                 <h3>Responsável</h3>
+                                </div>
+                                <div className={styles.boxCheck}>                                
+
                                 {familia.membros.map((membro, index) => (
-                                    <p
+                                    <div
                                         key={index}
-                                        className={styles.linha2}
-                                    >
+>
+                                        <div className={styles}>
+
                                         <input
                                             type="radio"
                                             name="responsavel"
                                             checked={linhaSelecionada === index}
-                                            onChange={() => selecionarLinha(index)}
-                                            style={{ cursor: 'pointer' }}
-                                        />
-                                    </p>
+                                            />
+                                            </div>
+                                    </div>
                                 ))}
+                                </div>
                             </div>
                         </div>
                         <Botao onClick={() => alert("Doação realizada!")}>Doar</Botao>
                     </div>
+                    </>
                 ) : (
-                    
-                    <Form onSubmit={handleVerificar}>
+<>
+<Titulo>Retirar Doação</Titulo>
+<Form onSubmit={handleVerificar}>
                         <Input label="CEP" type="text" name="cep" />
-                        <Input label="Rua" style={{ background: '#f0f0f0', border: 'none' }} type="text" name="logradouro" />
+                        <Input readOnly label="Rua" style={{ background: '#f0f0f0', border: 'none' }} type="text" name="logradouro" />
                         <Input label="Número" type="text" name="numero" />
                         <Input label="Complemento" type="text" name="complemento" />
-                        <Input label="Bairro" type="text" name="bairro" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
-                        <Input label="Cidade" type="text" name="localidade" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
-                        <Input label="UF" type="text" name="uf" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
+                        <Input readOnly label="Bairro" type="text" name="bairro" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
+                        <Input readOnly label="Cidade" type="text" name="localidade" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
+                        <Input readOnly label="UF" type="text" name="uf" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
                         <Botao type="submit">Verificar</Botao>
                     </Form>
+</>
                 )}
             </FormContainer>
             
