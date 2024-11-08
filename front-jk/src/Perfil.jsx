@@ -57,50 +57,50 @@ function Perfil() {
   const handleToggle = () => {
     setIsOn(prev => !prev);
   };
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await api.get(`/usuarios/${userId}`, {
-  //         headers: { 
-  //           Authorization: `Bearer ${token}`
-  //         }
-  //       });
-  //       console.log(response.data);
-  //       const userData = response.data;
-  //       setDados({
-  //         usuario: {
-  //           nome: userData.nome,
-  //           email: userData.email,
-  //           data_nascimento: userData.data_nascimento,
-  //           idade: calcularIdade(userData.data_nascimento),
-  //           genero: userData.genero,
-  //           telefone: userData.telefone,
-  //           receber_doacoes: userData.receber_doacoes,
-  //         },
-  //         endereco: {
-  //           cep: userData.endereco.cep,
-  //           logradouro: userData.endereco.logradouro,
-  //           numero: userData.endereco.numero,
-  //           complemento: userData.endereco.complemento,
-  //           bairro: userData.endereco.bairro,
-  //           localidade: userData.endereco.localidade,
-  //           uf: userData.endereco.uf,
-  //         },
-  //         kpis: [
-  //           { label: "Chamados abertos alteração de endereço", valor: 2 },
-  //           { label: "Pedidos de oração", valor: 15 },
-  //           { label: "Postagens da semana", valor: 5 },
-  //           { label: "Cestas básicas no estoque", valor: 5 },
-  //           { label: "Indicações de louvores", valor: 5 }
-  //         ]
-  //       });
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get(`/usuarios/${userId}`, {
+          headers: { 
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log(response.data);
+        const userData = response.data;
+        setDados({
+          usuario: {
+            nome: userData.nome,
+            email: userData.email,
+            data_nascimento: userData.data_nascimento,
+            idade: calcularIdade(userData.data_nascimento),
+            genero: userData.genero,
+            telefone: userData.telefone,
+            receber_doacoes: userData.receber_doacoes,
+          },
+          endereco: {
+            cep: userData.endereco.cep,
+            logradouro: userData.endereco.logradouro,
+            numero: userData.endereco.numero,
+            complemento: userData.endereco.complemento,
+            bairro: userData.endereco.bairro,
+            localidade: userData.endereco.localidade,
+            uf: userData.endereco.uf,
+          },
+          kpis: [
+            { label: "Chamados abertos alteração de endereço", valor: 2 },
+            { label: "Pedidos de oração", valor: 15 },
+            { label: "Postagens da semana", valor: 5 },
+            { label: "Cestas básicas no estoque", valor: 5 },
+            { label: "Indicações de louvores", valor: 5 }
+          ]
+        });
 
-  //     } catch (error) {
-  //       console.error('Erro ao buscar dados do usuário', error);
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, [userId, token]);
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário', error);
+      }
+    };
+    fetchUserData();
+  }, [userId, token]);
 
   const [editandoEndereco, setEditandoEndereco] = useState(false);
   const [editandoDadosPessoais, setEditandoDadosPessoais] = useState(false);
@@ -126,6 +126,7 @@ function Perfil() {
 
   const deslogar = () => {
     console.log("Usuário deslogado");
+    console.log("Usuário deslogado aaaaaaaaaaaaa que odio bueno");
     logout();
   };
 
