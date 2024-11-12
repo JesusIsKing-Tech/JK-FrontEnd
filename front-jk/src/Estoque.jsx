@@ -20,7 +20,7 @@ const BoxDash = styled.div`
   display: flex;
   align-self: center;
   justify-content: center; 
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 `;
 
 const BoxCard = styled.div`
@@ -169,7 +169,6 @@ function Estoque() {
       <HeaderLogado />
       <Box>
         <div>
-          <h2>Alimentos em estoque</h2>
           <div>
             <Filtro onFilter={handleFilter} onSort={handleSort} /> {/* Passando as funções de filtro e ordenação */}
             <BoxCard>

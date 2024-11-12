@@ -169,7 +169,7 @@ function Estoque() {
       <HeaderLogado />
       <Box>
         <div>
-          <h2>Alimentos em estoque</h2>
+          {/* <h2>Alimentos em estossssque</h2> */}
           <div>
             <Filtro onFilter={handleFilter} onSort={handleSort} /> {/* Passando as funções de filtro e ordenação */}
             <BoxCard>
