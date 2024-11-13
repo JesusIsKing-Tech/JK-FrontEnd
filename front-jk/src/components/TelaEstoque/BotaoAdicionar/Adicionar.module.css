@@ -14,7 +14,7 @@
   justify-content: flex-start;
 }
 .card-musica:hover{
-  background-color: #575e5964;
+  background-color: #ffffff;
     transform: scale(1.02); /* aumenta o tamanho da lupa ao passar o mouse */
 
 }

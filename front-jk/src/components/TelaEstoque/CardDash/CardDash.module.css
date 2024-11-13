@@ -5,8 +5,8 @@
   border-radius: 10px;
   flex-direction: column;
   height: auto !important;
-  border: 2px solid rgba(0, 0, 0, 0.408);
-  background-color: #2a394f;
+  /* border: 2px solid rgba(0, 0, 0, 0.408); */
+  /* background-color: #2a394f; */
   /* padding-bottom: -20px; */
 }
 .boxTitulo{

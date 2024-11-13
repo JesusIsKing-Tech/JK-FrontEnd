@@ -13,6 +13,10 @@
 .boxTitulo{
   display: flex;
   flex-direction: row;
+
+  span{
+    color: #000000;
+  }
   /* justify-content: space-evenly; */
 }
 .imagem-container {
@@ -86,10 +90,10 @@
   transition: background-color 0.3s ease;
 }
 .botao:first-child {
-  background-color: #DCE0E6;
+  background-color: #dbdbdb;
 }
 .botao:first-child:hover {
-  background-color: #8c96a6;
+  background-color: #ffffff;
 }
 .botao:nth-child(2) {
   background-color: #b9a26b;
