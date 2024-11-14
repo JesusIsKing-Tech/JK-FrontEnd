@@ -35,7 +35,7 @@ const Doe = () => {
     return (
         <>
             <HeaderLogado />
-            <Container>
+            <div className={styles.container}>
             <ImageContainer image={lateral}>
             </ImageContainer>
             <FormContainer>
@@ -125,7 +125,7 @@ const Doe = () => {
                 )}
             </FormContainer>
             
-      </Container>
+            </div>
         </>
     );
 };
