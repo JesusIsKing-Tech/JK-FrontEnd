@@ -1,268 +1,249 @@
 /* Global Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background-color: #f0f3f7;
-    
-  }
-  
-  /* Header */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 60px;
-    height: 10vh;
-    background-color: #2b4c7e;
-  }
-  
-  .header img {
-    height: 50px;
-    cursor: pointer;
-    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
-  }
-  
-  /* Navigation */
-  .nav {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav a {
-    color: #ffffff7b;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    align-items: center;
-    display: flex;
-    transition: transform 0.3s ease;
-  }
-  
-  .nav a:hover {
-    transform: scale(1.05); /* aumenta o elemento em 10% */
-    color: #ffffff;
-    
-  }
-  
-  /* Buttons */
-  .buttonsContainer {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .buttonsContainer button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 1.95px 1.95px 2.6px rgba(0, 0, 0, 0.15);
-    transition: opacity 0.3s ease;
-  }
-  
-  .buttonsContainer .login {
-    background-color: #152c4f;
-    color: white;
-  }
-  
-  .buttonsContainer .signup {
-    background-color: #fff;
-    color: #2B4C7E;
-    border: 2px solid #2B4C7E;
-  }
-  
-  .buttonsContainer button:hover {
-    opacity: 0.9;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .buttonsContainer .login:hover {
-    background-color: #0b1c34;
-  }
-  
-  /* Main Container */
-  .mainContainer {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    /* background: linear-gradient(to right, #edf4ff, #093e8e); */
-    /* background: linear-gradient(to right, #edf4ff, #4a6f96, #032a65); */
-    /* background: linear-gradient(to right, #edf4ff, #4a7cb0, #093e8e); */
-    background: linear-gradient(
-      to right,
-      #e2ebf7,  /* azul bem claro */
-      #b0c5e0,  /* tom mais suave */
-      #7f9fc8,  /* intermediário */
-      #4f78b0,  /* aproximando da cor base */
-      #2b4c7e   /* cor base */
-    );
-    
-    
-    background-color: #ffffff;
-    height: 80vh;
-  }
-  
-  @media (max-width: 768px) {
-    .mainContainer {
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f0f3f7;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  height: 10vh;
+  background-color: #2b4c7e;
+  flex-wrap: wrap; /* Adiciona flexibilidade ao layout */
+}
+
+.header img {
+  height: 50px;
+  cursor: pointer;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Permite que os itens sejam reorganizados em telas menores */
+}
+
+.nav a {
+  color: #ffffff7b;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.nav a:hover {
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+.nav a.active {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+/* Buttons */
+.buttonsContainer {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* Adiciona flexibilidade para botões em telas menores */
+}
+
+.buttonsContainer button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 1.95px 1.95px 2.6px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease;
+}
+
+.buttonsContainer .login {
+  background-color: #152c4f;
+  color: white;
+}
+
+.buttonsContainer .signup {
+  background-color: #fff;
+  color: #2B4C7E;
+  border: 2px solid #2B4C7E;
+}
+
+.buttonsContainer button:hover {
+  opacity: 0.9;
+}
+
+.buttonsContainer .login:hover {
+  background-color: #0b1c34;
+}
+
+/* Main Container */
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: linear-gradient(to right, #e2ebf7, #b0c5e0, #7f9fc8, #4f78b0, #2b4c7e);
+  height: 80vh;
+  gap: 20px;
+  flex-wrap: wrap; /* Flexibilidade para telas menores */
+}
+
+/* SobreNosCard Styles */
+.sobreNosCard {
+  background-color: #2b4c7e;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  height: 65vh;
+}
+
+.sobreNosCard img {
+  border-radius: 10px;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.sobreNosCard h3 {
+  margin-top: 15px;
+  color: white;
+}
+
+/* Carousel Styles */
+.carousel {
+  border-radius: 10px;
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.carousel img {
+  border-radius: 10px;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border: solid 2px #ffffff;
+}
+
+.carousel button {
+  background: none;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.carousel button:hover {
+  transform: scale(1.2);
+}
+
+.leftArrow, .rightArrow {
+  color: #ffffff;
+}
+
+/* Footer */
+.footer {
+  background-color: #2b4c7e;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  height: 10vh;
+  width: 100%;
+  flex-wrap: wrap; /* Flexibilidade para telas menores */
+}
+
+.footer p {
+  margin: 0;
+}
+
+.iconContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.iconContainer svg {
+  cursor: pointer;
+  transition: color 0.3s ease;
+  height: 40px;
+  color: #ffffff;
+}
+
+.iconContainer svg:hover {
+  color: #ffffff;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .header, .footer {
       flex-direction: column;
       align-items: center;
-    }
-  }
-  
-  /* SobreNosCard Styles */
-  .sobreNosCard {
-    background-color: #2b4c7e;
-    
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    padding: 20px;
-    margin-top: 30px;
-    margin-left: 60px;
-    width: 300px;
-    text-align: center;
-    height: 65vh;
-  }
-  
-  .sobreNosCard img {
-    border-radius: 10px;
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-  }
-  
-  .sobreNosCard h3 {
-    margin-top: 15px;
-    color: white;
-  }
-  
-  @media (max-width: 768px) {
-    .sobreNosCard {
-      width: 80%;
-    }
-  }
-  
-  /* Carousel Styles */
-  .carousel {
-    border-radius: 10px;
-    margin-right: 40px;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-  }
-  
-  .carousel img {
-    border-radius: 10px;
-    width: 100%;
-    height: 400px; /* Ajuste a altura da imagem para caber */
-    object-fit: cover;
-    border: solid 2px #ffffff;
-    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-  }
-  
-  .carousel button {
-    background: none;
-    border: none;
-    font-size: 3rem;
-    cursor: pointer;
-    /* color: #2B4C7E; */
-    transition: transform 0.3s ease;
-  }
-  
-  .carousel button:hover {
-    /* transform: scale(1.1); aumenta o elemento em 10% */
-    /* color: #153b74; */
-
+      text-align: center;
+      gap: 10px;
+      padding: 10px;
   }
 
-  .leftArrow {
-    color: #ffffff; 
-  }
-  
-  .rightArrow {
-    color: #ffffff; /* Cor para a seta direita */
-  }
-  
-  .leftArrow:hover, .rightArrow:hover {
-    transform: scale(1.2); /* Efeito de hover em ambas as setas */
-  }
-  
-  
-  @media (max-width: 768px) {
-    .carousel {
+  .nav, .buttonsContainer {
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
       width: 100%;
-    }
   }
-  
-  /* Footer */
+
+  .mainContainer {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      padding: 20px;
+  }
+
+  .sobreNosCard {
+      width: 80%;
+      height: auto;
+  }
+
+  .carousel {
+      width: 100%;
+      margin-right: 0;
+  }
+
+  .carousel img {
+      height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .header, .footer {
+      padding: 10px;
+  }
+
+  .nav {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .buttonsContainer {
+      flex-direction: column;
+      gap: 10px;
+  }
+
   .footer {
-    background-color: #2b4c7e;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
-    height: 10vh;
-    width: 100%;
-  }
-  
-  .footer p {
-    margin: 0;
-  }
-  .a{
-    height: 40px;
-    width: 40px;
-  }
-  
-  @media (max-width: 768px) {
-    .footer {
       flex-direction: column;
       gap: 10px;
-    }
   }
-  
-  /* Icon Container */
-  .iconContainer {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .iconContainer svg {
-    cursor: pointer;
-    transition: color 0.3s ease;
-    height: 40px;
-    color: #ffffff;
-  }
-  
-  .iconContainer svg:hover {
-    color: #ffffff;
-  }
-  
-  @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      gap: 10px;
-    }
-  }
-  .h3{
-    margin-bottom: 10px;
-  }
-  .p{color: white;}
-
-  
-  .iconeFooter:hover{
-    transform: scale(1.05);
-  }
-
-  .sliderItem{
-  
-  }
-  
-  .nav a.active {
-    color: rgb(255, 255, 255); /* Exemplo de cor para destaque */
-    font-weight: bold; /* Deixe o texto mais grosso */
-  }
-  
+}
