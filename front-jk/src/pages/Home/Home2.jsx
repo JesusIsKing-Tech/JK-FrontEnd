@@ -1,176 +1,22 @@
 import React, { useState, useRef } from 'react';
+
 import styled from 'styled-components';
 import styles from '../Home/Home2.module.css';
-// import logo from '../../img/logo2.png';
-// import fotoPerfil from '../../img/perfil.jpg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import HeaderLogado from '../../components/HeaderLogado/HeaderLogado';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-family: Arial, sans-serif;
-  background-color: #F0F0F0;
-`;
-
-
-
-const MainContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const PrayerSection = styled.div`
-  background-color: #D9D9D9;
-  padding: 20px;
-  border-radius: 10px;
-  width: 550px;
-  height: 50%;
-  margin-bottom: 20px;
-  margin-right: 20px;
-
-  h2 {
-    margin-bottom: 25px;
-    font-size: 1.5rem;
-  }
-
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  textarea {
-    resize: none;
-    height: 100px;
-  }
-
-  button {
-    width: 100%;
-    padding: 10px 0;
-    border: none;
-    background-color: #2B4C7E;
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-
-    &:hover {
-      background-color: #1f3a60;
-    }
-  }
-`;
-
-const CarouselContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100px;
-  gap: 20px;
-  width: 100%;
-`;
-
-const Section = styled.div`
-  background-color: #D9D9D9;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 10px;
-  padding: 10px;
-  width: 100%;
-  align-items: center;
-
-  h2 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-    text-align: center;
-  }
-`;
-
-const Carousel = styled.div`
-  display: flex;
-  height: 30vh;
-  align-items: center;
-  justify-content: space-between; 
-  width: 60vw; 
-
-  img {
-    border-radius: 10px;
-    width: 100%;
-    height: 30vh;
-    object-fit: cover;
-  }
-
-  button {
-    background: none;
-    border: none;
-    font-size: 3rem;
-    cursor: pointer;
-    color: #000;
-  }
-`;
-
-const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-`;
-
-const ModalContent = styled.div`
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
-`;
-
+import Card from '../../components/TelaHome/CardLouvor/CardLouvor';
+import { FaYoutube, FaWhatsapp, FaGithub  } from 'react-icons/fa';
 
 const Home2 = () => {
   const swiperRef = useRef(null);
-  const swiperRef2 = useRef(null);
   const sections = [
     {
       images: [
-        { url: 'https://i.pinimg.com/originals/8a/6e/47/8a6e47d26720e69efeb31950e58931dc.jpg' },
-        // { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' },
-        { url: 'https://cdn.cnbbsul4.org.br/wp-content/uploads/2021/04/boa-acao-e-doacao-606b58aa545e4.png' },
-        { url: 'https://i.ytimg.com/vi/d4v6yysjGeI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBfU4tTZ2dM0XFLXlkLukniA9sIUA' }
-      ]
-    }
-  ];
-
-  const sections2 = [
-    {
-      images: [
-        { url: 'https://cdns-images.dzcdn.net/images/cover/a151086ec946c317fa4db8b2dcd5bf87/0x1900-000000-80-0-0.jpg' },
-        { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' },
-        { url: 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8418fb7838ebc29f8c74aaceed' },
-        // { url: 'https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2022/09/816ee3a-Capa-Pra-Te-Contar-os-Meus-Segredos-isadora-pompeo-1024x1024.jpg' }
+        { url: 'https://www.pibvm.com.br/mt-content/uploads/2024/01/photo-from-junior-9.jpg' },
+        { url: 'https://www.pibvm.com.br/mt-content/uploads/2024/01/photo-from-junior-4.jpg' },
+        { url: 'https://www.pibvm.com.br/mt-content/uploads/2024/01/photo-from-junior-14.jpg' }
       ]
     }
   ];
@@ -180,21 +26,11 @@ const Home2 = () => {
   const textAreaRef = useRef(null);
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const openModal = () => {
-    setModalOpen(true);
-  };
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const nextImage = () => {
-    setCurrentImage((currentImage + 1) % sections[0].images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImage((currentImage - 1 + sections[0].images.length) % sections[0].images.length);
-  };
+  const nextImage = () => setCurrentImage((currentImage + 1) % sections[0].images.length);
+  const prevImage = () => setCurrentImage((currentImage - 1 + sections[0].images.length) % sections[0].images.length);
 
   const handleInputChange = (e) => {
     const textArea = textAreaRef.current;
@@ -204,97 +40,97 @@ const Home2 = () => {
   };
 
   return (
-    <Container>
+    <>
       <HeaderLogado />
+      <div className={styles["carousel-container"]}>
+        <Swiper
+          modules={[Pagination, A11y, Navigation, Scrollbar]}
+          slidesPerView={1}
+          className={styles["swiper"]}
+          navigation
+          loop
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
+        >
+          {sections[0].images.map((item, index) => (
+            <SwiperSlide key={index} className={styles["swiper-slide"]}>
+              <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
-      <MainContent>
-        <PrayerSection>
-          <h2>Pedido de oração</h2>
-          <label htmlFor="pessoasOracao">Pessoas para oração</label>
-          <input type="text" id="pessoasOracao" maxLength={50} />
-          <label htmlFor="motivoOracao">Motivo de oração</label>
-          <textarea
-            ref={textAreaRef}
-            id="motivoOracao"
-            rows="1"
-            maxLength={200}
-            value={textValue}
-            onChange={handleInputChange}
-          />
-          <button>Enviar</button >
-        </PrayerSection>
+      <div className={styles["louvores-carousel"]}>
+        <div className={styles["titulo-louvor"]}>
+          <h1>ACOMPANHE NOSSOS VÍDEOS</h1>
+        </div>
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          className={styles["carrosel-louvor"]}
+          slidesPerView={3}
+          navigation
+          loop
+          spaceBetween={20}
+        >
+          <SwiperSlide className={styles["slides-card"]}>
+            <Card linkVideo={"https://www.youtube.com/embed/W2p7WMC9T-Y"} />
+          </SwiperSlide>
+          <SwiperSlide className={styles["slides-card"]}>
+            <Card linkVideo={"https://www.youtube.com/embed/6KJWfhZtf8c"} />
+          </SwiperSlide>
+          <SwiperSlide className={styles["slides-card"]}>
+            <Card linkVideo={"https://www.youtube.com/embed/ntblNvYeGYs"} />
+          </SwiperSlide>
+        </Swiper>
+        <div className={styles["canal-louvor"]}>
+          <a href="https://www.youtube.com/@pibvilamaria">
+            <FaYoutube size={30} color='#F5F5F5'></FaYoutube>
+            <h3>ACESSE NOSSO CANAL</h3>
+          </a>
+        </div>
+      </div>
+      <div className={styles["container-oracao"]}>
+        <h2>FIQUE MAIS PRÓXIMO DE NÓS</h2>
+        <div className={styles["pedido-oracao-container"]}>
+          <div className={styles["versiculo-section"]}>
+            <p>
+              "Não andem ansiosos por coisa alguma, mas em tudo, pela oração e súplicas, e com ação de graças, apresentem seus pedidos a Deus. E a paz de Deus, que excede todo o entendimento, guardará os seus corações e as suas mentes em Cristo Jesus "
+            </p>
+            <h2>Filipenses 4:6-7</h2>
+          </div>
+          <div className={styles["prayer-section"]}>
+            <div className={styles.blob}></div> {/* Adicionando a animação de blob */}
+            <h2>Pedido de oração</h2>
+            {/* <label htmlFor="pessoasOracao">Pessoas para oração</label> */}
+            {/* <input type="text" id="pessoasOracao" maxLength={50} /> */}
+            <label htmlFor="motivoOracao">Motivo de oração</label>
+            <textarea
+              ref={textAreaRef}
+              id="motivoOracao"
+              rows="1"
+              maxLength={200}
+              value={textValue}
+              onChange={handleInputChange}
+            />
+            <button>Enviar</button>
+          </div>
 
-        <CarouselContainer>
-          <Section>
-            <h2>Agenda da Semana</h2>
-            <Carousel>
-              <button onClick={() => swiperRef.current.slidePrev()}>
-                <FaChevronLeft size={30} color="black" />
-              </button>
-              <Swiper
-                modules={[Pagination, A11y, Navigation, Scrollbar]}
-                slidesPerView={2}
-                spaceBetween={90}
-                onSwiper={(swiper) => {
-                  swiperRef.current = swiper;
-                }}
-                onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
-              >
-                {sections[0].images.map((item, index) => (
-                  <SwiperSlide key={index}>
-                    <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <button onClick={() => swiperRef.current.slideNext()}>
-                <FaChevronRight size={30} color="black" />
-              </button>
-            </Carousel>
-          </Section>
-
-          <Section>
-            <h2>Indicações de Louvores</h2>
-            <Carousel>
-              <button onClick={() => swiperRef2.current.slidePrev()}>
-                <FaChevronLeft size={30} color="black" />
-              </button>
-              <Swiper
-                modules={[Pagination, A11y, Navigation, Scrollbar]}
-                slidesPerView={2}
-                spaceBetween={90}
-                onSwiper={(swiper) => {
-                  swiperRef2.current = swiper;
-                }}
-                onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
-              >
-                {sections2[0].images.map((item, index) => (
-                  <SwiperSlide key={index}>
-                    <img src={item.url} alt={`Slider ${index + 1}`} className={styles.sliderItem} 
-                    // onClick={openModal}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <button onClick={() => swiperRef2.current.slideNext()}>
-                <FaChevronRight size={30} color="black" />
-              </button>
-            </Carousel>
-          </Section>
-        </CarouselContainer>
-
-        {/* <button onClick={openModal}>Abrir Modal</button> */}
-
-        {isModalOpen && (
-          <ModalBackground onClick={closeModal}>
-            <ModalContent onClick={(e) => e.stopPropagation()}>
-              <h2>Meu Modal</h2>
-              <p>Conteúdo do modal aqui.</p>
-              <button onClick={closeModal}>Fechar</button>
-            </ModalContent>
-          </ModalBackground>
-        )}
-      </MainContent>
-    </Container>
+        </div>
+      </div>
+      <footer className={styles.footer}>
+        <div className={styles.iconContainer}>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+            <FaGithub size={20} color="white" className={styles.iconeFooter} />
+          </a>
+        </div>
+        <p className={styles.p}>JIK © 2024. Todos os direitos reservados. Desenvolvido por JESUS IS KING.</p>
+        <div className={styles.iconContainer}>
+          <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp size={20} color="white" className={styles.iconeFooter} />
+          </a>
+        </div>
+      </footer>
+    </>
   );
 };
 
