@@ -3,8 +3,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from "./AuthContext";
 import styles from './Perfil.module.css';
 import imgPerfil from './img/perfil.jpg';
-import { FaEdit, FaEnvelope, FaArrowLeft, FaUser, FaSignOutAlt, FaPhone, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaEnvelope, FaArrowLeft, FaUser, FaSignOutAlt, FaPhone, FaCheck, FaTimes, FaTrash, FaPlus } from 'react-icons/fa';
 import api from "./api";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 function Perfil() {
 
@@ -18,48 +19,75 @@ function Perfil() {
   const [isModalOpen2, setIsModalOpen2] = useState(false);
   const [selectedChamado2, setSelectedChamado2] = useState(null);
 
+  const [isModalOpen3, setIsModalOpen3] = useState(false);
+  const [selectedChamado3, setSelectedChamado3] = useState(null);
+
+  const [isAdicionarOpen, setAdicionarOpen] = useState(false)
+
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  const openAdicionar = () => {
+    setAdicionarOpen(true);
+  };
+
   const openModal2 = () => {
     setIsModalOpen2(true);
   };
-  // const openModal3 = () => {
-  //   setIsModalOpen3(true);
-  // };
+  const openModal3 = () => {
+    setIsModalOpen3(true);
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedChamado(null); // Limpa o chamado selecionado ao fechar
+    setSelectedChamado(null);
   };
   const closeModal2 = () => {
     setIsModalOpen2(false);
-    setSelectedChamado2(null); // Limpa o chamado selecionado ao fechar
+    setSelectedChamado2(null);
   };
-  // const closeModal3 = () => {
-  //   setIsModalOpen3(false);
-  //   setSelectedChamado3(null); // Limpa o chamado selecionado ao fechar
-  // };
+  const closeModal3 = () => {
+    setIsModalOpen3(false);
+    setSelectedChamado3(null);
+  };
+  const closeModal4 = () => {
+    setAdicionarOpen(false);
+  };
 
   const selectChamado = (chamado) => {
-    setSelectedChamado(chamado); // Atualiza o estado para exibir os detalhes do chamado
+    setSelectedChamado(chamado);
   };
   const selectChamado2 = (pedidoOracao) => {
-    setSelectedChamado2(pedidoOracao); // Atualiza o estado para exibir os detalhes do chamado
+    setSelectedChamado2(pedidoOracao);
   };
-  // const selectChamado3 = (postagem) => {
-  //   setSelectedChamado3(postagem); // Atualiza o estado para exibir os detalhes do chamado
-  // };
+  const selectChamado3 = (postagem) => {
+    setSelectedChamado3(postagem);
+  };
 
   const goBackToList = () => {
-    setSelectedChamado(null); // Volta para a lista de chamados
+    setSelectedChamado(null);
   };
   const goBackToList2 = () => {
-    setSelectedChamado2(null); // Volta para a lista de chamados
+    setSelectedChamado2(null);
   };
-  // const goBackToList3 = () => {
-  //   setSelectedChamado3(null); // Volta para a lista de chamados
-  // };
+  const goBackToList3 = () => {
+    setSelectedChamado3(null);
+  };
+  const goBackToPostagem = () => {
+    setAdicionarOpen(null);
+  };
+
+  function abrirCadastroPost() {
+    closeModal3();
+    openAdicionar();
+  }
+
+  function voltarNoCardPost(){
+    closeModal4();
+    openModal3();
+  }
+
 
   const [dado, setDado] = useState({
     usuario: {
@@ -84,10 +112,27 @@ function Perfil() {
     kpis: [
       { label: "Chamados abertos alteração de endereço", valor: 2 },
       { label: "Pedidos de oração", valor: 15 },
-      { label: "Postagens da semana", valor: 5 },
+      { label: "Postagens", valor: 5 },
       // { label: "Indicações de louvores", valor: 5 }
     ]
   });
+
+  const postagens = [
+    {
+      id: 1, titulo: 'Natal', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
+    }, {
+      id: 2, titulo: 'pascoa', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
+    }, {
+      id: 3, titulo: 'ano novo', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
+    },
+    {
+      id: 1, titulo: 'Natal', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
+    }, {
+      id: 2, titulo: 'pascoa', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
+    }, {
+      id: 3, titulo: 'ano novo', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
+    }
+  ];
 
   const chamados = [
     {
@@ -291,13 +336,9 @@ function Perfil() {
         console.log("Pedidos de oração");
         openModal2()
         break;
-      case "Postagens da semana":
-        console.log("Ação para Postagens da semana");
-        // Coloque a lógica específica aqui
-        break;
-      case "Indicações de louvores":
-        console.log("Ação para Indicações de louvores");
-        // Coloque a lógica específica aqui
+      case "Postagens":
+        console.log("Postagens da semana");
+        openModal3();
         break;
       default:
         console.log("KPI desconhecido");
@@ -555,7 +596,7 @@ function Perfil() {
                 </>
               ) : (
                 <>
-                  Sair
+                  <FaSignOutAlt></FaSignOutAlt> Sair
                 </>
               )}
             </button>
@@ -686,10 +727,10 @@ function Perfil() {
 
                       <div className={styles.buttonsContainer}>
                         <button className={styles.acceptButton} onClick={goBackToList}>
-                           <FaCheck/>
+                          <FaCheck />
                         </button>
                         <button className={styles.rejectButton} onClick={goBackToList}>
-                           <FaTimes/>
+                          <FaTimes />
                         </button>
                       </div>
                     </div>
@@ -749,10 +790,10 @@ function Perfil() {
 
                       <div className={styles.buttonsContainer}>
                         <button className={styles.acceptButton} onClick={goBackToList2}>
-                           Manter
+                          Manter
                         </button>
                         <button className={styles.rejectButton} onClick={goBackToList2}>
-                           Excluir
+                          Excluir
                         </button>
                       </div>
                     </div>
@@ -776,6 +817,129 @@ function Perfil() {
               </div>
             </div>
           )}
+
+          {isModalOpen3 && (
+            <div className={styles.modal}>
+              <div className={styles.modalContent}>
+                <button onClick={closeModal3} className={styles.closeModalButton}>
+                  <span className={styles.closeIcon}>×</span>
+                </button>
+
+                {selectedChamado3 ? (
+                  <>
+                    <div className={styles.headerFixo}>
+                      <button onClick={goBackToList3} className={styles.backButton}>
+                        <FaArrowLeft />
+                        <i className="fa fa-arrow-left" />
+                      </button>
+                    </div>
+                    <div style={{ overflowY: 'scroll', height: '100%' }}>
+
+                    <div className={styles.inputContainer}>
+                  <div className={styles.iconContainer}>Título</div>
+                  <label>
+                    <input
+                      type="text"
+                      value={selectedChamado3.titulo}
+                      className={styles.inputDesabilitado}
+                      readOnly
+                    />
+                  </label>
+                  <div className={styles.iconContainer}>Descricao</div>
+                  <label>
+                    <input
+                      type="text"
+                      value={selectedChamado3.descricao}
+                      className={styles.inputDesabilitado}
+                      readOnly
+                    />
+                  </label>
+                  <div className={styles.iconContainer}>Data</div>
+                  <label>
+                    <input
+                      type="text"
+                      value={selectedChamado3.data}
+                      className={styles.inputDesabilitado}
+                      readOnly
+                    />
+                  </label>
+                </div>
+                      {/* <div className={styles.selectedChamado}>
+                      <p>Título: {selectedChamado3.titulo}</p>
+                      <p>{selectedChamado3.descricao}</p>
+                      <p>{selectedChamado3.data}</p>
+                      </div> */}
+
+                      <div className={styles.buttonsContainer}>
+                        <button className={styles.btnEditar} onClick={goBackToList3}>
+                          <FaEdit />
+                        </button>
+                        <button className={styles.btnSair} onClick={goBackToList3}>
+                          <FaTrash />
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h3>Postagens</h3>
+                    <ul style={{ overflowX: "hidden", overflowY: "scroll", maxHeight: "26vh", marginTop: "5px" }}>
+                      {postagens.map((postagens, index) => (
+                        <li
+                          key={index}
+                          onClick={() => selectChamado3(postagens)}
+                          className={styles.chamadoItem}
+                          >
+                            {postagens.titulo}
+                          {" - " + postagens.data}
+                        </li>
+                    ))}
+                    </ul>
+                    <div className={styles.boxAdicionarPostagem}>
+                      <button className={styles.acceptButton} onClick={() => abrirCadastroPost()}> Adicionar</button>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+
+{isAdicionarOpen && (
+  <>
+    <div className={styles.modal}>
+      <div className={styles.modalContent2}>
+        <div className={styles.headerFixo}>
+          <button onClick={() => voltarNoCardPost()} className={styles.backButton}>
+            <FaArrowLeft />
+          </button>
+        </div>
+        <div className={styles.formContent}>
+          <div className={styles.inputGroup}>
+            <label className={styles.inputLabel}>Título</label>
+            <input type="text" className={styles.inputField} placeholder="Digite o título do evento" />
+          </div>
+          <div className={styles.inputGroup}>
+            <label className={styles.inputLabel}>Descrição</label>
+            <textarea
+              className={styles.inputField}
+              rows="4"
+              placeholder="Descreva o evento brevemente"
+            ></textarea>
+          </div>
+          <div className={styles.inputGroup}>
+            <label className={styles.inputLabel}>Data</label>
+            <input type="date" className={styles.inputField} />
+          </div>
+          <div className={styles.buttonsContainer}>
+            <button className={styles.btnAdicionarImagem}>
+              <FaPlus /> 
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+)}
 
 
         </div>

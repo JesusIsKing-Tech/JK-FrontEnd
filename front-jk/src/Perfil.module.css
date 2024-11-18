@@ -53,7 +53,8 @@
   padding: 10px;
   border-radius: 5px;
   margin-top: 15px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s;cursor: pointer;
+
 }
 
 .btnEditar:hover, .btnEditarEndereco:hover {
@@ -147,6 +148,7 @@ input:focus {
   border-radius: 5px;
   margin-top: 15px;
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .btnSair:hover {
@@ -388,6 +390,17 @@ h4{
   /* overflow: auto; */
   max-height: 40vh;
 }
+.modalContent2 {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50vw;
+  height: 50vh;
+  text-align: center;
+  /* overflow: auto; */
+  /* max-height: 40vh; */
+}
 
 .closeModalButton {
   position: absolute;
@@ -593,4 +606,46 @@ h4{
   justify-content: center;
 
  
+}
+.boxAdicionarPostagem{
+  display: flex;
+  /* height: 100%; */
+  margin-top: 2vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputLabel {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inputField:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+textarea.inputField {
+  resize: none;
 }
