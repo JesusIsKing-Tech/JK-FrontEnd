@@ -100,11 +100,11 @@
 .botao:nth-child(2):hover {
   background-color: #756744;
 }
-.circulo{
+.circulo {
   width: 35px;
   height: 30px;
   background-color: red;
-  border-radius: 50%;
+  border-radius: 50%; 
 }
 @media screen and (max-width: 1700px) {
   .card-musica {

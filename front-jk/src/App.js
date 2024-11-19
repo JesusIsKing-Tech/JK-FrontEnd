@@ -8,7 +8,7 @@ import RecuperarSenha from './RecuperarSenha';
 import RecuperarSenha2 from './RecuperarSenha2';
 import RecuperarSenha3 from './RecuperarSenha3';
 import Cadastro from './Cadastro';
-import Estoque from './Estoque';
+import Estoque from '../src/pages/Estoque.jsx';
 import Perfil from './Perfil.jsx';
 import { Toast } from './components/Toast.jsx'; // Importa o componente Toast
 import { CadastroProvider } from './CadastroContext.jsx';

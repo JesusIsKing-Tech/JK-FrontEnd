@@ -467,13 +467,6 @@ function Perfil() {
                 <button onClick={resetarImagemPerfil} className={styles.btnTirarFoto}>
                   Remover Foto
                 </button>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className={styles.inputFile}
-                  id="fileInput"
-                />
                 <label htmlFor="fileInput" className={styles.btnAdicionarImagem}>
                   Alterar foto
                 </label>
@@ -833,7 +826,7 @@ function Perfil() {
                         <i className="fa fa-arrow-left" />
                       </button>
                     </div>
-                    <div style={{ overflowY: 'scroll', height: '100%' }}>
+                    <div style={{ overflowY: 'scroll', height: '0%' }}>
 
                     <div className={styles.inputContainer}>
                   <div className={styles.iconContainer}>Título</div>

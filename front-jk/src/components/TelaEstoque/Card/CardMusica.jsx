@@ -20,7 +20,7 @@ const CardMusica = ({
       <div className={styles["textos"]}>
         <div className={styles["boxTitulo"]}>
         <h1>{nome || "N/A"}</h1>
-        <p className={styles["circulo"]}></p>
+        {/* <p className={styles["circulo"]}></p> */}
         </div>
         <p>
           <span>Quantidade:</span> {quantidade || "N/A"}{" "}
@@ -30,10 +30,6 @@ const CardMusica = ({
         </p>
        
       </div>
-      {/* <div className={styles["botoes"]}>
-        <button className={styles["botao"]}>Editar</button>
-        <button className={styles["botao"]}>Excluir</button>
-      </div> */}
     </div>
   );
 };
