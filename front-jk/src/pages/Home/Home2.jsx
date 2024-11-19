@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import styled from 'styled-components';
+import { Autoplay } from 'swiper/modules';
 import styles from '../Home/Home2.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
@@ -42,6 +43,10 @@ const Home2 = () => {
     { id: 1, titulo: "Páscoa", descricao: "Descrição do evento 1 asdajhbdhsagdsa gaiydgyagfsiuyd  ausgdigaiyfsgdiyas", data: "2024-11-01" },
     { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-15-10" },
     { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-12-10" },
+    { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-12-10" },
+    { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-12-10" },
+    { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-12-10" },
+    { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-12-10" },
     
   ];
   
@@ -51,11 +56,17 @@ const Home2 = () => {
       <HeaderLogado />
       <div className={styles["carousel-container"]}>
         <Swiper
-          modules={[Pagination, A11y, Navigation, Scrollbar]}
+        autoplay={{
+          delay:3000,
+          disableOnInteraction:false,
+        }
+      }
+          modules={[Autoplay]}
           slidesPerView={1}
           className={styles["swiper"]}
-          navigation
-          loop
+          navigation={false}
+          loop={true}
+          pagination={false}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
         >
