@@ -38,6 +38,13 @@ const Home2 = () => {
     textArea.style.height = "100px";
     textArea.style.height = `${textArea.scrollHeight}px`;
   };
+  const eventos = [
+    { id: 1, titulo: "Páscoa", descricao: "Descrição do evento 1 asdajhbdhsagdsa gaiydgyagfsiuyd  ausgdigaiyfsgdiyas", data: "2024-11-01" },
+    { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-15-10" },
+    { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-12-10" },
+    
+  ];
+  
 
   return (
     <>
@@ -59,6 +66,24 @@ const Home2 = () => {
           ))}
         </Swiper>
       </div>
+      <div className={styles.boxCentro}>
+  <h1>EVENTOS</h1>
+      </div>
+      <div className={styles["container-oracao2"]}>
+  <div className={styles["linha-tempo-container"]}>
+    {eventos.map((evento, index) => (
+      <div key={evento.id} className={styles["evento-item"]}>
+        <div className={styles["evento-ponto"]}></div>
+        <div className={styles["evento-info"]}>
+          <h3>{evento.titulo}</h3>
+          <p>{evento.descricao}</p>
+          <span>{evento.data}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
 
       <div className={styles["louvores-carousel"]}>
         <div className={styles["titulo-louvor"]}>
@@ -83,40 +108,37 @@ const Home2 = () => {
           </SwiperSlide>
         </Swiper>
         <div className={styles["canal-louvor"]}>
-          <a href="https://www.youtube.com/@pibvilamaria">
-            <FaYoutube size={30} color='#F5F5F5'></FaYoutube>
-            <h3>ACESSE NOSSO CANAL</h3>
+          <a href="https://www.youtube.com/@pibvilamaria" target='_blank'>
+            <FaYoutube size={30} color='#F5F5F5'></FaYoutube> 
+            <h3> ACESSE NOSSO CANAL</h3>
           </a>
         </div>
       </div>
-      <div className={styles["container-oracao"]}>
-        <h2>FIQUE MAIS PRÓXIMO DE NÓS</h2>
-        <div className={styles["pedido-oracao-container"]}>
-          <div className={styles["versiculo-section"]}>
-            <p>
-              "Não andem ansiosos por coisa alguma, mas em tudo, pela oração e súplicas, e com ação de graças, apresentem seus pedidos a Deus. E a paz de Deus, que excede todo o entendimento, guardará os seus corações e as suas mentes em Cristo Jesus "
-            </p>
-            <h2>Filipenses 4:6-7</h2>
-          </div>
-          <div className={styles["prayer-section"]}>
-            <div className={styles.blob}></div> {/* Adicionando a animação de blob */}
-            <h2>Pedido de oração</h2>
-            {/* <label htmlFor="pessoasOracao">Pessoas para oração</label> */}
-            {/* <input type="text" id="pessoasOracao" maxLength={50} /> */}
-            <label htmlFor="motivoOracao">Motivo de oração</label>
-            <textarea
-              ref={textAreaRef}
-              id="motivoOracao"
-              rows="1"
-              maxLength={200}
-              value={textValue}
-              onChange={handleInputChange}
-            />
-            <button>Enviar</button>
-          </div>
+      <div className={styles.containerOracao}>
+  <h2>FIQUE MAIS PRÓXIMO DE NÓS</h2>
+  <div className={styles.contentContainer}>
+    <div className={styles.versiculoSection}>
+      <p>
+        "Não andem ansiosos por coisa alguma, mas em tudo, pela oração e súplicas, e com ação de graças, apresentem seus pedidos a Deus. E a paz de Deus, que excede todo o entendimento, guardará os seus corações e as suas mentes em Cristo Jesus."
+      </p>
+      <h3>Filipenses 4:6-7</h3>
+    </div>
+    <div className={styles.prayerSection}>
+      <h2>Faça Seu Pedido de Oração</h2>
+      <textarea
+        ref={textAreaRef}
+        id="motivoOracao"
+        rows="3"
+        maxLength={200}
+        value={textValue}
+        onChange={handleInputChange}
+        placeholder="Digite aqui seu pedido de oração..."
+      />
+      <button className={styles.btnEnviar}>Enviar Pedido</button>
+    </div>
+  </div>
+</div>
 
-        </div>
-      </div>
       <footer className={styles.footer}>
         <div className={styles.iconContainer}>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer">

@@ -93,18 +93,6 @@ function Estoque() {
       tipos: [{ nome: 'Bebida', peso: '1kg' }],
     },
     {
-      nome: 'Carne',
-      quantidade: 3,
-      peso: '1kg',
-      tipos: [{ nome: 'Proteína', peso: '1kg' }],
-    },
-    {
-      nome: 'Pão',
-      quantidade: 10,
-      peso: '1kg',
-      tipos: [{ nome: 'Alimento Básico', peso: '1kg' }],
-    },
-    {
       nome: 'Atum',
       quantidade: 6,
       peso: '1kg',
@@ -169,7 +157,6 @@ function Estoque() {
       <HeaderLogado />
       <Box>
         <div>
-          {/* <h2>Alimentos em estossssque</h2> */}
           <div>
             <Filtro onFilter={handleFilter} onSort={handleSort} /> {/* Passando as funções de filtro e ordenação */}
             <BoxCard>

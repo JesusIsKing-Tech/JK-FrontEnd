@@ -108,8 +108,10 @@ html, body {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   padding: 20px;
   width: 300px;
-  text-align: center;
+  text-align: left;
   height: 65vh;
+  color: white;
+
 }
 
 .sobreNosCard img {
@@ -120,7 +122,9 @@ html, body {
 }
 
 .sobreNosCard h3 {
+  text-align: center;
   margin-top: 15px;
+  margin-bottom: 15px;
   color: white;
 }
 
@@ -169,6 +173,7 @@ html, body {
 }
 
 .footer p {
+  color: white;
   margin: 0;
 }
 
