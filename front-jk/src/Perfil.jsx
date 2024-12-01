@@ -22,6 +22,9 @@ function Perfil() {
   const [isModalOpen3, setIsModalOpen3] = useState(false);
   const [selectedChamado3, setSelectedChamado3] = useState(null);
 
+  const [isModalOpenVideos, setIsModalOpenVideos] = useState(false);
+  const [selectedChamadoVideos, setSelectedChamadoVideos] = useState(null);
+
   const [isAdicionarOpen, setAdicionarOpen] = useState(false)
 
   const openModal = () => {
@@ -39,6 +42,10 @@ function Perfil() {
     setIsModalOpen3(true);
   };
 
+  const openModalVideos = () => {
+    setIsModalOpenVideos(true);
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedChamado(null);
@@ -54,6 +61,9 @@ function Perfil() {
   const closeModal4 = () => {
     setAdicionarOpen(false);
   };
+  const closeModalVideos = () => {
+    setIsModalOpenVideos(false);
+  };
 
   const selectChamado = (chamado) => {
     setSelectedChamado(chamado);
@@ -63,6 +73,9 @@ function Perfil() {
   };
   const selectChamado3 = (postagem) => {
     setSelectedChamado3(postagem);
+  };
+  const selectChamadoVideos = (videos) => {
+    setSelectedChamadoVideos(videos);
   };
 
   const goBackToList = () => {
@@ -74,6 +87,9 @@ function Perfil() {
   const goBackToList3 = () => {
     setSelectedChamado3(null);
   };
+  const goBackToListVideos = () => {
+    setSelectedChamadoVideos(null);
+  };
   const goBackToPostagem = () => {
     setAdicionarOpen(null);
   };
@@ -83,11 +99,16 @@ function Perfil() {
     openAdicionar();
   }
 
-  function voltarNoCardPost(){
+  function voltarNoCardPost() {
     closeModal4();
     openModal3();
   }
 
+  const videos = [{ titulo: " 1", link: "https://www.youtube.com/watch?v=ZMCLyv_j8oQ&list=RDoxzrIHXo-ug&index=8" },
+  { titulo: " 2", link: "https://www.youtube.com/watch?v=ZMCLyv_j8oQ&list=RDoxzrIHXo-ug&index=8" },
+  { titulo: " 3", link: "https://www.youtube.com/watch?v=ZMCLyv_j8oQ&list=RDoxzrIHXo-ug&index=8" }
+
+  ];
 
   const [dado, setDado] = useState({
     usuario: {
@@ -113,6 +134,7 @@ function Perfil() {
       { label: "Chamados abertos alteração de endereço", valor: 2 },
       { label: "Pedidos de oração", valor: 15 },
       { label: "Postagens", valor: 5 },
+      { label: "Editar Recomendações de Vídeos", valor: "" },
       // { label: "Indicações de louvores", valor: 5 }
     ]
   });
@@ -340,6 +362,11 @@ function Perfil() {
         console.log("Postagens da semana");
         openModal3();
         break;
+      case "Editar Recomendações de Vídeos":
+        console.log("Editar Recomendações de Vídeos");
+        openModalVideos();
+        break;
+
       default:
         console.log("KPI desconhecido");
     }
@@ -692,7 +719,9 @@ function Perfil() {
                         <p><strong><FaPhone></FaPhone></strong> {selectedChamado.telefone}</p>
                       </div>
                     </div>
-                    <div style={{ overflowY: 'scroll', height: '80%' }}>
+                    <div>
+                    <div style={{ overflowY: 'scroll', height: '80%', display:"flex",justifyContent: "space-evenly"
+}}>
 
                       {/* Endereço Anterior */}
                       <div className={styles.selectedChamado}>
@@ -718,6 +747,7 @@ function Perfil() {
                         <p><strong>Complemento:</strong> {selectedChamado.novoEndereco.complemento}</p>
                       </div>
 
+                    </div>
                       <div className={styles.buttonsContainer}>
                         <button className={styles.acceptButton} onClick={goBackToList}>
                           <FaCheck />
@@ -726,7 +756,7 @@ function Perfil() {
                           <FaTimes />
                         </button>
                       </div>
-                    </div>
+                      </div>
                   </>
                 ) : (
                   // Se nenhum chamado for selecionado, exibe a lista de chamados
@@ -828,35 +858,35 @@ function Perfil() {
                     </div>
                     <div style={{ overflowY: 'scroll', height: '0%' }}>
 
-                    <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}>Título</div>
-                  <label>
-                    <input
-                      type="text"
-                      value={selectedChamado3.titulo}
-                      className={styles.inputDesabilitado}
-                      readOnly
-                    />
-                  </label>
-                  <div className={styles.iconContainer}>Descricao</div>
-                  <label>
-                    <input
-                      type="text"
-                      value={selectedChamado3.descricao}
-                      className={styles.inputDesabilitado}
-                      readOnly
-                    />
-                  </label>
-                  <div className={styles.iconContainer}>Data</div>
-                  <label>
-                    <input
-                      type="text"
-                      value={selectedChamado3.data}
-                      className={styles.inputDesabilitado}
-                      readOnly
-                    />
-                  </label>
-                </div>
+                      <div className={styles.inputContainer}>
+                        <div className={styles.iconContainer}>Título</div>
+                        <label>
+                          <input
+                            type="text"
+                            value={selectedChamado3.titulo}
+                            className={styles.inputDesabilitado}
+                            readOnly
+                          />
+                        </label>
+                        <div className={styles.iconContainer}>Descricao</div>
+                        <label>
+                          <input
+                            type="text"
+                            value={selectedChamado3.descricao}
+                            className={styles.inputDesabilitado}
+                            readOnly
+                          />
+                        </label>
+                        <div className={styles.iconContainer}>Data</div>
+                        <label>
+                          <input
+                            type="text"
+                            value={selectedChamado3.data}
+                            className={styles.inputDesabilitado}
+                            readOnly
+                          />
+                        </label>
+                      </div>
                       {/* <div className={styles.selectedChamado}>
                       <p>Título: {selectedChamado3.titulo}</p>
                       <p>{selectedChamado3.descricao}</p>
@@ -876,18 +906,27 @@ function Perfil() {
                 ) : (
                   <>
                     <h3>Postagens</h3>
-                    <ul style={{ overflowX: "hidden", overflowY: "scroll", maxHeight: "26vh", marginTop: "5px" }}>
+                    <ul
+                      style={{
+                        overflowX: "hidden",
+                        overflowY: "scroll",
+                        maxHeight: "26vh",
+                        marginTop: "5px",
+                      }}
+                    >
                       {postagens.map((postagens, index) => (
-                        <li
-                          key={index}
-                          onClick={() => selectChamado3(postagens)}
-                          className={styles.chamadoItem}
-                          >
-                            {postagens.titulo}
-                          {" - " + postagens.data}
+                        <li key={index} className={styles.chamadoItem}style={{
+                          cursor:"default"
+                        }}>
+                          <span>{postagens.titulo}</span>
+                          <span>{" - " + postagens.data}</span>
+                          <button className={styles.deleteButton}>
+                            <FaTrash />
+                          </button>
                         </li>
-                    ))}
+                      ))}
                     </ul>
+
                     <div className={styles.boxAdicionarPostagem}>
                       <button className={styles.acceptButton} onClick={() => abrirCadastroPost()}> Adicionar</button>
                     </div>
@@ -897,42 +936,108 @@ function Perfil() {
             </div>
           )}
 
-{isAdicionarOpen && (
-  <>
-    <div className={styles.modal}>
-      <div className={styles.modalContent2}>
-        <div className={styles.headerFixo}>
-          <button onClick={() => voltarNoCardPost()} className={styles.backButton}>
-            <FaArrowLeft />
-          </button>
-        </div>
-        <div className={styles.formContent}>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Título</label>
-            <input type="text" className={styles.inputField} placeholder="Digite o título do evento" />
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Descrição</label>
-            <textarea
-              className={styles.inputField}
-              rows="4"
-              placeholder="Descreva o evento brevemente"
-            ></textarea>
-          </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Data</label>
-            <input type="date" className={styles.inputField} />
-          </div>
-          <div className={styles.buttonsContainer}>
-            <button className={styles.btnAdicionarImagem}>
-              <FaPlus /> 
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </>
-)}
+          {isAdicionarOpen && (
+            <>
+              <div className={styles.modal}>
+                <div className={styles.modalContent2}>
+                  <div className={styles.headerFixo}>
+                    <button onClick={() => voltarNoCardPost()} className={styles.backButton}>
+                      <FaArrowLeft />
+                    </button>
+                  </div>
+                  <div className={styles.formContent}>
+                    <div className={styles.inputGroup}>
+                      <label className={styles.inputLabel}>Título</label>
+                      <input type="text" className={styles.inputField} placeholder="Digite o título do evento" />
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label className={styles.inputLabel}>Imagem</label>
+                      <input
+                        type="file"
+                        accept="image/*" // Restrição para permitir apenas imagens
+                        className={styles.inputField}
+                        onChange={handleImageChange} // Função para manipular a imagem selecionada
+                      />
+                      <div className={styles.imagePreview}>
+                        {/* {<img src={image} alt="Preview" className={styles.previewImage} />} */}
+                      </div>
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                      <label className={styles.inputLabel}>Data</label>
+                      <input type="date" className={styles.inputField} />
+                    </div>
+                    <div className={styles.buttonsContainer}>
+                      <button className={styles.btnAdicionarImagem}>
+                        Criar evento
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+          {isModalOpenVideos && (
+            <div className={styles.modal}>
+              <div className={styles.modalContent}>
+                <button onClick={closeModalVideos} className={styles.closeModalButton}>
+                  <span className={styles.closeIcon}>×</span>
+                </button>
+
+                {selectedChamadoVideos ? (
+                  <>
+                    <div className={styles.headerFixo}>
+                      <button onClick={goBackToListVideos} className={styles.backButton}>
+                        <FaArrowLeft />
+                        <i className="fa fa-arrow-left" />
+                      </button>
+                      <h3>{selectChamadoVideos.titulo}</h3>
+                    </div>
+
+                    <div style={{ overflowY: 'scroll', height: '60%' }}>
+                      <b> <p className={{}}>{"Vídeo" + selectedChamadoVideos.titulo}</p></b>
+
+                      {/* <p className={styles.espacoP}>Link:</p> */}
+                      <input
+                        type="text"
+                        defaultValue={selectedChamadoVideos.link}
+                        className={styles.linkVideo}
+                        style={{ height: '50%', display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: "30px" }}
+                        placeholder="Insira o link do vídeo desejado ..."
+                      />
+
+
+                    </div>
+                    <div className={styles.buttonsContainer}>
+                      <button className={styles.acceptButton} onClick={goBackToListVideos}>
+                        <FaCheck></FaCheck>
+                      </button>
+                      <button className={styles.rejectButton} onClick={goBackToListVideos}>
+                        <FaTrash></FaTrash>
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h3>Vídeos</h3>
+                    <ul style={{ overflowX: "hidden", overflowY: "scroll", maxHeight: "31vh" }}>
+                      {videos.map((videos, index) => (
+                        <li
+                          key={index}
+                          onClick={() => selectChamadoVideos(videos)}
+                          className={styles.chamadoItem}
+                        >
+                          {videos.titulo}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+
+                )}
+              </div>
+            </div>
+          )}
 
 
         </div>
