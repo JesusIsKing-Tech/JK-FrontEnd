@@ -693,3 +693,49 @@ textarea.inputField {
 textarea.inputField {
   resize: none;
 }
+.linkVideo{
+  width: 100%; /* Garante que o input ocupe toda a largura disponível */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+
+  /* Força o conteúdo a não quebrar em várias linhas */
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; /* Exibe "..." caso o texto ultrapasse o tamanho do input */
+
+  &:focus {
+    overflow: visible; /* Permite rolar quando focado */
+  }
+}
+
+/* Estilos para a lista de postagens */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chamadoItem {
+  position: relative; /* Necessário para que o botão seja posicionado dentro de cada item */
+  margin-bottom: 10px; 
+  border-bottom: 1px solid #ddd; /* Opcional, para separar os itens */
+}
+
+.deleteButton {
+  position: absolute; /* Posiciona o botão de forma absoluta dentro do item */
+  right: 30px; /* Fica 10px do lado direito */
+  top: 50%; /* Fica verticalmente no meio do item */
+  transform: translateY(-50%); /* Ajusta para que o botão fique centralizado verticalmente */
+  background-color: transparent;
+  border: none;
+  color: #dc3545; /* Cor do ícone de deletar */
+  cursor: pointer;
+  font-size: 1.2em; /* Tamanho do ícone */
+}
+
+.deleteButton:hover {
+  color: darkred; /* Cor do ícone quando o mouse passa por cima */
+}
+
