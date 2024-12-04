@@ -9,7 +9,7 @@ html {
 /* Carousel Container */
 .carousel-container {
   display: flex;
-  height: 91vh;
+  height: 90vh;
 }
 
 /* Ajusta imagem para não esticar */
@@ -251,7 +251,36 @@ html {
 
 }
 
-.linha-tempo-container {
+.section-eventos{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #ccc;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.section-eventos h1 {
+  margin-top: 30px;
+  font-size: 250%;
+}
+
+.carousel{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.carousel button {
+  background: none;
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* .linha-tempo-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -316,7 +345,7 @@ html {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.226);
   transition: box-shadow 0.3s ease, border 0.3s ease;
 } */
-.boxCentro{
+/* .boxCentro{
   padding-top: 30px;
   display: flex;
   align-items: center;
@@ -327,7 +356,7 @@ html {
   color: white;
   margin-top: 30px;
   /* margin-bottom: -30px; */
-}
+
 /* Container principal */
 .containerOracao {
   padding: 40px 20px;
