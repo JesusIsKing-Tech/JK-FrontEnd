@@ -24,15 +24,18 @@ const BoxDash = styled.div`
 `;
 
 const BoxCard = styled.div`
+  border: 10px solid green;
   background-color: #DCE0E6;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 65vw;
   min-width: 50vw;
+
   display: flex;
+  flex-direction: row;
   justify-content: center; 
   flex-wrap: wrap;
-  overflow-y: scroll;  
+  overflow-y: scroll; 
   max-height: 68vh; 
 `;
 
@@ -52,6 +55,7 @@ const BoxAdicionar = styled.div`
   display: flex-start;
   align-self: center;
   flex-wrap: wrap;
+  border: 10px solid green;
 `;
 
 const NoResultsMessage = styled.h3`
@@ -105,7 +109,7 @@ function Estoque() {
       tipos: [{ nome: 'Condimento', peso: '1kg' }],
     },
   ];
-  
+
 
   const openPopUp = (cardInfo) => {
     setSelectedCard(cardInfo);
