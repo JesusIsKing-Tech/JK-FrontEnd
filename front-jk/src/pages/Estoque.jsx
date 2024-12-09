@@ -84,6 +84,53 @@ function Estoque() {
       tipos: [
         { nome: 'Grão', peso: '1kg' },
         { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
       ],
     },
     {
@@ -97,6 +144,54 @@ function Estoque() {
       quantidade: 6,
       peso: '1kg',
       tipos: [{ nome: 'Conserva', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
+    },
+    {
+      nome: 'Óleo',
+      quantidade: 1,
+      peso: '1kg',
+      tipos: [{ nome: 'Condimento', peso: '1kg' }],
     },
     {
       nome: 'Óleo',
@@ -160,9 +255,9 @@ function Estoque() {
           <div>
             <Filtro onFilter={handleFilter} onSort={handleSort} /> {/* Passando as funções de filtro e ordenação */}
             <BoxCard>
-              <BoxAdicionar>
+              {/* <BoxAdicionar>
                 <Adicionar onClick={openPopUp} />
-              </BoxAdicionar>
+              </BoxAdicionar> */}
               {sortedCards.length > 0 ? ( // Verifica se há cards filtrados
                 sortedCards.map((card, index) => (
                   <Card

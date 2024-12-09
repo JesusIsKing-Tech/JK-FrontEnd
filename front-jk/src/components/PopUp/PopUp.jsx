@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { notify, notifySuccess } from '../Toast'; 
+import { notify, notifySuccess } from '../Toast';
 import styles from "./PopUp.module.css";
 
 const PopUp = ({ closePopUp }) => {
@@ -122,8 +122,8 @@ const PopUp = ({ closePopUp }) => {
 
   return (
     <div className={styles.popupContainer}>
-      <div className={styles.popup} ref={popupRef}>
-        <h2 className={styles.popupTitle}>Cadastro de alimento</h2>
+      <div className={styles.popup}>
+        <h2 className={styles.popupTitle}>Adição de alimento</h2>
         <button className={styles.closeButton} onClick={closePopUp}>X</button>
 
         <div className={styles.formGroup}>
@@ -195,18 +195,18 @@ const PopUp = ({ closePopUp }) => {
           </div>
         </div>
 
-        <div className={styles.formGroup}>
+        {/* <div className={styles.formGroup}>
           <label htmlFor="imagem">Imagem</label>
           <input
             id="imagem"
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-          />
-        </div>
+          /> */}
+        {/* </div> */}
 
         <button className={styles.submitButton} onClick={handleSubmit}>
-          Cadastrar
+          Adicionar
         </button>
       </div>
     </div>
