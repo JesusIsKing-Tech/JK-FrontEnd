@@ -28,9 +28,10 @@ function PopUpCard({ closePopUpCard, cardInfo }) {
   const openAddFoodModal = () => {
     setIsAddFoodModalVisible(true);
   };
-
+  
   const closeAddFoodModal = () => {
     setIsAddFoodModalVisible(false);
+    closePopUpCard();
   };
 
   return (
@@ -91,27 +92,6 @@ function PopUpCard({ closePopUpCard, cardInfo }) {
     </div>
 
     {isAddFoodModalVisible && (
-        // <div className={styles.overlay}>
-        //   <div className={styles.container}>
-        //     <div className={styles.header}>
-        //       <h2>Cadastrar Alimento</h2>
-        //       <button className={styles.closeButton} onClick={closeAddFoodModal}>x</button>
-        //     </div>
-        //     <form className={styles.form}>
-        //       <label>
-        //         Nome do Alimento:
-        //         <input type="text" className={styles.input} />
-        //       </label>
-        //       <label>
-        //         Peso:
-        //         <input type="text" className={styles.input} />
-        //       </label>
-        //       <button type="submit" className={styles.submitButton}>
-        //         Salvar
-        //       </button>
-        //     </form>
-        //   </div>
-        // </div>
         <PopUp closePopUp={closeAddFoodModal}></PopUp>
       )}
     </div>  
