@@ -33,6 +33,7 @@ function CardEventos() {
             <div className={styles.boxEventos}>
                 <Swiper
                     modules={[ A11y, Scrollbar]}
+                    spaceBetween={30}
                     slidesPerView={3}
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
