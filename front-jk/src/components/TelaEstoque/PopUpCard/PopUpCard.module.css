@@ -17,11 +17,11 @@
   border-radius: 10px;
   width: 90%; 
   max-width: 500px; 
-  min-height: 50%;
-  /* max-height: 50px; */
+  min-height: 50vh;
+  /* max-height: 20px; */
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-height: 85vh;
+  max-height: 50vh;
   overflow: hidden; 
   display: flex;
   flex-direction: column;
@@ -67,6 +67,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  /* max-height: 20%; */
 }
 
 .table th, .table td {
