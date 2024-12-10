@@ -6,6 +6,7 @@ import imgPerfil from './img/perfil.jpg';
 import { FaEdit, FaEnvelope, FaArrowLeft, FaUser, FaSignOutAlt, FaPhone, FaCheck, FaTimes, FaTrash, FaPlus } from 'react-icons/fa';
 import api from "./api";
 import { faL } from "@fortawesome/free-solid-svg-icons";
+import Swal from "sweetalert2";
 
 function Perfil() {
 
@@ -26,6 +27,8 @@ function Perfil() {
   const [selectedChamadoVideos, setSelectedChamadoVideos] = useState(null);
 
   const [isAdicionarOpen, setAdicionarOpen] = useState(false)
+
+  const [pedidoOracao, setPedidoOracao] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -132,7 +135,7 @@ function Perfil() {
     },
     kpis: [
       { label: "Chamados abertos alteração de endereço", valor: 2 },
-      { label: "Pedidos de oração", valor: 15 },
+      { label: "Pedidos de oração", valor:0 },
       { label: "Postagens", valor: 5 },
       { label: "Editar Recomendações de Vídeos", valor: "" },
       // { label: "Indicações de louvores", valor: 5 }
@@ -335,13 +338,52 @@ function Perfil() {
       }
     },
   ];
-  const pedidoOracao = [
-    { nome: 'arthur zezin', email: 'exemplo@gmail.com', telefone: '11933923464', pedido: "Peço oração pela minha saúde, pois estou passando por um tratamento e enfrentando dificuldades físicas e emocionais. Que Deus me dê força para enfrentar esse processo e me restaure. Agradeço por todas as orações e pela presença de Deus na minha vida." },
-    { nome: 'arthur bb', pedido: "Peço oração pela minha saúde, pois estou passando por um tratamento e enfrentando dificuldades físicas e emocionais. Que Deus me dê força para enfrentar esse processo e me restaure. Agradeço por todas as orações e pela presença de Deus na minha vida." },
-    { nome: 'arthur zeaszin', pedido: "Peço oração pela minha saúde, pois estou passando por um tratamento e enfrentando dificuldades físicas e emocionais. Que Deus me dê força para enfrentar esse processo e me restaure. Agradeço por todas as orações e pela presença de Deus na minha vida." },
-    { nome: 'arthur zezidn', pedido: "Peço oração pela minha saúde, pois estou passando por um tratamento e enfrentando dificuldades físicas e emocionais. Que Deus me dê força para enfrentar esse processo e me restaure. Agradeço por todas as orações e pela presença de Deus na minha vida." },
-    { nome: 'arthur zezidddn', pedido: "Peço oração pela minha saúde, pois estou passando por um tratamento e enfrentando dificuldades físicas e emocionais. Que Deus me dê força para enfrentar esse processo e me restaure. Agradeço por todas as orações e pela presença de Deus na minha vida." },
-  ]
+  
+  const handleUpdateKpi = () => {
+    
+  }
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get(`/pedidos-oracao`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log(response.data);
+
+        const pedidosData = response.data.map(pedido => ({
+          id: pedido.id,
+          nome: pedido.usuario.nome,
+          pedido: pedido.descricao,
+          email: pedido.usuario.email,
+          telefone: pedido.usuario.telefone,
+        }));
+
+        
+        setPedidoOracao(pedidosData);
+        setDado(prevDado => {
+          const updatedKpis = prevDado.kpis.map(kpi => 
+            kpi.label === "Pedidos de oração" ? { ...kpi, valor: pedidosData.length } : kpi
+          );
+          return {
+            ...prevDado,
+            kpis: updatedKpis
+          };
+        });
+
+        console.error(pedidoOracao);
+
+      } catch (error) {
+        console.error('Erro ao buscar AS ORÇÕES do usuário', error);
+      }
+    };
+    fetchUserData();
+  }, [userId, token]);
+
+  
+
 
   const postagem = [{
     id: 1, titulo: "campanha arroz",
@@ -386,48 +428,50 @@ function Perfil() {
   const handleToggle = () => {
     setIsOn(prev => !prev);
   };
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     try {
-  //       const response = await api.get(`/usuarios/${userId}`, {
-  //         headers: { 
-  //           Authorization: `Bearer ${token}`
-  //         }
-  //       });
-  //       console.log(response.data);
-  //       const userData = response.data;
-  //       setDados({
-  //         usuario: {
-  //           nome: userData.nome,
-  //           email: userData.email,
-  //           data_nascimento: userData.data_nascimento,
-  //           idade: calcularIdade(userData.data_nascimento),
-  //           genero: userData.genero,
-  //           telefone: userData.telefone,
-  //           receber_doacoes: userData.receber_doacoes,
-  //         },
-  //         endereco: {
-  //           cep: userData.endereco.cep,
-  //           logradouro: userData.endereco.logradouro,
-  //           numero: userData.endereco.numero,
-  //           complemento: userData.endereco.complemento,
-  //           bairro: userData.endereco.bairro,
-  //           localidade: userData.endereco.localidade,
-  //           uf: userData.endereco.uf,
-  //         },
-  //         kpis: [
-  //           { label: "Chamados abertos alteração de endereço", valor: 2 },
-  //           { label: "Pedidos de oração", valor: 15 },
-  //           { label: "Postagens da semana", valor: 5 },
-  //         ]
-  //       });
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get(`/usuarios/${userId}`, {
+          headers: { 
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log(response.data);
+        const userData = response.data;
+        setDados({
+          usuario: {
+            nome: userData.nome,
+            email: userData.email,
+            data_nascimento: userData.data_nascimento,
+            idade: calcularIdade(userData.data_nascimento),
+            genero: userData.genero,
+            telefone: userData.telefone,
+            receber_doacoes: userData.receber_doacoes,
+          },
+          endereco: {
+            cep: userData.endereco.cep,
+            logradouro: userData.endereco.logradouro,
+            numero: userData.endereco.numero,
+            complemento: userData.endereco.complemento,
+            bairro: userData.endereco.bairro,
+            localidade: userData.endereco.localidade,
+            uf: userData.endereco.uf,
+          },
+          kpis: [
+            { label: "Chamados abertos alteração de endereço", valor: 2 },
+            { label: "Pedidos de oração", valor: pedidoOracao.length },
+            { label: "Postagens da semana", valor: 5 },
+          ]
+        });
 
-  //     } catch (error) {
-  //       console.error('Erro ao buscar dados do usuário', error);
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, [userId, token]);
+        console.log(dados)
+
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário', error);
+      }
+    };
+    fetchUserData();
+  }, [userId, token]);
 
   const [editandoEndereco, setEditandoEndereco] = useState(false);
   const [editandoDadosPessoais, setEditandoDadosPessoais] = useState(false);
@@ -479,6 +523,36 @@ function Perfil() {
   const resetarImagemPerfil = () => {
     setImagemPerfil(dado.usuario.imagemPerfil);
   };
+
+  const handleExcluirOracao = async (id) =>{
+    try{
+      console.log('Excluindo pedido de oração', id);
+      api.delete(`/pedidos-oracao/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+       Swal.fire({
+        icon: 'success',
+        title: 'Oração realizada com Sucesso, Deus te abençoe!',
+        showConfirmButton: false,
+        timer: 3000 
+      });
+      
+      console.log(pedidoOracao.length)
+
+      if(pedidoOracao.length === 1){
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        window.location.reload();
+      }
+
+      setPedidoOracao(prevPedidos => prevPedidos.filter(pedido => pedido.id !== id));
+      setSelectedChamado2(null);
+
+    }catch(error){
+      console.error('Erro ao excluir pedido de oração', error);
+    }
+  }
 
 
   return (
@@ -539,7 +613,7 @@ function Perfil() {
                   <div className={styles.inputContainer}>
                     <label>
                       <div className={styles.toggleContainer} onClick={handleToggle}>
-                        <div className={`${styles.toggleButton} ${isOn ? styles.on : styles.off}`}>
+                        <div className={`${styles.toggleButton} ${usuario.receberDoacao ? styles.on : styles.off}`}>
                           <div className={styles.toggleCircle}></div>
                         </div>
                       </div>
@@ -586,7 +660,7 @@ function Perfil() {
                 <div className={styles.box}>
                   <div className={styles.inputContainer}>
                     <div className={styles.toggleContainerOff}>
-                      <div className={`${styles.toggleButton} ${isOn ? styles.on : styles.off}`}>
+                      <div className={`${styles.toggleButton} ${usuario.receber_doacoes ? styles.on : styles.off}`}>
                         <div className={styles.toggleCircle}></div>
                       </div>
                     </div>
@@ -812,11 +886,11 @@ function Perfil() {
                       </div>
 
                       <div className={styles.buttonsContainer}>
-                        <button className={styles.acceptButton} onClick={goBackToList2}>
+                        <button className={styles.rejectButton} onClick={goBackToList2}>
                           Manter
                         </button>
-                        <button className={styles.rejectButton} onClick={goBackToList2}>
-                          Excluir
+                        <button className={styles.acceptButton} onClick={()=>handleExcluirOracao(selectedChamado2.id)}>
+                          Orar
                         </button>
                       </div>
                     </div>

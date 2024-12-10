@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderLogado from "../components/HeaderLogado/HeaderLogado.jsx";
 import styled from 'styled-components';
 import Card from '../components/TelaEstoque/Card/CardMusica.jsx';
@@ -8,6 +8,7 @@ import CardCesta from '../components/TelaEstoque/CardCestaBasica/CardCestaBasica
 import PopUp from '../components/PopUp/PopUp.jsx';
 import PopUpCard from '../components/TelaEstoque/PopUpCard/PopUpCard.jsx';
 import Filtro from '../components/TelaEstoque/FiltroCard/Filtro.jsx';
+import api from "../api";
 
 const Box = styled.div`
   display: flex;
@@ -24,7 +25,6 @@ const BoxDash = styled.div`
 `;
 
 const BoxCard = styled.div`
-  border: 10px solid green;
   background-color: #DCE0E6;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -70,6 +70,21 @@ function Estoque() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [filter, setFilter] = useState(''); // Estado para o filtro
   const [sortOrder, setSortOrder] = useState(0); // Estado para controle de ordenação
+  const [produtos, setProdutos] = useState([]);
+  const [produtosCarregados, setProdutosCarregados] = useState(false);
+
+  const cardBase = [
+    {
+      id: 1,
+      nome: 'Arroz',
+      quantidade: 4,
+      peso: '1kg',
+      tipos: [
+        { nome: 'Grão', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' },
+      ],
+    }
+  ]
 
   const cardData = [
     {
@@ -87,54 +102,7 @@ function Estoque() {
       peso: '1kg',
       tipos: [
         { nome: 'Grão', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
-        { nome: 'Alimento Básico', peso: '1kg' },
+        { nome: 'Alimento Básico', peso: '1kg' }
       ],
     },
     {
@@ -154,56 +122,91 @@ function Estoque() {
       quantidade: 1,
       peso: '1kg',
       tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
-    {
-      nome: 'Óleo',
-      quantidade: 1,
-      peso: '1kg',
-      tipos: [{ nome: 'Condimento', peso: '1kg' }],
-    },
+    }
   ];
+
+  useEffect(() => {
+    const fetchProdutos = async () => {
+      try {
+        const response = await api.get('/produtos/categorias',{
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        }
+      );
+
+      const produtosCompletos = response.data.map(produto => ({
+        ...produto,
+        quantidade: produto.quantidade,
+        peso: produto.peso,
+        tipos: []
+      }));
+
+
+        setProdutos(produtosCompletos)
+        setProdutosCarregados(true);
+        console.log(response.data);
+        console.error(produtosCompletos);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProdutos();
+  }, []);
+
+  useEffect(() => {
+
+    if (!produtosCarregados) return;
+
+    const fetchProdutos = async () => {
+      try {
+        const response = await api.get('/produtos',{
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
+        const tiposData = response.data;
+        
+        const produtosAtualizados = [...produtos];
+
+        produtosAtualizados.forEach(produto => {
+          tiposData.forEach(tipo => {
+            if (produto.id === tipo.categoria.id) {
+              produto.tipos.push({
+                nome: tipo.tipo.nome,
+                peso: tipo.peso
+              });
+              produto.quantidade = produto.tipos.length
+            }
+          });
+          
+          var pesoTotal = 0;
+
+          for (let i = 0; i < produto.tipos.length; i++) {
+            pesoTotal += produto.tipos[i].peso;
+          }
+          produto.peso = pesoTotal + " kg";
+        });
+
+
+        console.error("ATUALIZADO",produtosAtualizados);
+        console.error(tiposData[0].categoria.nome);
+
+        setProdutos(produtosAtualizados);
+        setProdutosCarregados(true);
+
+        console.warn(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProdutos();
+  }, [!produtosCarregados]);
+
+
+
 
 
   const openPopUp = (cardInfo) => {
@@ -236,7 +239,7 @@ function Estoque() {
   };
 
   // Filtrando os cards com base no nome
-  const filteredCards = cardData.filter(card =>
+  const filteredCards = produtos.filter(card =>
     card.nome.toLowerCase().includes(filter.toLowerCase())
   );
 
@@ -259,10 +262,18 @@ function Estoque() {
           <div>
             <Filtro onFilter={handleFilter} onSort={handleSort} /> {/* Passando as funções de filtro e ordenação */}
             <BoxCard>
-              {/* <BoxAdicionar>
-                <Adicionar onClick={openPopUp} />
-              </BoxAdicionar> */}
-              {sortedCards.length > 0 ? ( // Verifica se há cards filtrados
+              {/* {produtos.length === 0 ? (
+                <NoResultsMessage>Carregando...</NoResultsMessage>
+              ) : (
+                produtos.map((produto, index) => (
+                  <Card
+                    key={index}
+                    {...produto}
+                    onClick={() => openPopUpCard(produto)}
+                  />
+                ))
+              )} */}
+              {produtos.length > 0 ? ( // Verifica se há cards filtrados
                 sortedCards.map((card, index) => (
                   <Card
                     key={index}
@@ -271,7 +282,7 @@ function Estoque() {
                   />
                 ))
               ) : (
-                <NoResultsMessage>Nenhum alimento encontrado com esse nome ...</NoResultsMessage> // Mensagem quando não há cards
+                <NoResultsMessage>Carregando ...</NoResultsMessage> // Mensagem quando não há cards
               )}
             </BoxCard>
           </div>

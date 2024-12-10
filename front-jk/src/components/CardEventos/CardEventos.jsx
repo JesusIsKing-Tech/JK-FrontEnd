@@ -20,6 +20,7 @@ function CardEventos() {
         { id: 3, image: carrossel3, url: 'https://www.instagram.com/p/C_OldxKv5c4/?igsh=OWI0NWpoOWU3ZW54', titulo: 'Preletor Vinicius Bala' },
         { id: 4, image: carrossel4, url: 'https://www.instagram.com/p/DCFh2gdPGVv/?igsh=MTNqOHYzcDM0YXV6Mw%3D%3D&img_index=1', titulo: 'Preletor Arthur Ribeiro' },
         { id: 5, image: carrossel5, url: 'https://www.instagram.com/p/C_RKSPXvHar/?igsh=ZHVkZzI3cTBwY2lj', titulo: 'Teatro CIA Nissi' },
+        { id: 6, image: 'https://jesusking.blob.core.windows.net/images/b442eb2c-fabb-43af-8a5b-20d369b2d0f5-mandamentos.jpg' , url: '', titulo: 'Banda Templo Soul' },
     ];
 
     return (
