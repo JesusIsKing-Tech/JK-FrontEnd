@@ -24,7 +24,7 @@ const BoxDash = styled.div`
 `;
 
 const BoxCard = styled.div`
-  border: 10px solid green;
+  // border: 10px solid green;
   background-color: #DCE0E6;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
