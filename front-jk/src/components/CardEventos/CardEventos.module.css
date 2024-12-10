@@ -10,7 +10,7 @@
 }
 
 .boxEventos {
-    width: 80%;
+    width: 90%;
 }
 
 .swiper {
@@ -29,11 +29,12 @@
 }
 
 .slideItem {
-    width: 100%;
-    max-width: 19rem;
+    width: 20rem;
+    height: 20rem; 
+    max-width: 20rem; 
+    max-height: 20rem;
     object-fit: cover;
-    height: 60vh;
-    border-radius: 15px !important;
+    border-radius: 15px !important; 
     transition: transform 0.3s ease;
 }
 
