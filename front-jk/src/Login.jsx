@@ -61,7 +61,7 @@ const Login = () => {
         timer: 1500
       });
 
-      navigate('/home');
+      navigate('/noticias');
 
     } catch (error) {
       console.error(error);
