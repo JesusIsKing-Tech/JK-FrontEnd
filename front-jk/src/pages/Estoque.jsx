@@ -9,6 +9,7 @@ import PopUp from '../components/PopUp/PopUp.jsx';
 import PopUpCard from '../components/TelaEstoque/PopUpCard/PopUpCard.jsx';
 import Filtro from '../components/TelaEstoque/FiltroCard/Filtro.jsx';
 import api from "../api";
+import Swal from 'sweetalert2';
 
 const Box = styled.div`
   display: flex;
@@ -70,8 +71,12 @@ function Estoque() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [filter, setFilter] = useState(''); // Estado para o filtro
   const [sortOrder, setSortOrder] = useState(0); // Estado para controle de ordenação
+  
   const [produtos, setProdutos] = useState([]);
+
   const [produtosCarregados, setProdutosCarregados] = useState(false);
+
+  const [categoriasData, setCategoriasData] = useState([]);
 
   const cardBase = [
     {
@@ -144,9 +149,8 @@ function Estoque() {
 
 
         setProdutos(produtosCompletos)
+        setCategoriasData(response.data);
         setProdutosCarregados(true);
-        console.log(response.data);
-        console.error(produtosCompletos);
 
       } catch (error) {
         console.error(error);
@@ -191,19 +195,16 @@ function Estoque() {
         });
 
 
-        console.error("ATUALIZADO",produtosAtualizados);
-        console.error(tiposData[0].categoria.nome);
 
         setProdutos(produtosAtualizados);
         setProdutosCarregados(true);
 
-        console.warn(response.data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchProdutos();
-  }, [!produtosCarregados]);
+  }, [produtosCarregados]);
 
 
 
@@ -254,6 +255,62 @@ function Estoque() {
     }
   });
 
+  const montarCesta = async () => {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await api.post('/produtos/cesta-basica',{
+          headers: {
+            Authorization : `Bearer ${token}`
+          }
+        });
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Cesta Básica montada com sucesso!',
+      showConfirmButton: false,
+      timer: 1500
+    });
+
+    setTimeout(() => {
+      window.location.reload();
+    }
+    , 2000);
+
+    
+    } catch (error) {
+    console.error(error);
+    console.warn(token)
+    Swal.fire({
+      icon: 'error',
+      title: 'Erro ao montar cesta básica! ' + error.response.data.message,
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+}
+
+const [quantidadeCesta, setQuantidadeCesta] = useState('');
+
+useEffect(() => {
+  const fetchQuantidadeCesta = async () => {
+    try {
+      const response = await api.get('/produtos/cesta-basica',{
+        headers: {
+          Authorization : `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      console.log(response.data.length);
+      console.log(response.data);
+      setQuantidadeCesta(response.data.length);
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  fetchQuantidadeCesta();
+}
+, [quantidadeCesta]);
+
   return (
     <>
       <HeaderLogado />
@@ -290,17 +347,19 @@ function Estoque() {
         <BoxLateral>
           <H2>Capacidade do estoque</H2>
           <BoxDash>
-            <Dash />
+            <Dash quantidade={quantidadeCesta} />
           </BoxDash>
           <H2>Cestas Básicas</H2>
           <BoxDash>
-            <CardCesta />
+            <CardCesta onClick={montarCesta} quantidade={quantidadeCesta} />
           </BoxDash>
         </BoxLateral>
       </Box>
 
-      {isPopUpVisible && (
-        <PopUp closePopUp={closePopUp} cardInfo={selectedCard} />
+      {isPopUpVisible && produtosCarregados &&
+      (
+        
+        <PopUp closePopUp={closePopUp} categoriasData={categoriasData} />
       )}
 
       {isPopUpCardVisible && (

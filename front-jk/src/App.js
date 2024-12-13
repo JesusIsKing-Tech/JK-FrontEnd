@@ -41,7 +41,7 @@ function App() {
 
         <Route path='/estoque' element={<Estoque />} />
         <Route path='/doe' element={<Doe />} />
-        <Route path='/perfil' element={<Perfil />} />
+        <Route path='/perfil' element={<ProtectedRoute element={<Perfil />}/>} />
         <Route path='*' element={<h1 className="notFound">Página não encontrada</h1>} />
       </Routes>
     </BrowserRouter>

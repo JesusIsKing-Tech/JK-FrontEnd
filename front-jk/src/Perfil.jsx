@@ -30,6 +30,11 @@ function Perfil() {
 
   const [pedidoOracao, setPedidoOracao] = useState([]);
 
+  const [imgPostagem, setImgPostagem] = useState(null);
+  const [tituloPostagem, setTituloPostagem] = useState("");
+  const [dataPostagem, setDataPostagem] = useState("");
+
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -98,6 +103,7 @@ function Perfil() {
   };
 
   function abrirCadastroPost() {
+    console.log("abrirCadastroPost");
     closeModal3();
     openAdicionar();
   }
@@ -135,29 +141,14 @@ function Perfil() {
     },
     kpis: [
       { label: "Chamados abertos alteração de endereço", valor: 2 },
-      { label: "Pedidos de oração", valor:0 },
+      { label: "Pedidos de oração", valor: 0 },
       { label: "Postagens", valor: 5 },
       { label: "Editar Recomendações de Vídeos", valor: "" },
       // { label: "Indicações de louvores", valor: 5 }
     ]
   });
 
-  const postagens = [
-    {
-      id: 1, titulo: 'Natal', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
-    }, {
-      id: 2, titulo: 'pascoa', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
-    }, {
-      id: 3, titulo: 'ano novo', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
-    },
-    {
-      id: 1, titulo: 'Natal', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
-    }, {
-      id: 2, titulo: 'pascoa', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
-    }, {
-      id: 3, titulo: 'ano novo', descricao: "natal na nossa igreja papapdsajd sabdkajd", data: "22/04"
-    }
-  ];
+  const [postagens, setPostagens] = useState([]);
 
   const chamados = [
     {
@@ -183,7 +174,7 @@ function Perfil() {
         complemento: 'Casa'
       }
     }, {
-      nome: 'Joao Silva bbzao',
+      nome: 'Joao Silva ',
       email: 'exemplo@gmail.com',
       telefone: '11933923464',
       enderecoAnterior: {
@@ -205,7 +196,7 @@ function Perfil() {
         complemento: 'Casa'
       }
     }, {
-      nome: 'Joao Silva bbzao',
+      nome: 'Joao Silva ',
       email: 'exemplo@gmail.com',
       telefone: '11933923464',
       enderecoAnterior: {
@@ -227,7 +218,7 @@ function Perfil() {
         complemento: 'Casa'
       }
     }, {
-      nome: 'Joao Silva bbzao',
+      nome: 'Joao Silva ',
       email: 'exemplo@gmail.com',
       telefone: '11933923464',
       enderecoAnterior: {
@@ -249,7 +240,7 @@ function Perfil() {
         complemento: 'Casa'
       }
     }, {
-      nome: 'Joao Silva bbzao',
+      nome: 'Joao Silva ',
       email: 'exemplo@gmail.com',
       telefone: '11933923464',
       enderecoAnterior: {
@@ -271,7 +262,7 @@ function Perfil() {
         complemento: 'Casa'
       }
     }, {
-      nome: 'Joao Silva bbzao',
+      nome: 'Joao Silva ',
       email: 'exemplo@gmail.com',
       telefone: '11933923464',
       enderecoAnterior: {
@@ -293,7 +284,7 @@ function Perfil() {
         complemento: 'Casa'
       }
     }, {
-      nome: 'Joao Silva bbzao',
+      nome: 'Joao Silva ',
       email: 'exemplo@gmail.com',
       telefone: '11933923464',
       enderecoAnterior: {
@@ -315,7 +306,7 @@ function Perfil() {
         complemento: 'Casa'
       }
     }, {
-      nome: 'Joao Silva bbzao',
+      nome: 'Joao Silva ',
       email: 'exemplo@gmail.com',
       telefone: '11933923464',
       enderecoAnterior: {
@@ -338,9 +329,9 @@ function Perfil() {
       }
     },
   ];
-  
+
   const handleUpdateKpi = () => {
-    
+
   }
 
   useEffect(() => {
@@ -361,10 +352,10 @@ function Perfil() {
           telefone: pedido.usuario.telefone,
         }));
 
-        
+
         setPedidoOracao(pedidosData);
         setDado(prevDado => {
-          const updatedKpis = prevDado.kpis.map(kpi => 
+          const updatedKpis = prevDado.kpis.map(kpi =>
             kpi.label === "Pedidos de oração" ? { ...kpi, valor: pedidosData.length } : kpi
           );
           return {
@@ -382,7 +373,45 @@ function Perfil() {
     fetchUserData();
   }, [userId, token]);
 
-  
+  useEffect(() => {
+
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get(`/postagem`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        console.log(response.data);
+
+
+        const postagemData = response.data.map(postagem => ({ 
+          id: postagem.id,
+          titulo: postagem.titulo,
+          data: postagem.data,
+        }));
+
+        setPostagens(postagemData);
+        setDado(prevDado => {
+          const updatedKpis = prevDado.kpis.map(kpi =>
+            kpi.label === "Postagens" ? { ...kpi, valor: postagemData.length } : kpi
+          );
+          return {
+            ...prevDado,
+            kpis: updatedKpis
+          };
+        });
+
+        console.error(postagem);
+
+      } catch (error) {
+        console.error('Erro ao buscar AS ORÇÕES do usuário', error);
+      }
+    };
+    fetchUserData();
+  }, [userId, token]);
+
 
 
   const postagem = [{
@@ -426,13 +455,20 @@ function Perfil() {
   };
 
   const handleToggle = () => {
-    setIsOn(prev => !prev);
+    setDados({
+      ...dados,
+      usuario: {
+        ...dados.usuario,
+        receber_doacoes: !dados.usuario.receber_doacoes
+      }
+    });
   };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await api.get(`/usuarios/${userId}`, {
-          headers: { 
+          headers: {
             Authorization: `Bearer ${token}`
           }
         });
@@ -464,7 +500,11 @@ function Perfil() {
           ]
         });
 
-        console.log(dados)
+        if (userData.foto_perfil_url) {
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", userData.foto_perfil_url);
+          setImagemPerfil(userData.foto_perfil_url);
+        }
+
 
       } catch (error) {
         console.error('Erro ao buscar dados do usuário', error);
@@ -476,6 +516,11 @@ function Perfil() {
   const [editandoEndereco, setEditandoEndereco] = useState(false);
   const [editandoDadosPessoais, setEditandoDadosPessoais] = useState(false);
   const [imagemPerfil, setImagemPerfil] = useState(dado.usuario.imagemPerfil);
+
+  useEffect(() => {
+    var id = localStorage.getItem("userId");
+    console.warn(id);
+  }, []);
 
   useEffect(() => {
     setDados(dado);
@@ -502,46 +547,65 @@ function Perfil() {
 
   const cancelarEdicaoEndereco = () => {
     setEditandoEndereco(false);
-    setDados(dado); // Restaura os dados originais ao cancelar
+    window.location.reload() // Restaura os dados originais ao cancelar
   };
   const cancelarEdicaoDadosPessoais = () => {
     setEditandoDadosPessoais(false);
-    setDados(dado); // Restaura os dados originais ao cancelar
+    window.location.reload(); // Restaura os dados originais ao cancelar
   };
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagemPerfil(reader.result);
-      };
-      reader.readAsDataURL(file);
+    setImgPostagem(file);
+  };
+
+  const resetarImagemPerfil = async () => {
+    setImagemPerfil(dado.usuario.imagemPerfil);
+
+    try {
+      const response = await api.delete(`/usuarios/deletar-foto-perfil/${localStorage.getItem("userId")}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Foto removida com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      
+    } catch (error) {
+      console.error('Erro ao resetar imagem', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao remover imagem de perfil, tente novamente',
+        showConfirmButton: true,
+        timer: 1500
+      });
     }
   };
 
-  const resetarImagemPerfil = () => {
-    setImagemPerfil(dado.usuario.imagemPerfil);
-  };
-
-  const handleExcluirOracao = async (id) =>{
-    try{
+  const handleExcluirOracao = async (id) => {
+    try {
       console.log('Excluindo pedido de oração', id);
       api.delete(`/pedidos-oracao/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-       Swal.fire({
+      Swal.fire({
         icon: 'success',
         title: 'Oração realizada com Sucesso, Deus te abençoe!',
         showConfirmButton: false,
-        timer: 3000 
+        timer: 3000
       });
-      
+
       console.log(pedidoOracao.length)
 
-      if(pedidoOracao.length === 1){
+      if (pedidoOracao.length === 1) {
         await new Promise(resolve => setTimeout(resolve, 1500));
         window.location.reload();
       }
@@ -549,8 +613,121 @@ function Perfil() {
       setPedidoOracao(prevPedidos => prevPedidos.filter(pedido => pedido.id !== id));
       setSelectedChamado2(null);
 
-    }catch(error){
+    } catch (error) {
       console.error('Erro ao excluir pedido de oração', error);
+    }
+  }
+
+  const handleImagePerfil = async (event) => {
+    const file = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await api.post(`/usuarios/cadastrar/foto-perfil/${localStorage.getItem("userId")}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      console.log(response.data);
+
+      setImagemPerfil(response.data.foto_perfil_url);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Perfil carregado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+
+      console.log(file);
+    } catch (error) {
+      console.error('Erro ao enviar imagem', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao enviar imagem, tente novamente',
+        showConfirmButton: true,
+        timer: 1500
+      });
+    }
+  }
+
+  const atualizarDadosPerfil = async () => {
+    const dadosFiltrados = {
+      nome: dados.usuario.nome,
+      email: dados.usuario.email,
+      telefone: dados.usuario.telefone,
+      receber_doacoes: dados.usuario.receber_doacoes
+    };
+
+    try {
+      const response = await api.put(`/usuarios/simples/${userId}`, dadosFiltrados, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+
+        
+        
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Dados atualizados com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      console.log(response.data);
+      localStorage.setItem("token", response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error('Erro ao atualizar dados do perfil', error);
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao atualizar dados do perfil, tente novamente',
+        showConfirmButton: true,
+      });
+    }
+  }
+
+  const criarEvento = async () => {
+    const dadosFiltrados = {
+      titulo: tituloPostagem,
+      data: dataPostagem,
+    };
+
+    const formData = new FormData();
+    formData.append('file', imgPostagem);
+    formData.append('titulo', tituloPostagem);
+    formData.append('data', dataPostagem);
+
+    try {
+      const response = await api.post(`/postagem`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Evento criado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      console.log(response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error('Erro ao criar evento', error);
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao criar evento, tente novamente',
+        showConfirmButton: true,
+      });
     }
   }
 
@@ -568,9 +745,10 @@ function Perfil() {
                 <button onClick={resetarImagemPerfil} className={styles.btnTirarFoto}>
                   Remover Foto
                 </button>
-                <label htmlFor="fileInput" className={styles.btnAdicionarImagem}>
-                  Alterar foto
-                </label>
+
+                <label htmlFor="fileInput" className={styles.btnAdicionarImagem}  >Alterar foto</label>
+                <input type="file" className={styles.fileInput} id="fileInput" onChange={handleImagePerfil} />
+
               </div>
             )}
             {editandoDadosPessoais ? (
@@ -613,7 +791,7 @@ function Perfil() {
                   <div className={styles.inputContainer}>
                     <label>
                       <div className={styles.toggleContainer} onClick={handleToggle}>
-                        <div className={`${styles.toggleButton} ${usuario.receberDoacao ? styles.on : styles.off}`}>
+                        <div className={`${styles.toggleButton} ${usuario.receber_doacoes ? styles.on : styles.off}`}>
                           <div className={styles.toggleCircle}></div>
                         </div>
                       </div>
@@ -672,7 +850,14 @@ function Perfil() {
           </div>
 
           <div className={styles.botoesAcoes}>
-            <button onClick={alternarEdicaoDadosPessoais} className={styles.btnEditar}>
+            <button
+              onClick={() => {
+                alternarEdicaoDadosPessoais();
+                if (editandoDadosPessoais) {
+                  console.log('Dados salvos', dados);
+                  atualizarDadosPerfil();
+                }
+              }} className={styles.btnEditar}>
               {editandoDadosPessoais ? (
                 <>
                   <FaEdit /> Salvar
@@ -793,35 +978,36 @@ function Perfil() {
                         <p><strong><FaPhone></FaPhone></strong> {selectedChamado.telefone}</p>
                       </div>
                     </div>
-                    <div>
-                    <div style={{ overflowY: 'scroll', height: '80%', display:"flex",justifyContent: "space-evenly"
-}}>
+                    <div style={{height:"80%"}}>
+                      <div style={{
+                        overflowY: 'scroll', height: '80%', display: "flex", justifyContent: "space-evenly"
+                      }}>
 
-                      {/* Endereço Anterior */}
-                      <div className={styles.selectedChamado}>
-                        <p><strong>Endereço Anterior:</strong></p>
-                        <p><strong>CEP:</strong> {selectedChamado.enderecoAnterior.cep}</p>
-                        <p><strong>Rua:</strong> {selectedChamado.enderecoAnterior.rua}</p>
-                        <p><strong>Número:</strong> {selectedChamado.enderecoAnterior.numero}</p>
-                        <p><strong>Bairro:</strong> {selectedChamado.enderecoAnterior.bairro}</p>
-                        <p><strong>Cidade:</strong> {selectedChamado.enderecoAnterior.cidade}</p>
-                        <p><strong>UF:</strong> {selectedChamado.enderecoAnterior.uf}</p>
-                        <p><strong>Complemento:</strong> {selectedChamado.enderecoAnterior.complemento}</p>
+                        {/* Endereço Anterior */}
+                        <div className={styles.selectedChamado}>
+                          <p><strong>Endereço Anterior:</strong></p>
+                          <p><strong>CEP:</strong> {selectedChamado.enderecoAnterior.cep}</p>
+                          <p><strong>Rua:</strong> {selectedChamado.enderecoAnterior.rua}</p>
+                          <p><strong>Número:</strong> {selectedChamado.enderecoAnterior.numero}</p>
+                          <p><strong>Bairro:</strong> {selectedChamado.enderecoAnterior.bairro}</p>
+                          <p><strong>Cidade:</strong> {selectedChamado.enderecoAnterior.cidade}</p>
+                          <p><strong>UF:</strong> {selectedChamado.enderecoAnterior.uf}</p>
+                          <p><strong>Complemento:</strong> {selectedChamado.enderecoAnterior.complemento}</p>
+                        </div>
+
+                        {/* Novo Endereço */}
+                        <div className={styles.selectedChamado}>
+                          <p><strong>Novo Endereço:</strong></p>
+                          <p><strong>CEP:</strong> {selectedChamado.novoEndereco.cep}</p>
+                          <p><strong>Rua:</strong> {selectedChamado.novoEndereco.rua}</p>
+                          <p><strong>Número:</strong> {selectedChamado.novoEndereco.numero}</p>
+                          <p><strong>Bairro:</strong> {selectedChamado.novoEndereco.bairro}</p>
+                          <p><strong>Cidade:</strong> {selectedChamado.novoEndereco.cidade}</p>
+                          <p><strong>UF:</strong> {selectedChamado.novoEndereco.uf}</p>
+                          <p><strong>Complemento:</strong> {selectedChamado.novoEndereco.complemento}</p>
+                        </div>
+
                       </div>
-
-                      {/* Novo Endereço */}
-                      <div className={styles.selectedChamado}>
-                        <p><strong>Novo Endereço:</strong></p>
-                        <p><strong>CEP:</strong> {selectedChamado.novoEndereco.cep}</p>
-                        <p><strong>Rua:</strong> {selectedChamado.novoEndereco.rua}</p>
-                        <p><strong>Número:</strong> {selectedChamado.novoEndereco.numero}</p>
-                        <p><strong>Bairro:</strong> {selectedChamado.novoEndereco.bairro}</p>
-                        <p><strong>Cidade:</strong> {selectedChamado.novoEndereco.cidade}</p>
-                        <p><strong>UF:</strong> {selectedChamado.novoEndereco.uf}</p>
-                        <p><strong>Complemento:</strong> {selectedChamado.novoEndereco.complemento}</p>
-                      </div>
-
-                    </div>
                       <div className={styles.buttonsContainer}>
                         <button className={styles.acceptButton} onClick={goBackToList}>
                           <FaCheck />
@@ -830,7 +1016,7 @@ function Perfil() {
                           <FaTimes />
                         </button>
                       </div>
-                      </div>
+                    </div>
                   </>
                 ) : (
                   // Se nenhum chamado for selecionado, exibe a lista de chamados
@@ -889,7 +1075,7 @@ function Perfil() {
                         <button className={styles.rejectButton} onClick={goBackToList2}>
                           Manter
                         </button>
-                        <button className={styles.acceptButton} onClick={()=>handleExcluirOracao(selectedChamado2.id)}>
+                        <button className={styles.acceptButton} onClick={() => handleExcluirOracao(selectedChamado2.id)}>
                           Orar
                         </button>
                       </div>
@@ -961,12 +1147,6 @@ function Perfil() {
                           />
                         </label>
                       </div>
-                      {/* <div className={styles.selectedChamado}>
-                      <p>Título: {selectedChamado3.titulo}</p>
-                      <p>{selectedChamado3.descricao}</p>
-                      <p>{selectedChamado3.data}</p>
-                      </div> */}
-
                       <div className={styles.buttonsContainer}>
                         <button className={styles.btnEditar} onClick={goBackToList3}>
                           <FaEdit />
@@ -989,8 +1169,8 @@ function Perfil() {
                       }}
                     >
                       {postagens.map((postagens, index) => (
-                        <li key={index} className={styles.chamadoItem}style={{
-                          cursor:"default"
+                        <li key={index} className={styles.chamadoItem} style={{
+                          cursor: "default"
                         }}>
                           <span>{postagens.titulo}</span>
                           <span>{" - " + postagens.data}</span>
@@ -1022,7 +1202,11 @@ function Perfil() {
                   <div className={styles.formContent}>
                     <div className={styles.inputGroup}>
                       <label className={styles.inputLabel}>Título</label>
-                      <input type="text" className={styles.inputField} placeholder="Digite o título do evento" />
+                      <input 
+                        type="text"
+                        className={styles.inputField}
+                        placeholder="Digite o título do evento"
+                        onChange={(e)=> setTituloPostagem(e.target.value) } />
                     </div>
                     <div className={styles.inputGroup}>
                       <label className={styles.inputLabel}>Imagem</label>
@@ -1039,10 +1223,13 @@ function Perfil() {
 
                     <div className={styles.inputGroup}>
                       <label className={styles.inputLabel}>Data</label>
-                      <input type="date" className={styles.inputField} />
+                      <input 
+                        type="date"
+                        className={styles.inputField}
+                        onChange={(e)=> setDataPostagem(e.target.value)} />
                     </div>
                     <div className={styles.buttonsContainer}>
-                      <button className={styles.btnAdicionarImagem}>
+                      <button className={styles.btnAdicionarImagem} onClick={criarEvento}>
                         Criar evento
                       </button>
                     </div>

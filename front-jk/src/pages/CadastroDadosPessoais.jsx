@@ -58,7 +58,7 @@ function CadastroDadosPessoais({ nextStep }) {
         try{
           const response = await api.get(`/enderecos/buscar/${formData.endereco.cep}`);
           console.log(response);
-          if(response && response.data){
+          if(response && response.data){  
 
             const { logradouro, bairro, localidade, uf } = response.data;
             setFormData((prevState) => ({

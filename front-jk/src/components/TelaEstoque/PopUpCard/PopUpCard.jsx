@@ -92,7 +92,7 @@ function PopUpCard({ closePopUpCard, cardInfo }) {
     </div>
 
     {isAddFoodModalVisible && (
-        <PopUp closePopUp={closeAddFoodModal}></PopUp>
+        <PopUp closePopUp={closeAddFoodModal} cardInfo={cardInfo}></PopUp>
       )}
     </div>  
   );

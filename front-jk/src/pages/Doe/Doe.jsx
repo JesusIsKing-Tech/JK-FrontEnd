@@ -6,13 +6,16 @@ import FormContainer from '../../components/FormContainer/FormContainer';
 import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
 import Botao from '../../components/TelaCadastro/botao/Botao';
-import ImageContainer from'../../components/ImageContainer/ImageContainer'
+import ImageContainer from '../../components/ImageContainer/ImageContainer'
 import lateral from '../../img/doe.png'
 import Container from '../../components/Container/Container';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Doe = () => {
     const [verificado, setVerificado] = useState(false); // Inicialmente não verificado
     const [linhaSelecionada, setLinhaSelecionada] = useState(null);
+    const navigate = useNavigate();
 
     const familia = {
         nomeFamilia: "Família Silva",
@@ -32,99 +35,111 @@ const Doe = () => {
         setLinhaSelecionada(prevIndex => (prevIndex === index ? null : index));
     };
 
+    const alertCerto = () => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Doação realizada!',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            navigate('/estoque');
+        });
+
+    }
+
     return (
         <>
             <HeaderLogado />
             <div className={styles.container}>
-            <ImageContainer image={lateral}>
-            </ImageContainer>
-            <FormContainer>
-                {verificado ? (<>
-                
-                <Titulo>Selecione o Responsável</Titulo>
-                    <div className={styles.cardFamilia}>
-                        <div className={styles.boxTitulo}>
-                            <h2>{familia.nomeFamilia}</h2>
-                        </div>
-                        <div className={styles.dados}>
-                            <div className={styles.campo}>
-                                <div className={styles.boxTitulo}>
-                                <h3>Nome</h3>
-                                </div>
-                                <div className={styles.boxLinha}>
-                                {familia.membros.map((membro, index) => (
-                                    <p
-                                        key={index}
-                                        className={`${styles.linha} ${linhaSelecionada === index ? styles.linhaSelecionada : ''}`}
-                                        onClick={() => selecionarLinha(index)}
-                                    >
-                                        {membro.nome}
-                                    </p>
-                                ))}
-                            </div>
-                            </div>
+                <ImageContainer image={lateral}>
+                </ImageContainer>
+                <FormContainer>
+                    {verificado ? (<>
 
-                            <div className={styles.campo}>
+                        <Titulo>Selecione o Responsável</Titulo>
+                        <div className={styles.cardFamilia}>
                             <div className={styles.boxTitulo}>
-                                <h3>Dt Nasc.</h3>
-                                </div>
-                                <div className={styles.boxLinha}>
-
-                                {familia.membros.map((membro, index) => (
-                                    <p
-                                        key={index}
-                                        className={`${styles.linha} ${linhaSelecionada === index ? styles.linhaSelecionada : ''}`}
-                                        onClick={() => selecionarLinha(index)}
-                                    >
-                                        {membro.dataNascimento}
-                                    </p>
-                                ))}
-                                </div>
+                                <h2>{familia.nomeFamilia}</h2>
                             </div>
-
-                            <div className={styles.campo}>
-                            <div className={styles.boxTitulo}>
-                                <h3>Responsável</h3>
-                                </div>
-                                <div className={styles.boxCheck}>                                
-
-                                {familia.membros.map((membro, index) => (
-                                    <div
-                                        key={index}
->
-                                        <div className={styles}>
-
-                                        <input
-                                            type="radio"
-                                            name="responsavel"
-                                            checked={linhaSelecionada === index}
-                                            />
-                                            </div>
+                            <div className={styles.dados}>
+                                <div className={styles.campo}>
+                                    <div className={styles.boxTitulo}>
+                                        <h3>Nome</h3>
                                     </div>
-                                ))}
+                                    <div className={styles.boxLinha}>
+                                        {familia.membros.map((membro, index) => (
+                                            <p
+                                                key={index}
+                                                className={`${styles.linha} ${linhaSelecionada === index ? styles.linhaSelecionada : ''}`}
+                                                onClick={() => selecionarLinha(index)}
+                                            >
+                                                {membro.nome}
+                                            </p>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className={styles.campo}>
+                                    <div className={styles.boxTitulo}>
+                                        <h3>Dt Nasc.</h3>
+                                    </div>
+                                    <div className={styles.boxLinha}>
+
+                                        {familia.membros.map((membro, index) => (
+                                            <p
+                                                key={index}
+                                                className={`${styles.linha} ${linhaSelecionada === index ? styles.linhaSelecionada : ''}`}
+                                                onClick={() => selecionarLinha(index)}
+                                            >
+                                                {membro.dataNascimento}
+                                            </p>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className={styles.campo}>
+                                    <div className={styles.boxTitulo}>
+                                        <h3>Responsável</h3>
+                                    </div>
+                                    <div className={styles.boxCheck}>
+
+                                        {familia.membros.map((membro, index) => (
+                                            <div
+                                                key={index}
+                                            >
+                                                <div className={styles}>
+
+                                                    <input
+                                                        type="radio"
+                                                        name="responsavel"
+                                                        checked={linhaSelecionada === index}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
+                            <Botao onClick={() => alert("Doação realizada!")} funcao={alertCerto}>Doar</Botao>
                         </div>
-                        <Botao onClick={() => alert("Doação realizada!")}>Doar</Botao>
-                    </div>
                     </>
-                ) : (
-<>
-<Titulo>Retirar Doação</Titulo>
-<Form onSubmit={handleVerificar}>
-                        <Input label="CEP" type="text" name="cep" />
-                        <Input readOnly label="Rua" style={{ background: '#f0f0f0', border: 'none' }} type="text" name="logradouro" />
-                        <Input label="Número" type="text" name="numero" />
-                        <Input label="Complemento" type="text" name="complemento" />
-                        <Input readOnly label="Bairro" type="text" name="bairro" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
-                        <Input readOnly label="Cidade" type="text" name="localidade" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
-                        <Input readOnly label="UF" type="text" name="uf" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
-                        <Botao type="submit">Verificar</Botao>
-                    </Form>
-</>
-                )}
-            </FormContainer>
-            
+                    ) : (
+                        <>
+                            <Titulo>Retirar Doação</Titulo>
+                            <Form onSubmit={handleVerificar}>
+                                <Input label="CEP" type="text" name="cep" />
+                                <Input readOnly label="Rua" style={{ background: '#f0f0f0', border: 'none' }} type="text" name="logradouro" />
+                                <Input label="Número" type="text" name="numero" />
+                                <Input label="Complemento" type="text" name="complemento" />
+                                <Input readOnly label="Bairro" type="text" name="bairro" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
+                                <Input readOnly label="Cidade" type="text" name="localidade" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
+                                <Input readOnly label="UF" type="text" name="uf" style={{ backgroundColor: '#f0f0f0', border: 'none' }} />
+                                <Botao type="submit"  >Verificar</Botao>
+                            </Form>
+                        </>
+                    )}
+                </FormContainer>
+
             </div>
         </>
     );
