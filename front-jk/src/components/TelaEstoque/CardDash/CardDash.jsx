@@ -6,10 +6,10 @@ import styles from './CardDash.module.css'
 // Registrar os componentes do Chart.js
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale, LinearScale);
 
-const CardDash = () => {
+const CardDash = ({quantidade}) => {
   // Dados fictícios
-  const capacidadeTotal = 1000; // Capacidade total
-  const emUso = 650; // Quantidade em uso
+  const capacidadeTotal = 100; // Capacidade total
+  const emUso = quantidade; // Quantidade em uso
 
   const percentualUso = (emUso / capacidadeTotal) * 100;
 

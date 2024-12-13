@@ -9,6 +9,8 @@ import Card from '../../components/TelaHome/CardLouvor/CardLouvor';
 import { FaYoutube, FaWhatsapp, FaGithub } from 'react-icons/fa';
 
 import CardEventos from "../../components/CardEventos/CardEventos"
+import api from '../../api';
+import Swal from 'sweetalert2';
 
 const Home2 = () => {
   const swiperRef = useRef(null);
@@ -49,6 +51,46 @@ const Home2 = () => {
   //   { id: 2, titulo: "Evento 2", descricao: "Descrição do evento 2", data: "2024-12-10" },
 
   // ];
+
+  const handleSubmitPedido = async () => {
+    try{
+
+      if (!textValue.trim() && textValue.length < 3) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Campo vazio',
+          text: 'Por favor, preencha o campo de pedido de oração.',
+        });
+        return;
+      }
+
+      console.log(textValue);
+      console.log(localStorage.getItem("userId"));
+      
+      const response = await api.post("/pedidos-oracao/cadastrar", {
+        descricao: textValue,
+        idUsuario: localStorage.getItem("userId")
+      }, {
+          headers: { 
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Pedido de oração enviado com sucesso!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao enviar pedido de oração',
+        text: 'Tente novamente mais tarde!',
+      });
+    }
+  }
 
 
   return (
@@ -132,7 +174,7 @@ const Home2 = () => {
               onChange={handleInputChange}
               placeholder="Digite aqui seu pedido de oração..."
             />
-            <button className={styles.btnEnviar}>Enviar Pedido</button>
+            <button className={styles.btnEnviar} onClick={handleSubmitPedido}>Enviar Pedido</button>
           </div>
         </div>
       </div>

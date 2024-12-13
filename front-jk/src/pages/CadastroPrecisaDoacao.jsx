@@ -15,6 +15,7 @@ import { CadastroContext } from './CadastroContext';
 import { useContext } from 'react';
 import api from '../api';
 import lateral from './img/cadastro3.jpeg'
+import { useNavigate } from 'react-router-dom';
 
 
 const RadioBox = styled.div`
@@ -48,6 +49,7 @@ const BotaoEstilizado = styled(Botao)`
 function DoacaoAlimentos({ prevStep }) {
 
   const { formData, setFormData } = useContext(CadastroContext);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -68,7 +70,10 @@ function DoacaoAlimentos({ prevStep }) {
         Swal.fire({
           icon: 'success',
           title: 'Cadastro realizado com sucesso!',
-          confirmButtonText: 'OK',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+        navigate('/login');
         });
       }).catch((error) => {
         console.log(error);

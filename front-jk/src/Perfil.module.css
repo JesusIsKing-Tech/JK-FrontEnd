@@ -273,9 +273,11 @@ input:focus {
 }
 .botoesImagemPerfil {
   display: flex;
+  justify-content: center;
   gap: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
+  /* border: #0056b3 1px solid; */
 }
 
 .btnTirarFoto {
@@ -293,7 +295,7 @@ input:focus {
 }
 
 .btnAdicionarImagem {
-  background-color: #0fb300; 
+  background-color: #4CAF50; /* Cor de fundo */
   color: white;
   border: none;
   padding: 10px;
@@ -306,8 +308,9 @@ input:focus {
   background-color: #0c8900;
 }
 
-.inputFile {
-  display: none; /* Esconde o input de arquivo */
+.fileInput {
+  display: none !important  ; 
+  /* Esconde o input de arquivo */
 }
 /* Toggle.module.css */
 .toggleContainerOff {
@@ -528,6 +531,7 @@ h4{
 
 .selectedChamado {
   margin-top: 20px;
+  height: 100%;
 }
 
 .buttonsContainer {

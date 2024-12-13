@@ -9,8 +9,9 @@ import Botao from '../../components/TelaCadastro/botao/Botao';
 import ImageContainer from '../../components/ImageContainer/ImageContainer';
 import Container from '../../components/Container/Container';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import lateral from '../../img/doe.png';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Doe = () => {
     const [verificado, setVerificado] = useState(false); // Inicialmente não verificado
@@ -26,6 +27,7 @@ const Doe = () => {
             uf: ''
         }
     });
+    const navigate = useNavigate();
 
     const familia = {
         nomeFamilia: "Família Silva",
@@ -91,6 +93,18 @@ const Doe = () => {
     const selecionarLinha = (index) => {
         setLinhaSelecionada(prevIndex => (prevIndex === index ? null : index));
     };
+
+    const alertCerto = () => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Doação realizada!',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            navigate('/estoque');
+        });
+
+    }
 
     return (
         <>

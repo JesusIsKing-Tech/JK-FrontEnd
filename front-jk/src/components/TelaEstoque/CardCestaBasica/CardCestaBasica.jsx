@@ -6,6 +6,8 @@ const CardCestaBasica = ({
   artista,
   nomeMusica,
   imagemSrc,
+  onClick,
+  quantidade
 }) => {
   return (
     <div className={styles["card-musica"]}>
@@ -18,11 +20,11 @@ const CardCestaBasica = ({
       </div> */}
       <div className={styles["textos"]}>
         <div className={styles["boxTitulo"]}>
-          <span><b><p>Quantidade:{artista || "N/A"}</p></b></span> 
+          <span><b><p>Quantidade:{quantidade || "N/A"}</p></b></span> 
         </div>
       </div>
       <div className={styles["botoes"]}>
-        <button className={styles["botao"]}>Montar Cesta</button>
+        <button className={styles["botao"]} onClick={onClick} >Montar Cesta</button>
       </div>
     </div>
   );

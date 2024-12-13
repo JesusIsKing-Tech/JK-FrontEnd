@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { notify, notifySuccess } from '../Toast';
 import styles from "./PopUp.module.css";
+import api from "../../api";
+import Swal from 'sweetalert2';
 
-const PopUp = ({ closePopUp }) => {
+
+const PopUp = ({ closePopUp, cardInfo }) => {
+
   const [categoria, setCategoria] = useState('');
   const [tipo, setTipo] = useState('');
   const [peso, setPeso] = useState('');
@@ -10,10 +14,11 @@ const PopUp = ({ closePopUp }) => {
   const [imagem, setImagem] = useState(null); // Novo estado para a imagem
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [tipos, setTipos] = useState([]);
   const dropdownRef = useRef(null);
   const popupRef = useRef(null);
 
-  const categorias = ["Arroz", "Café", "Farinha", "Feijão", "Macarrão", "Óleo"];
+  const categorias = [cardInfo.nome];
 
   const filteredCategories = categorias.filter(cat =>
     cat.toLowerCase().includes(searchTerm.toLowerCase())
@@ -87,26 +92,52 @@ const PopUp = ({ closePopUp }) => {
     setImagem(file);
   };
 
-  const handleSubmit = () => {
-    if (categoria === '' || tipo === '' || peso === '' || Number(peso) <= 0 || quantidade <= 0 || !imagem) {
-      notify('Todos os campos devem ser preenchidos corretamente!');
-      return;
+  const handleSubmit = async () => {
+
+    const data = {
+      peso_litro: peso,
+      quantidade: quantidade,
+      categoria:{
+        id: cardInfo.id
+      },
+      tipo:{
+        id: tipo
+      },
     }
 
-    console.log('Categoria:', categoria);
-    console.log('Tipo:', tipo);
-    console.log('Peso:', peso);
-    console.log('Quantidade:', quantidade);
-    console.log('Imagem:', imagem);
+    try{
+      const responde = await api.post('/produtos/multiplo', data, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+    });
 
-    notifySuccess('Cadastro realizado com sucesso!');
-
+    Swal.fire({
+      icon: 'success',
+      title: 'Alimento adicionado com sucesso!',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    
     setTimeout(() => {
-      closePopUp();
-    }, 200);
+      window.location.reload();
+    }, 1000);
+
+
+    }
+    catch(error){
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro ao adicionar alimento!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    };
   };
 
-  useEffect(() => {
+    
+
+    useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
         closePopUp();
@@ -120,8 +151,33 @@ const PopUp = ({ closePopUp }) => {
     };
   }, [closePopUp]);
 
+  useEffect(()  => {
+    const fetchTipos = async () => {
+      try{
+        const response = await api.get(`/produtos/tipos/by-categoria/${cardInfo.id}`,{
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
+        const tiposData = response.data;
+
+        setTipos(tiposData);
+
+        console.log('TIPOS', tiposData);
+        console.log(cardInfo.id);
+        
+        
+      }catch(error){
+        console.error(error);
+      }
+    };
+
+    fetchTipos();
+  }, []);
+
   return (
-    <div className={styles.popupContainer}>
+    <div className={styles.popupContainer}>    
       <div className={styles.popup}>
         <h2 className={styles.popupTitle}>Adição de alimento</h2>
         <button className={styles.closeButton} onClick={closePopUp}>X</button>
@@ -131,10 +187,11 @@ const PopUp = ({ closePopUp }) => {
           <div className={styles.dropdown} ref={dropdownRef}>
             <input
               type="text"
-              value={searchTerm}
+              value={categorias}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               onChange={handleSearchTermChange}
               placeholder="Digite para pesquisar..."
+              readOnly = {true}
             />
             {isDropdownOpen && (
               <ul className={styles.dropdownList}>
@@ -156,13 +213,13 @@ const PopUp = ({ closePopUp }) => {
             id="tipo"
             value={tipo}
             onChange={handleTipoChange}
-            disabled={!validateCategoria(categoria)}
-            className={!validateCategoria(categoria) ? styles.disabled : ''}
+            disabled={false}
+            className={false ? styles.disabled : ''}
           >
             <option value="">Selecione um tipo</option>
-            <option value="Tipo1">Tipo 1</option>
-            <option value="Tipo2">Tipo 2</option>
-            <option value="Tipo3">Tipo 3</option>
+            {tipos.map((tipo, index) => (
+              <option key={index} value={tipo.id}>{tipo.nome}</option>
+            ))}
           </select>
         </div>
 
@@ -174,7 +231,7 @@ const PopUp = ({ closePopUp }) => {
             value={peso}
             onChange={handlePesoChange}
             onBlur={handlePesoBlur}
-            placeholder="Digite o peso..."
+            placeholder="Digite o peso em kg..."
             min="0"
           />
         </div>
