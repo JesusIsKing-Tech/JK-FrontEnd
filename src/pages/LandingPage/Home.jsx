@@ -72,7 +72,7 @@ const Home = () => {
 
         <div className={styles.carousel}>
           <button onClick={() => swiperRef.current.slidePrev()} className={styles.leftArrow}>
-            <FaChevronLeft size={30} />
+            <FaChevronLeft size={30} color='black'/>
           </button>
           <Swiper
             modules={[Pagination, A11y, Navigation, Scrollbar]}
@@ -89,7 +89,7 @@ const Home = () => {
             ))}
           </Swiper>
           <button onClick={() => swiperRef.current.slideNext()} className={styles.rightArrow}>
-            <FaChevronRight size={30} />
+            <FaChevronRight size={30} color='black'/>
           </button>
         </div>
 
