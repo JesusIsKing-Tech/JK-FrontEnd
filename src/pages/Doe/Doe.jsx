@@ -9,6 +9,7 @@ import Botao from '../../components/TelaCadastro/botao/Botao';
 import ImageContainer from '../../components/ImageContainer/ImageContainer';
 import Container from '../../components/Container/Container';
 import axios from 'axios';
+import api from '../../api'
 import lateral from '../../img/doe.png';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
@@ -27,16 +28,15 @@ const Doe = () => {
             uf: ''
         }
     });
+
+    const [enderecoId, setEnderecoId] = useState(null);
+
     const navigate = useNavigate();
 
-    const familia = {
-        nomeFamilia: "Família Silva",
-        membros: [
-            { nome: "Robert Silva", dataNascimento: "20/02/1986", telefone: "teste endereco", },
-            { nome: "Andressa Silva", dataNascimento: "20/02/1986", telefone: "11933736363" },
-            { nome: "Anderson Silva", dataNascimento: "20/02/1986", telefone: "11933736363" }
-        ]
-    };
+    const [familia, setFamilia] = useState({
+        nomeFamilia: "",
+        membros: []
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -85,24 +85,117 @@ const Doe = () => {
         fetchAddress();
     }, [formData.endereco.cep]);
 
-    const handleVerificar = (event) => {
+    useEffect(() => {
+        if (enderecoId !== null) {
+
+            const fetchFamilia = async () => {
+
+                try {
+                    const response = await api.get(`/usuarios/endereco/${enderecoId}`, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+
+                    const nomeFamilia = response.data[0].nome.split(' ').pop(); // Ajuste conforme necessário
+                    console.warn(nomeFamilia);
+
+                    const data = response.data;
+                    const membros = data.map(item => ({
+                        id: item.id,
+                        nome: item.nome,
+                        dataNascimento: item.data_nascimento,
+                        telefone: item.telefone
+                    }));
+
+                    setFamilia({
+                        nomeFamilia: `Família ${nomeFamilia}`, 
+                        membros: membros
+                    });
+
+                    console.log(familia);
+                    console.log(response.data);
+
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+
+            fetchFamilia();
+        }
+    }, [enderecoId]);
+
+    const handleVerificar = async (event) => {
         event.preventDefault();
-        setVerificado(true);
+
+        console.warn("Verificar", formData);
+
+        try {
+
+            const response = await api.post(`/enderecos/verificar`, formData.endereco, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+
+            console.log(response.data);
+            setEnderecoId(response.data);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Endereço verificado!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            setVerificado(true);
+
+
+
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.response.data.message,
+                confirmButtonText: 'OK',
+            });
+        }
     };
 
     const selecionarLinha = (index) => {
         setLinhaSelecionada(prevIndex => (prevIndex === index ? null : index));
     };
 
-    const alertCerto = () => {
-        Swal.fire({
-            icon: 'success',
-            title: 'Doação realizada!',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            navigate('/estoque');
-        });
+    const realizarDoacao = async () => {
+
+
+        try{
+
+            await api.delete(`/produtos/doar/cesta-basica`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+            });
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Doação realizada!',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                navigate('/estoque');
+            });
+
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.response.data.message,
+                confirmButtonText: 'OK',
+            });
+        }
 
     }
 
@@ -145,7 +238,7 @@ const Doe = () => {
                                 </div>
                                 <div style={{ display: "flex", justifyContent: "center" }}>
                                     <div style={{ width: "98%" }}>
-                                        <Botao onClick={() => alert("Doação realizada!")}>
+                                        <Botao funcao={realizarDoacao}>
                                             Doar
                                         </Botao>
                                     </div>
