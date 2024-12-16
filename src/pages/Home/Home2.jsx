@@ -53,7 +53,7 @@ const Home2 = () => {
   // ];
 
   const handleSubmitPedido = async () => {
-    try{
+    try {
 
       if (!textValue.trim() && textValue.length < 3) {
         Swal.fire({
@@ -66,13 +66,13 @@ const Home2 = () => {
 
       console.log(textValue);
       console.log(localStorage.getItem("userId"));
-      
+
       const response = await api.post("/pedidos-oracao/cadastrar", {
         descricao: textValue,
         idUsuario: localStorage.getItem("userId")
       }, {
-          headers: { 
-            Authorization: `Bearer ${localStorage.getItem("token")}`
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
 
@@ -120,11 +120,12 @@ const Home2 = () => {
         </Swiper>
       </div>
       <div className={styles["section-eventos"]}>
-        <h1>EVENTOS</h1>
-        <div className={styles.carousel}>
-          <CardEventos></CardEventos>
+        <h1>CONFIRA NOSSOS EVENTOS</h1>
+        <div className={styles["box-eventos"]}>
+          <CardEventos />
         </div>
-      </div >
+      </div>
+
       < div className={styles["louvores-carousel"]} >
         <div className={styles["titulo-louvor"]}>
           <h1>ACOMPANHE NOSSOS VÍDEOS</h1>

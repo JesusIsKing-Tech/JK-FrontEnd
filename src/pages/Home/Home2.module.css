@@ -263,6 +263,7 @@ html {
 }
 .section-eventos h1 {
   margin-top: 30px;
+  /* margin-bottom: 30px; */
   font-size: 250%;
 }
 
@@ -496,4 +497,15 @@ html {
 .btnEnviar:active {
   transform: translateY(1px);
   background: #244aa6;
+}
+.box-eventos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px; /* Limita a largura do container */
+}
+.box-eventos h1 {
+  margin-top: 30px;
 }

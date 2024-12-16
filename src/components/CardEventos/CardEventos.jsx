@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styles from "./CardEventos.module.css";
 import carrossel1 from '../../img/home1.jpeg';
 import carrossel2 from '../../img/home2.jpeg';
@@ -7,20 +7,19 @@ import carrossel4 from '../../img/lateralLogin.jpeg';
 import carrossel5 from '../../img/doe.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import { A11y,Scrollbar } from 'swiper/modules';
+import { A11y, Scrollbar } from 'swiper/modules';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 function CardEventos() {
     const swiperRef = useRef(null);
-    const [ ,setCurrentImage] = useState(0);
 
     const slides = [
-        { id: 1, image: carrossel1, url: 'https://www.instagram.com/p/DCFW_LQP5FU/?igsh=dnFuYnR2amhsNDh5&img_index=1', titulo: 'Banda Templo Soul' },
-        { id: 2, image: carrossel2, url: 'https://www.instagram.com/p/C_MAsqZPrFK/?igsh=MWx1bjc0eDl6ZHpmeg==', titulo: 'Banda Ecos' },
-        { id: 3, image: carrossel3, url: 'https://www.instagram.com/p/C_OldxKv5c4/?igsh=OWI0NWpoOWU3ZW54', titulo: 'Preletor Vinicius Bala' },
-        { id: 4, image: carrossel4, url: 'https://www.instagram.com/p/DCFh2gdPGVv/?igsh=MTNqOHYzcDM0YXV6Mw%3D%3D&img_index=1', titulo: 'Preletor Arthur Ribeiro' },
-        { id: 5, image: carrossel5, url: 'https://www.instagram.com/p/C_RKSPXvHar/?igsh=ZHVkZzI3cTBwY2lj', titulo: 'Teatro CIA Nissi' },
-        { id: 6, image: 'https://jesusking.blob.core.windows.net/images/b442eb2c-fabb-43af-8a5b-20d369b2d0f5-mandamentos.jpg' , url: '', titulo: 'Banda Templo Soul' },
+        { id: 1, image: carrossel1, url: 'https://www.instagram.com/p/DCFW_LQP5FU/', titulo: 'Banda Templo Soul', descricao: 'Uma noite especial de música e adoração com Templo Soul.' },
+        { id: 2, image: carrossel2, url: 'https://www.instagram.com/p/C_MAsqZPrFK/', titulo: 'Banda Ecos', descricao: 'Participe de um evento incrível com a Banda Ecos.' },
+        { id: 3, image: carrossel3, url: 'https://www.instagram.com/p/C_OldxKv5c4/', titulo: 'Preletor Vinicius Bala', descricao: 'Uma palavra inspiradora do preletor Vinicius Bala.' },
+        { id: 4, image: carrossel4, url: 'https://www.instagram.com/p/DCFh2gdPGVv/', titulo: 'Preletor Arthur Ribeiro', descricao: 'Venha ouvir uma mensagem impactante com Arthur Ribeiro.' },
+        { id: 5, image: carrossel5, url: 'https://www.instagram.com/p/C_RKSPXvHar/', titulo: 'Teatro CIA Nissi', descricao: 'Uma apresentação teatral inesquecível com CIA Nissi.' },
+        { id: 6, image: 'https://jesusking.blob.core.windows.net/images/b442eb2c-fabb-43af-8a5b-20d369b2d0f5-mandamentos.jpg', url: '', titulo: 'Banda Templo Soul', descricao: 'Uma noite especial de louvor e música.' },
     ];
 
     return (
@@ -33,23 +32,32 @@ function CardEventos() {
             </button>
             <div className={styles.boxEventos}>
                 <Swiper
-                    modules={[ A11y, Scrollbar]}
+                    modules={[A11y, Scrollbar]}
                     spaceBetween={30}
-                    slidesPerView={3}
-                    onSwiper={(swiper) => {
-                        swiperRef.current = swiper;
-                    }}
-                    onSlideChange={(swiper) => setCurrentImage(swiper.activeIndex)}
+                    slidesPerView={1}
+                    onSwiper={(swiper) => (swiperRef.current = swiper)}
                 >
                     {slides.map((slide) => (
                         <SwiperSlide key={slide.id} className={styles.slide}>
-                            <a href={slide.url}>
+                            <div className={styles.card}>
+                                {/* <div className={styles.boxImg}> */}
                                 <img
                                     src={slide.image}
                                     alt={slide.titulo}
-                                    className={styles.slideItem}
+                                    className={styles.cardImage}
                                 />
-                            </a>
+                                {/* </div> */}
+
+                                <div className={styles.cardContent}>
+                                    <h3>{slide.titulo}</h3>
+                                    <p>{slide.descricao}</p>
+                                    {slide.url && (
+                                        <a href={slide.url} target="_blank" rel="noopener noreferrer">
+                                            <button className={styles.btn}>Conferir</button>
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
