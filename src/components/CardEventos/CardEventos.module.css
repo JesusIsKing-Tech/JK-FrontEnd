@@ -7,6 +7,9 @@
     max-width: 1200px;
     margin: 0 auto;
     height: auto;
+    margin-top: 30px;
+    background-color: #ededed;
+    color: #000;
 }
 
 .boxEventos {
@@ -38,16 +41,14 @@
     transition: transform 0.3s ease;
 }
 
-
-
 .leftArrow, .rightArrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     border: none;
     border-radius: 50%;
-    color: white;
+    color: black;
     padding: 10px;
     cursor: pointer;
     z-index: 10;
@@ -62,10 +63,106 @@
 }
 
 .swiper-pagination-bullet {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     opacity: 0.8;
 }
 
 .swiper-pagination-bullet-active {
-    background: rgba(0, 0, 0, 1);
+    background: rgba(255, 255, 255, 1);
+}
+
+.boxCarrossel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ccc;
+    color: #000;
+    border-radius: 5px;
+    padding: 50px;
+    /* box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px; */
+}
+
+.leftArrow,
+.rightArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.leftArrow {
+    left: 20px;
+}
+
+.rightArrow {
+    right: 20px;
+}
+
+.boxEventos {
+    width: 80%;
+    overflow: hidden;
+}
+
+.card {
+    display: flex;
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+.cardImage {
+    width: 40%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.cardContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.cardContent h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+}
+
+.cardContent p {
+    font-size: 0.9rem;
+    color: #4f4f4f;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.btn {
+    align-self: flex-start;
+    background-color: #4520ff;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #4520ff;
+}
+
+.slide {
+    display: flex;
+    justify-content: center;
+}
+
+.boxImg {
 }

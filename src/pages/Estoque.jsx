@@ -310,6 +310,22 @@ useEffect(() => {
   fetchQuantidadeCesta();
 }
 , [quantidadeCesta]);
+const [top5MenosItens, setTop5MenosItens] = useState([]);
+
+useEffect(() => {
+  // Atualiza o Top 5 sempre que os produtos forem carregados
+  if (produtos.length > 0) {
+    const top5 = getTop5MenosItens(produtos);
+    setTop5MenosItens(top5);
+  }
+}, [produtos]);
+
+const getTop5MenosItens = (produtos) => {
+  // Ordena os produtos por quantidade crescente e pega os 5 primeiros
+  return [...produtos]
+    .sort((a, b) => a.quantidade - b.quantidade)
+    .slice(0, 5);
+};
 
   return (
     <>
@@ -353,6 +369,21 @@ useEffect(() => {
           <BoxDash>
             <CardCesta onClick={montarCesta} quantidade={quantidadeCesta} />
           </BoxDash>
+          <H2>Top 5 Menos Itens</H2>
+  {/* <BoxDash>
+    <ul>
+      <li>arroz: 3 itens</li>
+      <li>arroz: 3 itens</li>
+      <li>arroz: 3 itens</li>
+      <li>arroz: 3 itens</li>
+      <li>arroz: 3 itens</li>
+      {top5MenosItens.map((item, index) => (
+        <li key={index}>
+          {item.nome}: {item.quantidade} itens
+        </li>
+      ))}
+    </ul>
+  </BoxDash> */}
         </BoxLateral>
       </Box>
 
