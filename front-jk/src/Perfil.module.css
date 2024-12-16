@@ -528,6 +528,7 @@ h4{
 
 .selectedChamado {
   margin-top: 20px;
+  height: 100%;
 }
 
 .buttonsContainer {
@@ -591,6 +592,7 @@ h4{
 }
 .contactContainer {
   display: flex;
+  /* border: solid black 4px; */
   /* flex-direction: column; */
   align-items: center; /* Centraliza horizontalmente o container */
   /* text-align: left; Mantém o texto alinhado pelo início */

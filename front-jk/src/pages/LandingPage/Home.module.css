@@ -72,15 +72,15 @@ html, body {
 }
 
 .buttonsContainer .login {
-  background-color: #152c4f;
-  color: white;
-  border: none;
+  background-color: #fff;
+  color: #172f53;
+  /* border: none; */
 }
 
 .buttonsContainer .signup {
   background-color: #fff;
-  color: #2B4C7E;
-  border: none;
+  color: #172f53;
+  /* border: none; */
 }
 
 .buttonsContainer button:hover {
@@ -88,7 +88,7 @@ html, body {
 }
 
 .buttonsContainer .login:hover {
-  background-color: #0b1c34;
+  /* background-color: #0b1c34; */
 }
 
 /* Main Container */
@@ -97,7 +97,8 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 4.5rem;
-  background: linear-gradient(to right, #e2ebf7, #b0c5e0, #7f9fc8, #4f78b0, #2b4c7e);
+  /* background: linear-gradient(to right, #e2ebf7, #b0c5e0, #7f9fc8, #4f78b0, #2b4c7e); */
+  background: rgb(255, 255, 255);
   height: 80vh;
   gap: 20px;
 

@@ -719,9 +719,8 @@ function Perfil() {
                         <p><strong><FaPhone></FaPhone></strong> {selectedChamado.telefone}</p>
                       </div>
                     </div>
-                    <div>
-                    <div style={{ overflowY: 'scroll', height: '80%', display:"flex",justifyContent: "space-evenly"
-}}>
+                    <div style={{ height: '80%'}}>
+                    <div style={{ overflowY: 'scroll', height: '80%', display:"flex",justifyContent: "space-evenly"}}>
 
                       {/* Endereço Anterior */}
                       <div className={styles.selectedChamado}>
