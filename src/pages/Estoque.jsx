@@ -369,7 +369,7 @@ const getTop5MenosItens = (produtos) => {
           <BoxDash>
             <CardCesta onClick={montarCesta} quantidade={quantidadeCesta} />
           </BoxDash>
-          <H2>Top 5 Menos Itens</H2>
+          {/* <H2>Top 5 Menos Itens</H2> */}
   {/* <BoxDash>
     <ul>
       <li>arroz: 3 itens</li>
